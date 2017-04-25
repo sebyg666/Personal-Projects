@@ -1,0 +1,29 @@
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\bin\Debug\InstaWarp2.exe.config
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\bin\Debug\InstaWarp2.exe
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\bin\Debug\InstaWarp2.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\MainWindow.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\MainWindow.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\App.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\InstaWarp2_MarkupCompile.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\InstaWarp2.g.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\InstaWarp2.Properties.Resources.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\InstaWarp2.csproj.GenerateResource.Cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\InstaWarp2.exe
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\InstaWarp2\obj\Debug\InstaWarp2.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\bin\Debug\InstaWarp2.exe.config
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2.exe
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\bin\Debug\InstaWarp2.exe
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\bin\Debug\InstaWarp2.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\bin\Debug\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\bin\Debug\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2.csprojResolveAssemblyReference.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\MainWindow.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\MainWindow.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\App.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2_MarkupCompile.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2.g.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2.Properties.Resources.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\InstaWarp2.csproj.GenerateResource.Cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\obj\Debug\App.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - For Dll - Copy\InstaWarp2\bin\Debug\FFACETools.dll

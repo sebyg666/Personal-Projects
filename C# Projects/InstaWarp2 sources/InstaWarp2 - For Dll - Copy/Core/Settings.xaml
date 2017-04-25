@@ -1,0 +1,143 @@
+﻿<Window x:Class="Core.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings"
+        Height="auto"  Width="400" 
+        SizeToContent="Height"
+        WindowStyle="none"
+        AllowsTransparency="true"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen"
+        xmlns:Core="clr-namespace:Core"
+        Topmost="True">
+
+    <Window.Resources>
+        <Style TargetType="Core:Settings">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Core:Settings">
+
+                        <Border CornerRadius="5" BorderThickness="5" BorderBrush="#FF86D2F5" IsHitTestVisible="True">
+                            <DockPanel Background="AliceBlue">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Grid Background="#FF86D2F5" Cursor="SizeAll">
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="328" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Menu Grid.Column="0" x:Name="mainMenu" IsMainMenu="True" MaxHeight="25" Background="#FF86D2F5" Width="auto" Cursor="Arrow" FontWeight="Bold">
+                                            <MenuItem Header="File">
+                                                <MenuItem Header="Save Settings" x:Name="PART_saveSettings" Click="PART_saveSettings_Click"/>
+                                                <MenuItem Header="Close" x:Name="closeMenuButton" Click="closeMenuButton_Click"/>
+                                            </MenuItem>
+                                        </Menu>
+                                        <Label Grid.Column="1" Background="#FF86D2F5" FontFamily="Showcard Gothic" FontSize="14" IsHitTestVisible="False" Focusable="False" IsTabStop="False" HorizontalAlignment="Center">
+                                            <Label.Content>Insta Warp - Global Settings</Label.Content>
+                                        </Label>
+                                        <Image Grid.Column="1" MaxHeight="25" Source="frog.ico" HorizontalAlignment="Right"/>
+                                        <DockPanel Grid.Column="2">
+                                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" MaxHeight="25" Margin="0,0,0,0" Cursor="Arrow">
+                                                <Button x:Name="Close_button" Margin="1" Height="20" Width="20" Click="closeMenuButton_Click" HorizontalAlignment="Stretch">
+                                                    <Image Source="Images/Close2.png"  Height="16" Stretch="Uniform"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <DockPanel Grid.Column="0">
+                                            <StackPanel>
+                                                <TextBlock Text="Excluded Players" Margin="2" Padding="2" FontFamily="Lucida Calligraphy" />
+                                                <ScrollViewer CanContentScroll="True" FontFamily="Lucida Calligraphy">
+                                                    <ListBox MinHeight="200" MaxHeight="200" x:Name="PART_ExPlayerViewer" FontSize="14" FontFamily="Calibri" IsHitTestVisible="True" Height="Auto" Margin="4" />
+                                                </ScrollViewer>
+                                                <Grid>
+                                                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_playerToAdd" Margin="4" Padding="4"/>
+                                                    <TextBlock IsHitTestVisible="False" Text="Name of Player" VerticalAlignment="Center" HorizontalAlignment="left" Margin="10,0,0,0" Foreground="DarkGray" FontStyle="Italic">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_playerToAdd}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                                <StackPanel Orientation="Vertical">
+                                                    <DockPanel>
+                                                        <Button x:Name="PART_deletePlayer" DockPanel.Dock="Left" Content="Delete Selected" Margin="4" Padding="4" Click="PART_deletePlayer_Click" ToolTip="Delete currently seleceted Player from list" />
+                                                        <Button x:Name="PART_addPlayer" DockPanel.Dock="Right" Content="Add" Margin="4" Padding="4" Click="PART_addPlayer_Click" ToolTip="Add typed player name to list" />
+                                                    </DockPanel>
+                                                </StackPanel>
+                                                <TextBlock>
+                                                    <Label Content="Zone Delay: " Margin="4" Padding="4" FontFamily="Lucida Calligraphy" Background="#FF86D2F5" />               
+                                                    
+                                                    <Grid>
+                                                    <TextBox x:Name="PART_zoneDelay" Margin="4" Padding="4" Width="60" ToolTip="Current Setting is the Watermark" />
+                                                    <TextBlock x:Name="PART_zoneDelayWaterMark" IsHitTestVisible="False" ToolTip="Current Setting is the Watermark" Text="0" VerticalAlignment="Center" HorizontalAlignment="left" Margin="10,0,0,0" Foreground="DarkGray" FontStyle="Italic">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Text, ElementName=PART_zoneDelay}" Value="">
+                                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DockPanel>
+                                        <DockPanel Grid.Column="1">
+                                            <StackPanel>
+                                                <TextBlock Text="Excluded Zones" Margin="2" Padding="2" FontFamily="Lucida Calligraphy" />
+                                                <ScrollViewer CanContentScroll="True" FontFamily="Lucida Calligraphy">
+                                                    <ListBox MinHeight="200" MaxHeight="200" x:Name="PART_ExZoneViewer" FontSize="14" FontFamily="Calibri" IsHitTestVisible="True" Height="Auto" Margin="4" />
+                                                </ScrollViewer>
+                                                <Grid>
+                                                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_zoneToAdd" Margin="4" Padding="4"/>
+                                                    <TextBlock IsHitTestVisible="False" Text="Zone ID (i.e. 256)" VerticalAlignment="Center" HorizontalAlignment="left" Margin="10,0,0,0" Foreground="DarkGray" FontStyle="Italic">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_zoneToAdd}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                                <!--<TextBox x:Name="PART_zoneToAdd" Margin="4" Padding="4" />-->
+                                                <StackPanel Orientation="Vertical">
+                                                    <DockPanel>
+                                                        <Button x:Name="PART_deleteZone" DockPanel.Dock="Left" Content="Delete Selected" Margin="4" Padding="4" Click="PART_deleteZone_Click" ToolTip="Delete Zone ID from list" />
+                                                        <Button x:Name="PART_addZone" DockPanel.Dock="Right" Content="Add" Margin="4" Padding="4" Click="PART_addZone_Click" ToolTip="Add typed Zone ID to list" />
+                                                    </DockPanel>
+                                                </StackPanel>
+                                                <Button Content="Save" Margin="4" Padding="4" Width="60" Click="PART_saveSettings_Click" ToolTip="Save settings (eg. a typed Zone Delay)" />
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+</Window>

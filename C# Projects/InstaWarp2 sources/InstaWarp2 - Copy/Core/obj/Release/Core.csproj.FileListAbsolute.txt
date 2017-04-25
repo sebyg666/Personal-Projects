@@ -1,0 +1,29 @@
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\bin\Release\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\bin\Release\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\CoreWindow.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Settings.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core_MarkupCompile.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core_MarkupCompile.lref
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\CoreWindow.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Settings.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core.g.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core.Properties.Resources.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core.csproj.GenerateResource.Cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Release\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\bin\Release\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\bin\Release\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core.csprojResolveAssemblyReference.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\CoreWindow.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Settings.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core_MarkupCompile.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core_MarkupCompile.lref
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\CoreWindow.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Settings.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core.g.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core.Properties.Resources.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core.csproj.GenerateResource.Cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Release\Core.pdb

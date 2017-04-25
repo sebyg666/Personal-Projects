@@ -1,0 +1,283 @@
+﻿<Window x:Class="Core.CoreWindow"
+        x:Name="Core_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Insta Warp" 
+        Height="auto"  Width="300" 
+        SizeToContent="Height"
+        WindowStyle="none"
+        AllowsTransparency="true"
+        MouseDown="Window_MouseDown"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen" Icon="frog.ico"
+        xmlns:Core="clr-namespace:Core"
+       >
+
+    <Window.Resources>
+        <CollectionViewSource x:Key="cvs" x:Name="cvs" Source="{Binding ElementName=mListBox, Path=ItemsSource}"/>
+        <BooleanToVisibilityConverter x:Key="b2v" />
+        <Style TargetType="Core:CoreWindow">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Core:CoreWindow">
+                        <Border CornerRadius="5" BorderThickness="5" BorderBrush="#FF86D2F5" IsHitTestVisible="True">
+                            <DockPanel Background="AliceBlue">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Grid Background="#FF86D2F5" Cursor="SizeAll">
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Menu Grid.Column="0" x:Name="mainMenu" IsMainMenu="True" MaxHeight="25" Background="#FF86D2F5" Width="auto" Cursor="Arrow" FontWeight="Bold">
+                                            <MenuItem Header="File">
+                                                <MenuItem x:Name="PART_TopMost"         Header="Stay On Top" IsCheckable="True" IsEnabled="True"  IsChecked="{Binding Path=Topmost, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Checked="PART_TopMost_Checked" Unchecked="PART_TopMost_Unchecked" ToolTip="Stay-on-top is auto-saved to the config file."/>
+                                                <MenuItem x:Name="PART_warpMulty"       Header="Warp All Characters in same Zone" IsCheckable="True" IsChecked="False" IsEnabled="True"/>
+                                                <MenuItem Height="2" Background="Gray" Margin="28,3,0,3"/>
+                                                <MenuItem Header="Save Options + Hacks" ToolTip="Save Options and Hacks (not all hacks) for the player currently selected" x:Name="PART_saveSettings" Click="PART_saveSettings_Click"/>
+                                                <MenuItem Header="Global Settings" Click="MenuItem_Click" ToolTip="Settings Global to all Players. eg. exclusions and zone delay"/>
+                                                <MenuItem Header="Close" x:Name="closeMenuButton" Click="closeMenuButton_Click"/>
+                                            </MenuItem>
+                                            <MenuItem Header="Options" ToolTip="Per Player Options">
+                                                <MenuItem x:Name="PART_MaintStatus"     Header="Use Maintenance Mode" IsCheckable="True" IsChecked="False" Checked="PART_MaintStatus_Checked" Unchecked="PART_MaintStatus_Unchecked" ToolTip="Maintenance Mode on/off (Removes all forms of collision detection and stops updating the server until turned off)"/>
+                                                <MenuItem x:Name="PART_GMFlag"          Header="Use GM Flag" IsCheckable="True" IsChecked="False" Checked="PART_GMFlag_Checked" Unchecked="PART_GMFlag_Unchecked" ToolTip="GM-Flag on/off (on: removes Collision detection with other PC's and NPC's)"/>
+                                                <MenuItem x:Name="PART_JAWait0"         Header="Use JAWait0 Hack" IsCheckable="True" IsChecked="False" Checked="PART_JAWait0_Checked" Unchecked="PART_JAWait0_Unchecked" ToolTip="JA-wait-0 on/off (alows use of JA's while moving)"/>
+                                                <MenuItem x:Name="PART_UseExclusions"   Header="Use Exclusions" IsCheckable="True" IsChecked="False" Checked="PART_UseExclusions_Checked" Unchecked="PART_UseExclusions_Unchecked" ToolTip="Exclusions on/off (alows hacks to be on while in range of players in exclusion list or Zone ID list)"/>
+                                            </MenuItem>
+                                        </Menu>
+                                        <Label Grid.Column="1" Background="#FF86D2F5" FontFamily="Showcard Gothic" FontSize="14" IsHitTestVisible="False" Focusable="False" IsTabStop="False" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                            <Label.Content>Insta Warp</Label.Content>
+                                        </Label>
+                                        <Image Grid.Column="1" MaxHeight="25" Source="frog.ico" HorizontalAlignment="Right"/>
+                                        <DockPanel Grid.Column="2">
+                                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" MaxHeight="25" Margin="0,0,0,0" Cursor="Arrow">
+                                                <Button x:Name="Minimize_button" Margin="0" Height="20" Width="20" Click="Minimize_button_Click">
+                                                    <Image Source="Images/minimize1.png" Height="16"/>
+                                                </Button>
+
+                                                <Button x:Name="Close_button" Margin="1" Height="20" Width="20" Command="ApplicationCommands.Close" HorizontalAlignment="Stretch">
+                                                    <Image Source="Images/Close2.png"  Height="16" Stretch="Uniform"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </Grid>
+                                </StackPanel>
+                                <TabControl BorderBrush="Transparent" DockPanel.Dock="top" Name="PART_mainTab" SelectionChanged="PART_mainTab_SelectionChanged" Initialized="PART_mainTab_Initialized">
+                                </TabControl>
+                                <StackPanel DockPanel.Dock="Top">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" BorderBrush="Transparent" Foreground="Transparent" Click="Button_Click" Background="Transparent" Focusable="False" OpacityMask="Black" Margin="12,0,12,0" Opacity="0"/>
+                                        <Expander x:Name="PART_Expander0" Grid.Column="0" IsExpanded="False" HorizontalAlignment="Center" ExpandDirection="Down" UseLayoutRounding="True" Padding="3,0,0,0" BorderBrush="#FF86A9F5" BorderThickness="3" ToolTip="Show/Hide WayPoint list" Background="{x:Null}" IsHitTestVisible="False" Focusable="False"/>
+                                        <Button Grid.Column="1" BorderBrush="Transparent" Foreground="Transparent" Click="Button_Click_1" Background="Transparent" Focusable="False" OpacityMask="Black" Margin="12,0,12,0" Opacity="0"/>
+                                        <Expander x:Name="PART_Expander1" Grid.Column="1" IsExpanded="False" HorizontalAlignment="Center" ExpandDirection="Down" Expanded="PART_Expander1_Expanded" Collapsed="PART_Expander1_Collapsed" Padding="3,0,0,0" BorderBrush="#FF86D2F5" BorderThickness="3" ToolTip="Show/Hide Current Location Creator" IsHitTestVisible="False" Focusable="False"/>
+                                        <Button Grid.Column="2" BorderBrush="Transparent" Foreground="Transparent" Click="Button_Click_2" Background="Transparent" Focusable="False" OpacityMask="Black" Margin="12,0,12,0" Opacity="0"/>
+                                        <Expander x:Name="PART_Expander2" Grid.Column="2" IsExpanded="False" HorizontalAlignment="Center" ExpandDirection="Down" Expanded="PART_Expander2_Expanded" Collapsed="PART_Expander2_Collapsed" Padding="3,0,0,0" BorderBrush="#FF86A9F5" BorderThickness="3" ToolTip="Show/Hide Manual Co-Ordinate Creator" IsHitTestVisible="False" Focusable="False"/>
+                                        <Button Grid.Column="3" BorderBrush="Transparent" Foreground="Transparent" Click="Button_Click_3" Background="Transparent" Focusable="False" OpacityMask="Black" Margin="12,0,12,0" Opacity="0"/>
+                                        <Expander x:Name="PART_Expander3" Grid.Column="3" IsExpanded="False" HorizontalAlignment="Center" ExpandDirection="Down" Padding="3,0,0,0" BorderBrush="#FF86D2F5" BorderThickness="3" ToolTip="Show/Hide Speed Hack" IsHitTestVisible="False" Focusable="False"/>
+                                        <Button Grid.Column="4" BorderBrush="Transparent" Foreground="Transparent" Click="Button_Click_4" Background="Transparent" Focusable="False" OpacityMask="Black" Margin="12,0,12,0" Opacity="0"/>
+                                        <Expander x:Name="PART_Expander4" Grid.Column="4" IsExpanded="False" HorizontalAlignment="Center" ExpandDirection="Down" Padding="3,0,0,0" BorderBrush="#FF86A9F5" BorderThickness="3" ToolTip="Show/Hide Position Hack" IsHitTestVisible="False" Focusable="False"/>
+                                    </Grid>
+                                </StackPanel>
+                                <DockPanel Background="AliceBlue">
+                                    <StackPanel Background="AliceBlue">
+                                        <StackPanel DockPanel.Dock="Top">
+                                            <StatusBar>
+                                                <StatusBarItem Margin="4" TextElement.FontSize="11" FontSize="10.5" FontFamily="Lucida Calligraphy" Background="AliceBlue">
+                                                    <TextBlock HorizontalAlignment="Left" >
+                                                        <Label Content="Zone ID:" Background="#FF86D2F5" />
+                                                        <Label x:Name="PART_zoneIDLabel" />
+                                                        <Label Content="Name:" Background="#FF86D2F5"/>
+                                                        <Label MaxWidth="130" x:Name="PART_zoneNameLabel" />
+                                                    </TextBlock>
+                                                </StatusBarItem>
+                                            </StatusBar>
+                                            <Border BorderBrush="#FF86A9F5" BorderThickness="5" CornerRadius="5" x:Name="PART_ScrollViewer" Margin="4,2" Visibility="{Binding IsExpanded,ElementName=PART_Expander0,Converter={StaticResource b2v}}">
+                                                <ScrollViewer CanContentScroll="True">
+                                                    <ListBox FontSize="14" FontFamily="Calibri" MaxHeight="200" IsHitTestVisible="True" Height="Auto" Margin="4" x:Name="PART_WPViewer" MouseDoubleClick="PART_WPViewer_MouseDoubleClick" ItemsSource="{Binding}" />
+                                                </ScrollViewer>
+                                            </Border>
+                                            <Button x:Name="PART_btDelete" Content="Delete Selection" Margin="4" Click="PART_btDelete_Click" Visibility="Collapsed" />
+                                        </StackPanel>
+                                        <Border Margin="4,2" BorderBrush="#FF86D2F5" BorderThickness="5" CornerRadius="5" x:Name="PART_CurLocStack" DockPanel.Dock="Top" Visibility="{Binding IsExpanded,ElementName=PART_Expander1,Converter={StaticResource b2v}}">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_CurLocTextBox" Margin="5"/>
+                                                    <TextBlock IsHitTestVisible="False" Text="Name Current Location" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_CurLocTextBox}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                                <Button x:Name="PART_btCreateCurLoc"  Content="Create Location" Margin="4" Click="PART_btCreateCurLoc_Click">
+                                                </Button>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Margin="4,2" BorderBrush="#FF86A9F5" BorderThickness="5" CornerRadius="5" x:Name="PART_ManLocStack" DockPanel.Dock="Top" Visibility="{Binding IsExpanded,ElementName=PART_Expander2,Converter={StaticResource b2v}}">
+                                            <StackPanel>
+                                                <Grid>
+                                                    <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_ManLocTextBox" Margin="5"/>
+                                                    <TextBlock IsHitTestVisible="False" Text="Name Manual Location" VerticalAlignment="Center" HorizontalAlignment="left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_ManLocTextBox}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_ManualCo_Ordinates_x" Margin="5"/>
+                                                    <TextBlock Grid.Column="0" IsHitTestVisible="False" Text="'X' 0.000" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_ManualCo_Ordinates_x}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                    <TextBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_ManualCo_Ordinates_y" Margin="5"/>
+                                                    <TextBlock Grid.Column="1" IsHitTestVisible="False" Text="'Y' 0.000" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_ManualCo_Ordinates_y}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                    <TextBox Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="PART_ManualCo_Ordinates_z" Margin="5"/>
+                                                    <TextBlock Grid.Column="2" IsHitTestVisible="False" Text="'Z' 0.000" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName=PART_ManualCo_Ordinates_z}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                                <Button x:Name="PART_btCreateManLoc" Content="Create Location Manually" Margin="4" Click="PART_btCreateManLoc_Click">
+                                                </Button>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Margin="4,2" BorderBrush="#FF86D2F5" BorderThickness="5" CornerRadius="5" x:Name="PART_SpeedHack" DockPanel.Dock="Top" Visibility="{Binding IsExpanded,ElementName=PART_Expander3,Converter={StaticResource b2v}}">
+                                            <StackPanel>
+                                                <CheckBox x:Name="PART_chkBoxEnableSpeed" TextElement.FontSize="11" FontSize="12" FontFamily="Lucida Calligraphy" HorizontalAlignment="Center" Content=" Enable Speed Hack" Margin="0,4,0,0" Checked="PART_chkBoxEnableSpeed_Checked" Unchecked="PART_chkBoxEnableSpeed_Unchecked"/>
+                                                <Slider x:Name="PART_CurrentSpeedSlider" Maximum="65" SmallChange="1" LargeChange="1" BorderThickness="10,0" Minimum="1" TickPlacement="Both" Value="1" ValueChanged="PART_CurrentSpeedSlider_ValueChanged" IsSnapToTickEnabled="True"/>
+                                                <TextBlock Margin="0" HorizontalAlignment="Center">
+                                                        <Label TextElement.FontSize="11" FontSize="12" FontFamily="Lucida Calligraphy" Content="Current Speed: "></Label>
+                                                        <Label x:Name="PART_lbCurrentSpeed" Content="0.0" Background="#FF86D2F5"></Label>
+                                                </TextBlock>
+                                                <Separator Background="#FF86D2F5" Foreground="#FF86D2F5" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                                <Slider x:Name="PART_DisabledSpeedSlider" LargeChange="1" Maximum="65" SmallChange="1" BorderThickness="10,0" IsSnapToTickEnabled="True" TickPlacement="Both" Minimum="1" Value="1" Margin="0,4,0,0" ValueChanged="PART_DisabledSpeedSlider_ValueChanged"/>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="120"/>
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <CheckBox x:Name="PART_AutoDisableSpeedHack" TextElement.FontSize="11" FontSize="12" FontFamily="Lucida Calligraphy" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4" Content="Auto-Disable" BorderThickness="1" Checked="PART_AutoDisableSpeedHack_Checked" Unchecked="PART_AutoDisableSpeedHack_Unchecked"/>
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                        <Label TextElement.FontSize="11" FontSize="12" FontFamily="Lucida Calligraphy" Margin="4" HorizontalAlignment="Left" Content="Disable Speed: "></Label>
+                                                        <Label x:Name="PART_lbDisabledSpeed" Background="#FF86D2F5" Margin="4" Content="4.0"></Label>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Margin="4,2" BorderBrush="#FF86A9F5" BorderThickness="5" CornerRadius="5" x:Name="PART_PositionHack" DockPanel.Dock="Top" Visibility="{Binding IsExpanded,ElementName=PART_Expander4,Converter={StaticResource b2v}}">
+                                            <StackPanel Margin="4">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                                        <Button x:Name="PART_btNW" Margin="4" Width="50" VerticalAlignment="Center" Content="NW" Click="PART_btNW_Click"></Button>
+                                                        <Button x:Name="PART_btN" Margin="4" Width="50" VerticalAlignment="Center" Content="N" Click="PART_btN_Click"></Button>
+                                                        <Button x:Name="PART_btNE" Margin="4" Width="50" VerticalAlignment="Center" Content="NE" Click="PART_btNE_Click"></Button>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                                        <Button x:Name="PART_btUP" Margin="4" Width="50" VerticalAlignment="Center" Content="UP" Click="PART_btUP_Click"></Button>
+                                                        <Button x:Name="PART_btW" Margin="4" Width="50" VerticalAlignment="Center" Content="W" Click="PART_btW_Click"></Button>
+                                                        <Button x:Name="PART_btE" Margin="4" Width="50" VerticalAlignment="Center" Content="E" Click="PART_btE_Click"></Button>
+                                                        <Button x:Name="PART_btDN" Margin="4" Width="50" VerticalAlignment="Center" Content="DN" Click="PART_btDN_Click"></Button>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                                        <Button x:Name="PART_btSW" Margin="4" Width="50" VerticalAlignment="Center" Content="SW" Click="PART_btSW_Click"></Button>
+                                                        <Button x:Name="PART_btS" Margin="4" Width="50" VerticalAlignment="Center" Content="S" Click="PART_btS_Click"></Button>
+                                                        <Button x:Name="PART_btSE" Margin="4" Width="50" VerticalAlignment="Center" Content="SE" Click="PART_btSE_Click"></Button>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Row="3">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition />
+                                                                <ColumnDefinition />
+                                                            </Grid.ColumnDefinitions>
+                                                            <CheckBox x:Name="PART_LockZCoord" TextElement.FontSize="11" FontSize="12" FontFamily="Lucida Calligraphy" Margin="4" Grid.Column="0" Content="Lock Z-Co-ord" Checked="PART_LockZCoord_Checked" Unchecked="PART_LockZCoord_Unchecked"></CheckBox>
+                                                            <CheckBox x:Name="PART_AutoDisablePosiHack" TextElement.FontSize="11" FontSize="12" FontFamily="Lucida Calligraphy" Margin="4" Grid.Column="1" Content="Auto-Disbale" Checked="PART_AutoDisablePosiHack_Checked" Unchecked="PART_AutoDisablePosiHack_Unchecked"></CheckBox>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Border>
+                                        <StatusBar TextElement.FontSize="11" FontSize="11" FontFamily="Lucida Calligraphy">
+                                            <TextBlock>
+                                                <Label FontSize="10.5" Content="Detect Status: " FontWeight="Bold"/>
+                                                <Label x:Name="PART_DetectStatus" Content="Waiting for FFXI Process...."/>
+                                            </TextBlock>
+                                        </StatusBar>
+                                    </StackPanel>
+                                </DockPanel>
+                            </DockPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--****************************************************************************************************-->
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
+
+
+
+
+</Window>
+

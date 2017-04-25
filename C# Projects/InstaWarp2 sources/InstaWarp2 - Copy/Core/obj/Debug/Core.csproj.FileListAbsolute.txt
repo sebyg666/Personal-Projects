@@ -1,0 +1,28 @@
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\bin\Debug\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\bin\Debug\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\CoreWindow.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Settings.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core_MarkupCompile.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core_MarkupCompile.lref
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\CoreWindow.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Settings.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core.g.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core.Properties.Resources.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core.csproj.GenerateResource.Cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2\Core\obj\Debug\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\bin\Debug\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\bin\Debug\Core.pdb
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\CoreWindow.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Settings.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core_MarkupCompile.cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core_MarkupCompile.lref
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\CoreWindow.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Settings.baml
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core.g.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core.Properties.Resources.resources
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core.csproj.GenerateResource.Cache
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core.dll
+D:\My Software\FFXI suff\WPF Projects\InstaWarp2 - Copy\Core\obj\Debug\Core.pdb

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InformationToSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UseGMFlag>true</UseGMFlag>
+  <UseJAWait0>true</UseJAWait0>
+  <AutoDisableJAWait0Hack>false</AutoDisableJAWait0Hack>
+  <UseSpeedHack>true</UseSpeedHack>
+  <SpeedAmount>14</SpeedAmount>
+  <SpeedAmountDisabled>5.5</SpeedAmountDisabled>
+  <AutoDisableSpeedHack>true</AutoDisableSpeedHack>
+  <UseExclusions>true</UseExclusions>
+</InformationToSave>

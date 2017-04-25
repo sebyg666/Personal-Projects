@@ -1,0 +1,2 @@
+"Staging Point" | -265.632 | -29.472 | -6
+"Experimental Lamia" | -772.0143 | 322.7554 | -11.75

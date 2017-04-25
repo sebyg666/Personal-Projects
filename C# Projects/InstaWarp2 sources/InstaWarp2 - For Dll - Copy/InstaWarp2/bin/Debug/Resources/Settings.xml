@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AlwaysOnTop>true</AlwaysOnTop>
+  <MinimizeToTray>true</MinimizeToTray>
+  <ZoneDelay>10</ZoneDelay>
+  <ExcludedPlayers>
+    <Exclude>Colway</Exclude>
+    <Exclude>Reaps</Exclude>
+    <Exclude>Ewelina</Exclude>
+    <Exclude>P</Exclude>
+    <Exclude>a</Exclude>
+    <Exclude>Razorfang</Exclude>
+    <Exclude>Voilett</Exclude>
+    <Exclude>Fayon</Exclude>
+    <Exclude>Robotochan</Exclude>
+    <Exclude>Japhy</Exclude>
+    <Exclude>Streett</Exclude>
+    <Exclude>Yelisia</Exclude>
+    <Exclude>Ninjacr</Exclude>
+    <Exclude>Kupipi</Exclude>
+    <Exclude>Tenzen</Exclude>
+    <Exclude>Curilla</Exclude>
+    <Exclude>m</Exclude>
+    <Exclude>Silentmobius</Exclude>
+    <Exclude>Groumph</Exclude>
+    <Exclude>Eljefe</Exclude>
+    <Exclude>Caetuna</Exclude>
+    <Exclude>Sahar</Exclude>
+    <Exclude>Alisha</Exclude>
+    <Exclude>te</Exclude>
+    <Exclude>Krispix</Exclude>
+    <Exclude>Azcon</Exclude>
+    <Exclude>Darkrobot</Exclude>
+    <Exclude>Kittensgomew</Exclude>
+    <Exclude>Kittensgomew</Exclude>
+  </ExcludedPlayers>
+  <ExcludedZones />
+</Settings>
