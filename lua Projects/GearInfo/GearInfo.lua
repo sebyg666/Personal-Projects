@@ -139,6 +139,11 @@ function options_load()
 		
 		if not files.exists('data\\'..player.name..'_data.lua') then
 			this_file:create()
+			local f = io.open(windower.addon_path..'data/'..player.name..'_data.lua','w+')
+			--f:write(temp)
+			-- Quick method
+			f:write('return {\n}')
+			f:close()
 			print(player.name..'_data.lua created by GearInfo')
 			parse_inventory()
 		else
