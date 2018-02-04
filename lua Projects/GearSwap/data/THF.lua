@@ -59,9 +59,10 @@ function user_setup()
     gear.default.weaponskill_neck = "Asperity Necklace"
     gear.default.weaponskill_waist = "Caudata Belt"
 	
-	state.CP  				= M(false, 'CP')
-	state.PhysicalDefense   = M(false, 'PhysicalDefense')
-	state.MagicalDefense    = M(false, 'MagicalDefense')
+	state.CP  						= M(false, 'CP')
+	state.PhysicalDefense   	= M(false, 'PhysicalDefense')
+	state.MagicalDefense    	= M(false, 'MagicalDefense')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
 	
     -- Additional local binds
 	
@@ -76,6 +77,7 @@ function user_setup()
 	
 	DW_needed = 0
 	DW = false
+	moving = false
 	Ring_slot_locked_1 = false
 	Ring_slot_locked_2 = false
 	unlock_em = false
@@ -589,6 +591,9 @@ function customize_idle_set(idleSet)
 		if state.CP.value == true then
 			idleSet = set_combine(idleSet, sets.CP)
 		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
+		end
 	end
     return idleSet
 end
@@ -739,6 +744,16 @@ windower.raw_register_event('zone change',reset_rings)
 function job_update(cmdParams, eventArgs)
 	th_update(cmdParams, eventArgs)
 	handle_equipping_gear(player.status)
+end
+
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
 end
 
 -- Function to display the current relevant user state when doing an update.
@@ -906,6 +921,7 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -1014,6 +1030,14 @@ function update()
 		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 	else
 		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
 	end
 	
 	if not table.equals(old_inform, inform) then

@@ -106,7 +106,7 @@ function init_gear_sets()
 
     -- Fast cast sets for spells
     sets.precast.FC = {
-		main=Kali_Macc,sub={name="Genbu's Shield",priority=-1},range={name='Gjallarhorn',priority = 16},
+		main=Carnwenhan_Macc,sub={name="Genbu's Shield",priority=-1},range={name='Gjallarhorn',priority = 16},
 		head=Vanya_head,neck="Voltsurge Torque",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 		body="Inyanga Jubbah +1",hands=Leyline_Gloves,ring1="Prolix Ring",ring2="Kishar Ring",
 		back=FC_back,waist="Witful belt",legs=Kaykaus_legs,feet=Chironic_feet_FC}
@@ -234,7 +234,7 @@ function init_gear_sets()
 				
 	sets.midcast['Enfeebling Magic'] = {
 		main={name="Grioavolr",priority = 15},sub={name="Clerisy Strap",priority = -1},
-		head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+		head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 		body=Chironic_body_Macc,hands="Inyanga Dastanas +1",ring1="Vertigo Ring",ring2="Kishar Ring",
 		back=FC_back,waist="Porous Rope",legs=Chironic_legs_Macc,feet=Mediums_Sabots}
 		
@@ -246,54 +246,54 @@ function init_gear_sets()
 		body="Inyanga Jubbah +1",hands=Leyline_Gloves,ring1="Prolix Ring",ring2="Kishar Ring",
 		back=FC_back,waist="Witful Belt",legs=Empy_legs,feet=Chironic_feet_FC}
 	
-	sets.midcast['Buff'] 								= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=Empy_head,neck="Moonbow Whistle",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Buff'] 								= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
+															head=Empy_head,neck="Moonbow Whistle +1",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=Empy_hands,ring1="Prolix Ring",ring2="Kishar Ring",
 															back=FC_back,waist="Witful Belt",legs=Empy_legs,feet=Empy_feet}
-	sets.midcast['Buff']['Paeon']	 					= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Buff']['Paeon']	 					= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=Empy_hands,ring1="Prolix Ring",ring2="Kishar Ring",
 															back=FC_back,waist="Witful Belt",legs=Empy_legs,feet=Empy_feet}
-	sets.midcast['Buff']['Honor March']					= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Marsyas',priority = 16},
-															head=Empy_head,neck="Moonbow Whistle",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Buff']['Honor March']					= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Marsyas',priority = 16},
+															head=Empy_head,neck="Moonbow Whistle +1",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=Empy_hands,ring1="Prolix Ring",ring2="Kishar Ring",
 															back=FC_back,waist="Witful Belt",legs=Empy_legs,feet=Empy_feet}												
-	sets.midcast['Buff']['Extra Length']				= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=Empy_head,neck="Moonbow Whistle",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Buff']['Extra Length']				= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
+															head=Empy_head,neck="Moonbow Whistle +1",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=Empy_hands,ring1="Prolix Ring",ring2="Kishar Ring",
 															back=FC_back,waist="Witful Belt",legs="Inyanga Shalwar +1",feet=AF_feet}
-	sets.midcast['Buff']['Extra Length']['Paeon']		= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Buff']['Extra Length']['Paeon']		= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=Empy_hands,ring1="Prolix Ring",ring2="Kishar Ring",
 															back=FC_back,waist="Witful Belt",legs="Inyanga Shalwar +1",feet=AF_feet}
-	sets.midcast['Buff']['Extra Length']['Honor March']	= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Marsyas',priority = 16},
-															head=Empy_head,neck="Moonbow Whistle",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Buff']['Extra Length']['Honor March']	= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Marsyas',priority = 16},
+															head=Empy_head,neck="Moonbow Whistle +1",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=Empy_hands,ring1="Prolix Ring",ring2="Kishar Ring",
 															back=FC_back,waist="Witful Belt",legs="Inyanga Shalwar +1",feet=AF_feet}
 	sets.midcast['Buff']['Etude']						= sets.midcast['Buff']['Extra Length']
 	sets.midcast['Buff']['Extra Length']['Etude']		= sets.midcast['Buff']['Extra Length']
-	sets.midcast['Debuff'] 								= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Debuff'] 								= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands="Inyanga Dastanas +1",ring1="Carbuncle Ring",ring2="Carbuncle Ring",
 															back=FC_back,waist="Porous Rope",legs="Inyanga Shalwar +1",feet=AF_feet}								
 	sets.midcast['Debuff'].Resistant					= {main="Grioavolr",sub={name="Clerisy Strap",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 															body=AF_body,hands="Inyanga Dastanas +1",ring1="Carbuncle Ring",ring2="Carbuncle Ring",
 															back=FC_back,waist="Porous Rope",legs=AF_legs,feet=AF_feet}
-	sets.midcast['Debuff']['F-Lullaby']  				= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Debuff']['F-Lullaby']  				= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16},
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=AF_hands,ring1="Carbuncle Ring",ring2="Carbuncle Ring",
 															back=FC_back,waist="Porous Rope",legs="Inyanga Shalwar +1",feet=AF_feet}
 	sets.midcast['Debuff']['F-Lullaby'] .Resistant		= {main="Grioavolr",sub={name="Clerisy Strap",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 															body==AF_body,hands=AF_hands,ring1="Carbuncle Ring",ring2="Carbuncle Ring",
 															back=FC_back,waist="Porous Rope",legs=AF_legs,feet=AF_feet}
-	sets.midcast['Debuff']['H-Lullaby']  				= {main=Kali_Macc,sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16}, -- range={name='Nibiru Harp',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+	sets.midcast['Debuff']['H-Lullaby']  				= {main="Carnwenhan",sub={name="Genbu's Shield",priority = -1},range={name='Gjallarhorn',priority = 16}, -- range={name='Nibiru Harp',priority = 16},
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 															body=Empy_body,hands=AF_hands,ring1="Carbuncle Ring",ring2="Carbuncle Ring",
 															back=FC_back,waist="Porous Rope",legs="Inyanga Shalwar +1",feet=AF_feet}	
 	sets.midcast['Debuff']['H-Lullaby'] .Resistant		= {main="Grioavolr",sub={name="Clerisy Strap",priority = -1},range={name='Gjallarhorn',priority = 16},
-															head=AF_head,neck="Moonbow Whistle",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
+															head=AF_head,neck="Moonbow Whistle +1",ear1="Dignitary's Earring",ear2="Enchanter Earring +1",
 															body=AF_body,hands=AF_hands,ring1="Carbuncle Ring",ring2="Carbuncle Ring",
 															back=FC_back,waist="Porous Rope",legs=AF_legs,feet=AF_feet}
      
@@ -362,7 +362,7 @@ function init_gear_sets()
 			back="Cheviot Cape",waist="Flume Belt",legs="Assiduity Pants +1",feet=Empy_feet}
 			
 	sets.idle.PDT = {
-			main=Kali_Macc,sub={name="Genbu's Shield",priority=-1},range="Oneiros Harp",
+			main="Carnwenhan",sub={name="Genbu's Shield",priority=-1},range="Oneiros Harp",
 			head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Infused Earring",
 			body=Relic_body,hands=Relic_hands,ring1="Patricius Ring",ring2="Defending Ring",
 			back="Cheviot Cape",waist="Flume Belt",legs=Relic_legs,feet=Empy_feet}
@@ -377,7 +377,7 @@ function init_gear_sets()
 	-- Defense sets
 
 	sets.defense.PDT = {
-			main=Kali_Macc,sub={name="Genbu's Shield",priority=-1},range="Oneiros Harp",
+			main="Carnwenhan",sub={name="Genbu's Shield",priority=-1},range="Oneiros Harp",
 			head="Genmei Kabuto",neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Infused Earring",
 			body=Relic_body,hands=Relic_hands,ring1="Patricius Ring",ring2="Defending Ring",
 			back="Cheviot Cape",waist="Flume Belt",legs=Relic_legs,feet=Empy_feet}
@@ -402,25 +402,25 @@ function init_gear_sets()
     
     -- Basic set for if no TP weapon is defined.
     sets.engaged = {
-			main=Kali_Macc,sub={name="Culminus",priority=-1},range=TP_Linos,
+			main="Carnwenhan",sub={name="Culminus",priority=-1},range=TP_Linos,
 			head="Highwing Helm",neck="Asperity Necklace",ear1="Brutal Earring",ear2="Cessance Earring",
 			body="Ayanmo Corazza +1",hands=Chironic_hands_TP,ring1="Ilabrat Ring",ring2="Petrov Ring",
 			back=TP_back,waist="Windbuffet Belt +1",legs="Jokushu Haidate",feet="Ayanmo Gambieras +1"}
 			
 	sets.engaged.Acc = {
-			main=Kali_Macc,sub={name="Culminus",priority=-1},range=TP_Linos,
+			main=Carnwenhan_Macc,sub={name="Culminus",priority=-1},range=TP_Linos,
 			head="Ayanmo Zucchetto +1",neck="Sanctity Necklace",ear1="Mache Earring",ear2="Mache Earring",
 			body="Ayanmo Corazza +1",hands="Ayanmo Manopolas +1",ring1="Ilabrat Ring",ring2="Ramuh Ring",
 			back=TP_back,waist="Windbuffet Belt +1",legs="Ayanmo Cosciales +1",feet="Ayanmo Gambieras +1"}
 	
 	sets.engaged.DW = {
-			main="Taming Sari",sub={name="Kali",priority=-1},range=TP_Linos,
+			main="Taming Sari",sub={name="Carnwenhan",priority=-1},range=TP_Linos,
 			head="Highwing Helm",neck="Asperity Necklace",ear1="Brutal Earring",ear2="Eabani Earring",
 			body="Ayanmo Corazza +1",hands=Chironic_hands_TP,ring1="Ilabrat Ring",ring2="Petrov Ring",
 			back=TP_back,waist="Reiki Yotai",legs="Jokushu Haidate",feet="Ayanmo Gambieras +1"}
 			
 	sets.engaged.DW.Acc = {
-			main="Taming Sari",sub={name="Kali",priority=-1},range=TP_Linos,
+			main="Taming Sari",sub={name="Carnwenhan",priority=-1},range=TP_Linos,
 			head="Ayanmo Zucchetto +1",neck="Sanctity Necklace",ear1="Mache Earring",ear2="Eabani Earring",
 			body="Ayanmo Corazza +1",hands="Ayanmo Manopolas +1",ring1="Ilabrat Ring",ring2="Ramuh Ring",
 			back=TP_back,waist="Reiki Yotai",legs="Ayanmo Cosciales +1",feet="Ayanmo Gambieras +1"}
@@ -428,8 +428,8 @@ function init_gear_sets()
 	sets.buff.Reive = {neck="Arciela's Grace +1"}
 	sets.warp = {ring2='Warp Ring'}
 	
-	sets.Locked_Main_Sub = {main=Kali_Macc,sub={name="Culminus",priority=-1}}
-	sets.Locked_Main_Sub_DW = {main="Taming Sari",sub={name="Kali",priority=-1}}
+	sets.Locked_Main_Sub = {main="Carnwenhan",sub={name="Culminus",priority=-1}}
+	sets.Locked_Main_Sub_DW = {main="Taming Sari",sub={name="Carnwenhan",priority=-1}}
 		
 end
  

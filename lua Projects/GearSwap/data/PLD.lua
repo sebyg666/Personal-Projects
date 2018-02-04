@@ -39,13 +39,14 @@ function user_setup()
 	state.TurtleDefenseMode = M{['description']='TurtleDefense','Turtle','Reraise'}
 	state.IdleMode:options('Normal','PDT','Refresh')
     
-    state.ResistMode 		= M{['description']='Resist Mode','Resist_Death','Resist_Terror','Resist_Charm'}
-	state.Resist			= M(false, 'Resist')
-	state.EquipShield 		= M(false, 'Equip Shield w/Defense')
-	state.CP  				= M(false, 'CP')
-	state.PhysicalDefense   = M(false, 'PhysicalDefense')
-	state.MagicalDefense	= M(false, 'MagicalDefense')
+    state.ResistMode 			= M{['description']='Resist Mode','Resist_Death','Resist_Terror','Resist_Charm'}
+	state.Resist					= M(false, 'Resist')
+	state.EquipShield 			= M(false, 'Equip Shield w/Defense')
+	state.CP  						= M(false, 'CP')
+	state.PhysicalDefense   	= M(false, 'PhysicalDefense')
+	state.MagicalDefense		= M(false, 'MagicalDefense')
 	state.TurtleDefense		= M(false, 'TurtleDefense')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
 	
 	send_command('bind @[ gs c cycle HybridMode')
     send_command('bind !- gs c cycle ResistMode')
@@ -63,6 +64,7 @@ function user_setup()
 	
 	DW_needed = 0
 	DW = false
+	moving = false
 	Ring_slot_locked_1 = false
 	Ring_slot_locked_2 = false
 	unlock_em = false
@@ -280,6 +282,9 @@ function customize_idle_set(idleSet)
 		if player.mpp < 51 then
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
+		end
 	end
     return idleSet
 end
@@ -445,9 +450,18 @@ windower.raw_register_event('zone change',reset_rings)
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_update(cmdParams, eventArgs)
-    handle_equipping_gear(player.status)
+	handle_equipping_gear(player.status)
 end
 
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
+end
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
@@ -585,6 +599,7 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -692,6 +707,14 @@ function update()
 		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 	else
 		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
 	end
 	
 	if not table.equals(old_inform, inform) then

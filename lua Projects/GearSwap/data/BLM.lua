@@ -9,8 +9,7 @@ function get_sets()
 
     -- Load and initialize the include file.
     include('Seb-Include.lua')
-	
-	
+
 end
 
 
@@ -36,9 +35,10 @@ function user_setup()
 	state.MagicBurst 			= M(false, 'Magic Burst')
 	state.PreserveMP 			= M(false, 'Preserve MP')
 	state.Death					= M(false, 'Death')
-	state.PhysicalDefense     	= M(false, 'PhysicalDefense')
-	state.MagicalDefense      	= M(false, 'MagicalDefense')
-	state.CP  					= M(false, 'CP')
+	state.PhysicalDefense    = M(false, 'PhysicalDefense')
+	state.MagicalDefense     = M(false, 'MagicalDefense')
+	state.CP  						= M(false, 'CP')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
     
     -- Additional local binds
 	send_command('bind ^] gs c toggle MagicBurst')
@@ -49,11 +49,13 @@ function user_setup()
 	send_command('bind ^f12 gs c cycle CastingMode')
 	send_command('bind ![ gs c cycle PhysicalDefenseMode')
 	
-	send_command('gi ugs false')
+	send_command('gi ugs true')
 	
-	Ring_lock = S{"Warp Ring", "Resolution Ring", "Emperor Band", "Capacity Ring"}
-	Ear_lock = S{"Reraise Earring"}
-
+	moving = false
+	Ring_slot_locked_1 = false
+	Ring_slot_locked_2 = false
+	unlock_em = false
+	
 	Notification_color = 200
 	text_color = 160
 	warning_text = 167
@@ -66,6 +68,10 @@ function user_setup()
 	text_box:register_event('reload', initialize)
 	
 	initialize(text_box)
+	
+	local msg = ''
+	msg = ('You have loaded Seb\'s BLM lua. Please use '):color(text_color) .. ('\"\/\/GS c help\" '):color(Notification_color) .. ('for a full list of key bound functions. Enjoy!'):color(text_color)
+	add_to_chat(122, msg)
 end
 
 
@@ -76,99 +82,6 @@ end
 
 -- Define sets and vars used by this job file.
 function init_gear_sets()
-	-----------------------------
-	-- Template Set
-	-----------------------------
-
-	-- gear.Staff.PDT = ""
-	-- gear.default.weaponskill_waist = ""
-	-- gear.default.obi_waist = ""
-	-- gear.default.obi_back = ""
-	-- gear.default.obi_ring = ""
-    -- sets.precast.JA['Mana Wall'] = {}
-    -- sets.precast.JA.Manafont = {}
-    -- sets.precast.JA.Convert = {}
-    -- sets.precast.FC = {}
-    -- sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {})
-	-- sets.precast.FC.Stoneskin = set_combine(sets.precast.FC['Enhancing Magic'], {})
-    -- sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {})
-	-- sets.precast.FC['Death'] = set_combine(sets.precast.FC, {})
-    -- sets.precast.FC.Cure = set_combine(sets.precast.FC, {})
-    -- sets.precast.FC.Curaga = sets.precast.FC.Cure
-	-- sets.precast.FC.Impact = set_combine(sets.precast.FC['Elemental Magic'], {head=empty,body="Twilight Cloak"})
-    -- sets.precast.WS = {}
-	-- sets.precast.WS['Myrkr'] = {}
-    
-    -- ---- Midcast Sets ----
-
-    -- sets.midcast.FastRecast = set_combine(sets.precast.FC, {})
-    -- sets.midcast.Cure = set_combine(sets.midcast.FastRecast, {})
-    -- sets.midcast.Curaga = sets.midcast.Cure
-    -- sets.midcast.Cursna = set_combine(sets.midcast.FastRecast, {})
-    -- sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.FastRecast, {})
-	-- sets.midcast.Regen = set_combine(sets.midcast['Enhancing Magic'], {})
-	-- sets.midcast['Haste'] = set_combine(sets.midcast['Enhancing Magic'], {})
-	-- sets.midcast['Refresh'] = set_combine(sets.midcast['Enhancing Magic'], {})
-	-- sets.midcast['Aquaveil'] = set_combine(sets.midcast['Enhancing Magic'], {})
-    -- sets.midcast.Stoneskin = set_combine(sets.midcast.FastRecast, {})
-    -- sets.midcast.Protect = {ring1="Sheltered Ring"}
-    -- sets.midcast.Protectra = sets.midcast.Protect
-    -- sets.midcast.Shell = {ring1="Sheltered Ring"}
-    -- sets.midcast.Shellra = sets.midcast.Shell
-    -- sets.midcast['Mnd Enfeebles'] = {}
-	-- sets.midcast['Mnd Enfeebles'].Resistant 	= set_combine(sets.midcast['Mnd Enfeebles'], {})
-    -- sets.midcast['Int Enfeebles'] = {}
-	-- sets.midcast['Int Enfeebles'].Resistant 	= set_combine(sets.midcast['Int Enfeebles'], {})
-	-- sets.midcast.ElementalEnfeeble				= sets.midcast['Int Enfeebles']
-	-- sets.midcast.ElementalEnfeeble.Resistant 	= sets.midcast['Int Enfeebles'].Resistant
-	-- sets.midcast['Dark Magic'] = {}
-	-- sets.midcast.Drain = {}
-	-- sets.midcast.Aspir = sets.midcast.Drain
-	-- sets.midcast.Aspir['Death'] = {}
-	-- sets.midcast.Stun = set_combine(sets.midcast.FastRecast, {})
-    -- sets.midcast.Stun.Resistant = set_combine(sets.midcast.Stun, {})
-	-- sets.midcast['Elemental Magic'] = {}
-	-- sets.midcast['Elemental Magic'].Resistant 								= set_combine(sets.midcast['Elemental Magic'], 							{})
-	-- sets.midcast['Elemental Magic']['Magic Burst'] 							= set_combine(sets.midcast['Elemental Magic'], 							{})
-	-- sets.midcast['Elemental Magic']['Magic Burst'].Resistant 				= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
-	-- sets.midcast['Elemental Magic']['Preserve MP'] 							= set_combine(sets.midcast['Elemental Magic'], 							{})
-	-- sets.midcast['Elemental Magic']['Preserve MP'].Resistant				= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
-	-- sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'] 			= set_combine(sets.midcast['Elemental Magic'], 							{})
-	-- sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'].Resistant	= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
-	-- sets.midcast['Luminohelix'] 											= set_combine(sets.midcast['Elemental Magic'], 							{})
-	-- sets.midcast['Luminohelix'].Resistant 									= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
-	-- sets.midcast['Luminohelix']['Magic Burst'] 								= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] , 			{})
-	-- sets.midcast['Luminohelix']['Magic Burst'].Resistant 					= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] .Resistant,{})
-	-- sets.midcast.Impact														= set_combine(sets.midcast['Elemental Magic'], 							{})
-	-- sets.midcast.Impact.Resistant											= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
-	-- sets.midcast['Death'] = {}
-	-- sets.DarkNuke = {}
-	-- sets.EarthNuke = {}
-	-- sets.midcast.Trust = set_combine(sets.midcast.FastRecast, {})
-    
-    -- -- Sets to return to when not performing an action.
-	
-    -- sets.resting = set_combine(sets.idle.Weak, {})
-    -- sets.idle = {}
-	-- sets.idle['Death'] = {}
-    -- sets.idle.PDT = {}
-    -- sets.idle.Weak = {}
-    -- sets.idle.Town = {}
-    -- sets.defense.PDT = {}
-    -- sets.defense.MDT = {}
-    -- sets.Kiting = {}
-    -- sets.latent_refresh = {}
-	
-    -- -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
-    
-    -- sets.buff['Mana Wall'] = {}
-	-- sets.buff.Reive = {}
-	-- sets.CP = {}
-	-- sets.Locked_Main_Sub = {}
-	-- sets.Locked_Main_Sub.Death = {}
-    -- Engaged sets
-	
-    sets.engaged = {}
 			
 end
 
@@ -268,9 +181,6 @@ function job_buff_change(buff, gain)
 			handle_equipping_gear(player.status)
 		end
 	end
-	if buff == 'Goldsmithing Imagery' and gain then
-		 send_command('timers create "'..buff..'" 480 down abilities/00121.png')
-	end
     if buff == "Mana Wall" and not gain then
         enable('feet')
         handle_equipping_gear(player.status)
@@ -320,6 +230,7 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_handle_equipping_gear(playerStatus, eventArgs)
+	check_moving()
 	update()
 end
 
@@ -365,6 +276,9 @@ end
 
 -- Modify the default idle set after it was constructed.
 function customize_idle_set(idleSet)
+
+	lockouts() 
+	
 	if state.Death.value == false and state.DefenseMode.value == 'None' then
 		if state.OffenseMode.value == 'None' then
 			enable('main','sub')
@@ -378,12 +292,88 @@ function customize_idle_set(idleSet)
 		if state.CP.value == true then
 			idleSet = set_combine(idleSet, sets.CP)
 		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
+		end
 	elseif state.Death.value then
 		idleSet = sets.idle['Death']
 	end
     
     return idleSet
 end
+
+function lockouts()
+
+	if Tele_Ring:contains(player.equipment.ring1) and unlock_em == false then
+		if Ring_slot_locked_1 == false then
+			add_to_chat(200,('[Tele Ring Equipped: '):color(Notification_color) .. ('-> Locking \"'..player.equipment.ring1 .. '\"'):color(text_color) .. (']'):color(Notification_color) )
+		end
+		Ring_slot_locked_1 = true
+		disable('ring1')
+	end
+	if Tele_Ring:contains(player.equipment.ring2) and unlock_em == false then
+		if Ring_slot_locked_2 == false then
+			add_to_chat(200,('[Tele Ring Equipped: '):color(Notification_color) .. ('-> Locking \"'..player.equipment.ring2 .. '\"'):color(text_color) .. (']'):color(Notification_color) )
+		end
+		Ring_slot_locked_2 = true
+		disable('ring2')
+	end
+	
+	if (Tele_Ring:contains(player.equipment.ring1) or Tele_Ring:contains(player.equipment.ring2)) and unlock_em then
+		enable('ring1')
+		enable('ring2')
+	elseif not (Tele_Ring:contains(player.equipment.ring1) or Tele_Ring:contains(player.equipment.ring2)) and unlock_em then 
+		unlock_em = false
+		Ring_slot_locked_1 = false
+		Ring_slot_locked_2 = false
+		add_to_chat(200,('[Zoned: '):color(Notification_color) .. ('-> Un-locking Tele/Warp Rings '):color(text_color) .. (']'):color(Notification_color) )
+	elseif not Tele_Ring:contains(player.equipment.ring1) and Ring_slot_locked_1 and unlock_em == false then 
+		Ring_slot_locked_1 = false
+		enable('ring1')
+		add_to_chat(200,('[Tele Ring Removed manually: '):color(Notification_color) .. ('-> Un-locking Slot 1'):color(text_color) .. (']'):color(Notification_color) )
+	elseif not Tele_Ring:contains(player.equipment.ring2) and Ring_slot_locked_2 and unlock_em == false then 
+		Ring_slot_locked_2 = false
+		enable('ring2')
+		add_to_chat(200,('[Tele Ring Removed manually: '):color(Notification_color) .. ('-> Un-locking Slot 2'):color(text_color) .. (']'):color(Notification_color) )
+	end
+	--------------------------------
+	-- Ring locks for exp ring use
+	
+	if Ring_lock:contains(player.equipment.ring1) and Ring_slot_locked_1 == false then
+		disable('ring1')
+	elseif not Ring_lock:contains(player.equipment.ring1) and Ring_slot_locked_1 == false then
+		enable('ring1')
+	end
+	
+	if Ring_lock:contains(player.equipment.ring2) and Ring_slot_locked_2 == false then
+		disable('ring2')
+	elseif not Ring_lock:contains(player.equipment.ring2) and Ring_slot_locked_2 == false then
+		enable('ring2')
+	end
+	
+	---------------------------------
+	-- earring locks
+	
+	if Ear_lock:contains(player.equipment.ear1) then
+		disable('Ear1')
+	elseif not Ear_lock:contains(player.equipment.ear1) then
+		enable('Ear1')
+	end
+	if Ear_lock:contains(player.equipment.ear2) then
+		disable('Ear2')
+	elseif not Ear_lock:contains(player.equipment.ear2) then
+		enable('Ear2')
+	end
+	
+end
+
+function reset_rings()
+	if Ring_slot_locked_1 or Ring_slot_locked_2 then
+		unlock_em = true
+	end
+end
+
+windower.raw_register_event('zone change',reset_rings)
 
 
 -- Function to display the current relevant user state when doing an update.
@@ -437,6 +427,79 @@ end
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
 
+function job_update(cmdParams, eventArgs)
+	handle_equipping_gear(player.status)
+end
+
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
+end
+
+-- Called for custom player commands.
+function job_self_command(cmdParams, eventArgs)
+	
+	gearinfo(cmdParams, eventArgs)
+	
+	if cmdParams[1] == 'help' then
+	
+		local chat_purple = string.char(0x1F, 200)
+		local chat_grey = string.char(0x1F, 160)
+		local chat_red = string.char(0x1F, 167)
+		local chat_white = string.char(0x1F, 001)
+		local chat_green = string.char(0x1F, 214)
+		local chat_yellow = string.char(0x1F, 036)
+		local chat_d_blue = string.char(0x1F, 207)
+		local chat_pink = string.char(0x1E, 5)
+		local chat_l_blue = string.char(0x1E, 6)
+		
+		
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, chat_d_blue.. 	'                         Welcome to Sebs Gearswap help!' )
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'You may manually type these with \"\/\/gs c [function]\" eg. '.. chat_yellow ..' \"\/\/gs c update user\"')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you wish to macro the functions please use \"\/con gs c [function]\" eg. '.. chat_yellow ..' \"\/con gs c update user\"')
+		windower.add_to_chat(6, chat_yellow.. 	'W-key'.. chat_d_blue ..' means Windows key')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Key Binds available:')
+		windower.add_to_chat(6, chat_yellow.. 	'           \'F12\''..chat_l_blue  ..' = update user ' .. chat_white .. '  --  Will check and equip correct gear.')
+		windower.add_to_chat(6, chat_d_blue.. 	'Will also save the current location of the gearswap info text box to file')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F12\''..chat_l_blue  ..' = cycle CastingMode ' .. chat_white .. '   --  Cycles to resistant mode \(more Macc\).')
+		windower.add_to_chat(6, chat_yellow..	'    \'Alt + F12\''..chat_l_blue  ..' = cycle IdleMode ' .. chat_white .. '  --  Cycle through idle modes.')
+		windower.add_to_chat(6, chat_yellow..	'\'W-Key + F12\''..chat_l_blue  ..' = toggle kiting ' .. chat_white .. '  --  Locks movement speed gear on over any set')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F11\''..chat_l_blue  ..' = toggle CP ' .. chat_white .. '  --  Makes you utilise CP cape')
+		windower.add_to_chat(6, chat_yellow..	'   \'Alt + F11\''..chat_l_blue  ..' = toggle Death ' .. chat_white .. '  --  Turns DEATH mode ON')
+		windower.add_to_chat(6, chat_d_blue.. 	'Death mode will lock all your gear in specified sets such that you maintain high Max MP')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow.. 	'             \'[\''..chat_l_blue  ..' = toggle PhysicalDefense ' .. chat_white .. '  --  Locks PDT set on.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + [\''..chat_l_blue  ..' = cycle OffenseMode ' .. chat_white .. '   --  Cycles throught melee accuracy modes.')
+		windower.add_to_chat(6, chat_yellow..	'  \'W-Key + [\''..chat_l_blue  ..' = cycle HybridMode ' .. chat_white .. '  --  Cycles thought Hybrid modes \(usually just DT\)')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'             \']\''..chat_l_blue  ..' = toggle MagicalDefense ' .. chat_white .. '  --  Locks MDT set on.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + ]\''..chat_l_blue  ..' = toggle MagicBurst ' .. chat_white .. '  --  Uses Magic Burst Gear.')
+		windower.add_to_chat(6, chat_yellow..	'             \']\''..chat_l_blue  ..' = toggle PreserveMP ' .. chat_white .. '  --  Uses AF Body to gain MP back on nukes.')
+		windower.add_to_chat(6, chat_d_blue.. 	'You May Combine the above 2 toggles to do MagicBurst + PreserveMP nukes')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you need more help or run into problems, you can contact me via email at ' .. chat_yellow .. 'sebyg666@hotmail.com')
+		windower.add_to_chat(6, chat_d_blue.. 	'Alternatively if you have me on your skype list, just leave me a message there and ill get back to you.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Warning: Shameless plug follows.')
+		windower.add_to_chat(6, chat_d_blue.. 	'If You are a big fan of my lua\'s and you wish to support me, you are more then welcome to donate any amount of money')
+		windower.add_to_chat(6, chat_d_blue.. 	'via paypal at the above email adress. You may also tell other people you trust about my lua\'s and how to contact me,')
+		windower.add_to_chat(6, chat_d_blue.. 	'for help setting up, and finally you can also find me streaming live on twitch at '.. chat_yellow .. 'www.twitch.tv/Sebbyg')
+		windower.add_to_chat(6, ' ')
+	
+	end
+end
+
 initialize = function(text, t)
     local properties = L{}
 	
@@ -464,6 +527,7 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -550,6 +614,14 @@ function update()
 			inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 		else
 			inform.DefenseMode = ('')
+		end
+		
+		if state.DefenseMode.value == 'None' then
+			if moving == true then
+				inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+			else
+				inform.is_Moving = ('')
+			end
 		end
 	else
 		inform.OffenseMode = (yellow .. (' DEATH MODE ' )) .. '\\cr'

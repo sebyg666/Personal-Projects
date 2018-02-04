@@ -42,9 +42,10 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT', 'MDTNoShell')
 	
-	state.CP  				= M(false, 'CP')
+	state.CP  						= M(false, 'CP')
 	state.PhysicalDefense   = M(false, 'PhysicalDefense')
 	state.MagicalDefense    = M(false, 'MagicalDefense')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
 	
 	-- key bind 
 	send_command('bind f12 gs c update user')
@@ -73,6 +74,7 @@ function user_setup()
 	Haste = 0
 	DW_needed = 0
 	DW = false
+	moving = false
 	Ring_slot_locked_1 = false
 	Ring_slot_locked_2 = false
 	unlock_em = false
@@ -742,6 +744,9 @@ function customize_idle_set(idleSet)
 		if player.mpp < 51 then
 			idleSet = set_combine(idleSet, sets.latent_refresh)
 		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
+		end
 	end
     return idleSet
 end
@@ -896,6 +901,16 @@ function job_update(cmdParams, eventArgs)
 	handle_equipping_gear(player.status)
 end
 
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
+end
+
 
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
@@ -1031,28 +1046,7 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
-	if cmdParams[1] == 'gearinfo' then
-		if type(tonumber(cmdParams[2])) == 'number' then
-			if tonumber(cmdParams[2]) ~= DW_needed then
-				DW_needed = tonumber(cmdParams[2])
-				DW = true
-			end
-		elseif type(cmdParams[2]) == 'string' then
-			if cmdParams[2] == 'false' then
-				DW_needed = 0
-				DW = false
-			end
-		end
-		if type(tonumber(cmdParams[3])) == 'number' then
-			if tonumber(cmdParams[3]) ~= Haste then
-				Haste = tonumber(cmdParams[3])
-			end
-		end
-		
-		if not midaction() then
-			job_update()
-		end
-    end
+	gearinfo(cmdParams, eventArgs)
 	if cmdParams[1] == 'help' then
 	
 		local chat_purple = string.char(0x1F, 200)
@@ -1115,6 +1109,7 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -1217,6 +1212,14 @@ function update()
 		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 	else
 		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
 	end
 	
 	if not table.equals(old_inform, inform) then

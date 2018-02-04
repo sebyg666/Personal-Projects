@@ -1,6 +1,6 @@
 _addon.name = 'GearInfo'
 _addon.author = 'Sebyg666'
-_addon.version = '1.6.0.1'
+_addon.version = '1.6.2.0'
 _addon.commands = {'gi','gearinfo'}
 
 
@@ -690,7 +690,7 @@ function update()
 			inform.T_acc = ''
 			inform.T_racc = ''
 		end
-						
+		
 		if old_inform ~= inform then
 			text_box:update(inform)
 			old_inform = inform
@@ -715,10 +715,13 @@ windower.register_event('prerender',function()
         local temp_equip = player.equipment
         local temp_stats = player.stats
         local temp_skill = player.skill
+		local temp_pos = player.position
         player = windower.ffxi.get_player()
         player.equipment = temp_equip
         player.stats = temp_stats
         player.skill = temp_skill
+		player.position = temp_pos
+		player.is_moving = check_player_movement(player)
 		calculate_total_haste()
         update()
 		loop_count = loop_count + 1
@@ -728,9 +731,9 @@ end)
 
 function update_gs(DW, Total_DW_needed, haste)
 	if DW == true then
-		windower.send_command('gs c gearinfo '..Total_DW_needed .. ' ' .. haste)
+		windower.send_command('gs c gearinfo '..Total_DW_needed .. ' ' .. haste ..' '.. tostring(player.is_moving))
 	elseif DW == false then
-		windower.send_command('gs c gearinfo '.. tostring(DW).. ' ' .. haste)
+		windower.send_command('gs c gearinfo '.. tostring(DW).. ' ' .. haste ..' '.. tostring(player.is_moving))
 	end
 end
 

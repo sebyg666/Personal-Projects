@@ -393,7 +393,7 @@ function init_gear_sets()
     sets.idle = {ammo="Staunch Tathlum",
         head="Rawhide Mask",neck="Sanctity Necklace",ear1="Dawn Earring",ear2="Infused Earring",
 		body="Jhakri Robe +1",hands=Herc_hands_Refr,ring1="Chirich Ring",ring2="Sheltered Ring",
-		back="Kumbira Cape",waist="Flume Belt",legs=Carmine_legs_HQ,feet=Herc_feet_Refr}
+		back="Kumbira Cape",waist="Flume Belt",legs=Rawhide_legs,feet=Herc_feet_Refr}
 	
 	sets.idle.Refresh = {ammo="Staunch Tathlum",
         head="Rawhide Mask",neck="Sanctity Necklace",ear1="Dawn Earring",ear2="Infused Earring",
@@ -408,7 +408,7 @@ function init_gear_sets()
     sets.idle.PDT = {ammo="Staunch Tathlum",
         head=Herc_head_DT,neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Infused Earring",
 		body="Emet Harness +1",hands=Herc_hands_DT,ring1="Vertigo Ring",ring2="Defending Ring",
-		back="Solemnity Cape",waist="Flume Belt",legs=Carmine_legs_HQ,feet=Herc_feet_TA}
+		back="Solemnity Cape",waist="Flume Belt",legs=Herc_legs_DT,feet=Herc_feet_TA}
 		
 	sets.idle.Weak = {ammo="Staunch Tathlum",
         head="Rawhide Mask",neck="Sanctity Necklace",ear1="Genmei Earring",ear2="Infused Earring",

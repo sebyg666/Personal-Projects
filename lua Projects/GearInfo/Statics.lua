@@ -5,6 +5,9 @@ player.equipment = T{}
 player.stats = T{}
 player.stats = {STR = 0, DEX = 0, VIT = 0, AGI = 0, INT = 0, MND = 0, CHR = 0}
 player.skill = player.skills
+player.is_moving = false
+player.position = T{} 
+player.position = {x = 0, y = 0, x = 0} 
 buff = 0
 full_gear_table_from_file = T{}
 Buffs_inform = {magic_haste = 0, ja_haste = 0, STP = 0}

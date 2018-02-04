@@ -11,7 +11,8 @@ function init_gear_sets()
 	Valorous_hands		={ name="Valorous Mitts", 		augments={'Accuracy+13','Weapon skill damage +3%','STR+11',}}
 	Valorous_legs		={ name="Valor. Hose", 			augments={'Accuracy+30','"Store TP"+5','Attack+7',}} 											-- 0 stp + 5 stp (aug)
 	Valorous_feet		={ name="Valorous Greaves", 	augments={'Accuracy+7 Attack+7','Weapon skill damage +3%','STR+3','Accuracy+10','Attack+9',}} 	-- 5 stp
-	Valorous_feet_STP 	={ name="Valorous Greaves", 	augments={'Accuracy+7 Attack+7','Weapon skill damage +3%','STR+3','Accuracy+10','Attack+9',}} 	-- need 12 stp augment of 7 minimum
+	Valorous_feet_STP 	={ name="Valorous Greaves", 	augments={'Accuracy+14','"Store TP"+6','VIT+2',}} 	-- need 12 stp augment of 7 minimum
+	Valorous_feet_PDT   ={ name="Valorous Greaves",     augments={'Accuracy+26','Phys. dmg. taken -5%','Attack+12',}}
 	
 	Ryuo_hands			={ name="Ryuo Tekko", 			augments={'DEX+10','Accuracy+20','"Dbl.Atk."+3',}}
 	
@@ -32,7 +33,7 @@ function init_gear_sets()
 	
 	AF_head 			={ name="Wakido Kabuto +2" }
 	AF_body				={ name="Wakido Domaru +3" }
-	AF_hands 			={ name="Wakido Kote +2" }
+	AF_hands 			={ name="Wakido Kote +3" }
 	AF_legs 			={ name="Wakido Haidate +3" }
 	AF_feet 			={ name="Wakido Sune-Ate +2" }
 	
@@ -139,19 +140,19 @@ function init_gear_sets()
     sets.defense.PDT = {ammo="Staunch Tathlum",
 			head="Ynglinga Sallet", neck="Loricate Torque +1", left_ear="Cessance Earring", right_ear="Telos Earring",
 			body="Wakido Domaru +3", hands="Kurys Gloves", left_ring="Defending Ring", right_ring="Vocane Ring",
-			back="Solemnity Cape", waist="Flume Belt +1", legs="Arjuna Breeches", feet="Hiza. Sune-Ate +1" }
+			back="Solemnity Cape", waist="Flume Belt +1", legs="Arjuna Breeches", feet=Valorous_feet_PDT }
 		
 	-- To cap MDT with Shell IV (52/256), need 76/256 in gear.
     -- Shellra V can provide 75/256, which would need another 53/256 in gear.
 	sets.defense.MDT = {ammo="Staunch Tathlum",
 			head="Ynglinga Sallet", neck="Loricate Torque +1", left_ear="Cessance Earring", right_ear="Telos Earring",
 			body="Wakido Domaru +3", hands="Kurys Gloves", left_ring="Defending Ring", right_ring="Vocane Ring",
-			back="Solemnity Cape", waist="Flume Belt +1", legs="Arjuna Breeches", feet="Hiza. Sune-Ate +1" }
+			back="Solemnity Cape", waist="Flume Belt +1", legs="Arjuna Breeches", feet=Valorous_feet_PDT }
 		
 	sets.defense.MDTNoShell = {ammo="Staunch Tathlum",
 			head="Ynglinga Sallet", neck="Loricate Torque +1", left_ear="Cessance Earring", right_ear="Telos Earring",
 			body="Wakido Domaru +3", hands="Kurys Gloves", left_ring="Defending Ring", right_ring="Vocane Ring",
-			back="Solemnity Cape", waist="Flume Belt +1", legs="Arjuna Breeches", feet="Hiza. Sune-Ate +1" }
+			back="Solemnity Cape", waist="Flume Belt +1", legs="Arjuna Breeches", feet=Valorous_feet_PDT }
 		
 	--------------------------------------
     -- Engaged sets
@@ -184,9 +185,9 @@ function init_gear_sets()
 	-- for any weapon that isnt listed above
 	
 	sets.engaged 				= 	{
-		ammo="Paeapua",
-		head="Flamma zucchetto +1",neck="Moonbeam nodowa",ear1="Brutal Earring",ear2="Cessance Earring",
-		body="Kendatsuba samue",hands=AF_hands,ring1="Niqmaddu ring",ring2="Hetairoi Ring",
+		ammo="Ginsen",
+		head="Flamma zucchetto +1",neck="Moonbeam nodowa",ear1="Cessance Earring",ear2="Telos Earring",
+		body="Kendatsuba samue",hands=AF_hands,ring1="Niqmaddu ring",ring2="Ilabrat Ring",
 		back=Smertrios_DA,waist="Windbuffet belt +1",legs="Kendatsuba hakama",feet=Valorous_feet_STP}
 	sets.engaged['Ilvl~118'] 	= set_combine(sets.engaged,				{})
 	sets.engaged['Ilvl~122'] 	= set_combine(sets.engaged['Ilvl~118'],	{})
@@ -212,8 +213,8 @@ function init_gear_sets()
 	-- (Based on WS sets (27 stp), needs 47 stp to 3 hit + ws  ,  and 6 stp to 4 hit + ws)
 	sets.engaged['Aeonic'] 					= set_combine(sets.engaged,{
 		ammo="Ginsen",
-		head="Flamma zucchetto +1",neck="Moonbeam nodowa",ear1="Brutal Earring",ear2="Cessance Earring",
-		body="Kendatsuba samue",hands=AF_hands,ring1="Niqmaddu ring",ring2="Hetairoi Ring",
+		head="Flamma zucchetto +1",neck="Moonbeam nodowa",ear1="Cessance Earring",ear2="Telos Earring",
+		body="Kendatsuba samue",hands=AF_hands,ring1="Niqmaddu ring",ring2="Ilabrat Ring",
 		back=Smertrios_DA,waist="Windbuffet belt +1",legs="Kendatsuba hakama",feet=Valorous_feet_STP}) -- 7 stp
 	sets.engaged['Aeonic']['Ilvl~118'] 		= set_combine(sets.engaged['Aeonic'],				{})
 	sets.engaged['Aeonic']['Ilvl~122'] 		= set_combine(sets.engaged['Aeonic']['Ilvl~118'],	{})
@@ -224,7 +225,7 @@ function init_gear_sets()
 			ammo="Staunch Tathlum",
 			head="Ynglinga Sallet",neck="Agitator's Collar",
 			body="Wakido Domaru +3",ring1="Defending Ring",ring2="Patricius Ring",
-			waist="Ioskeha Belt",legs="Arjuna Breeches",feet="Hizamaru sune-ate +1"})
+			waist="Ioskeha Belt",legs="Arjuna Breeches",feet=Valorous_feet_PDT})
 		sets.engaged['Aeonic']['Ilvl~118'].DT 	= set_combine(sets.engaged['Aeonic'].DT,			{})
 		sets.engaged['Aeonic']['Ilvl~122'].DT 	= set_combine(sets.engaged['Aeonic']['Ilvl~118'].DT,{})
 		sets.engaged['Aeonic']['Ilvl~124+'].DT 	= set_combine(sets.engaged['Aeonic']['Ilvl~122'].DT,{})		
@@ -232,10 +233,10 @@ function init_gear_sets()
 	-- ['Kogarasumaru'] Mythic SETS 
 	-- (Based on WS sets (17 stp), needs 57 stp to 3 hit + ws  ,,  and 16 stp to 4 hit + ws)
 	sets.engaged['Mythic'] 					= set_combine(sets.engaged,				{
-		ammo="Paeapua",
-		head="Flamma zucchetto +1",neck="Moonbeam nodowa",ear1="Brutal Earring",ear2="Cessance Earring",
-		body="Kendatsuba samue",hands=AF_hands,ring1="Niqmaddu ring",ring2="Hetairoi Ring",
-		back=Smertrios_DA,waist="Windbuffet belt +1",legs=AF_legs,feet=Valorous_feet_STP})
+		ammo="Ginsen",
+		head="Flamma zucchetto +1",neck="Moonbeam nodowa",ear1="Cessance Earring",ear2="Telos Earring",
+		body="Kendatsuba samue",hands=AF_hands,ring1="Niqmaddu ring",ring2="Ilabrat Ring",
+		back=Smertrios_STP,waist="Windbuffet belt +1",legs=AF_legs,feet=Valorous_feet_STP})
 	sets.engaged['Mythic']['Ilvl~118'] 		= set_combine(sets.engaged,				{})
 	sets.engaged['Mythic']['Ilvl~122'] 		= set_combine(sets.engaged['Ilvl~118'],	{})
 	sets.engaged['Mythic']['Ilvl~124+'] 		= set_combine(sets.engaged['Ilvl~122'],	{})
@@ -245,7 +246,7 @@ function init_gear_sets()
 			ammo="Staunch Tathlum",
 			head="Ynglinga Sallet",neck="Agitator's Collar",
 			body="Wakido Domaru +3",ring1="Defending Ring",ring2="Patricius Ring",
-			waist="Ioskeha Belt",legs="Arjuna Breeches",feet="Hizamaru sune-ate +1"})
+			waist="Ioskeha Belt",legs="Arjuna Breeches",feet=Valorous_feet_PDT})
 		sets.engaged['Mythic']['Ilvl~118'].DT 	= set_combine(sets.engaged['Mythic'].DT,			{})
 		sets.engaged['Mythic']['Ilvl~122'].DT 	= set_combine(sets.engaged['Mythic']['Ilvl~118'].DT,{})
 		sets.engaged['Mythic']['Ilvl~124+'].DT 	= set_combine(sets.engaged['Mythic']['Ilvl~122'].DT,{})

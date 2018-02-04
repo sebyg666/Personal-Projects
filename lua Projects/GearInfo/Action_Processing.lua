@@ -131,3 +131,25 @@ windower.register_event('action', function(act)
 		on_action(act)
 	end
 end)
+
+function check_player_movement(player)
+	if player.position == nul then
+		player.position = T{} 
+		player.position = {x = 0, y = 0, x = 0} 
+	end
+	if windower.ffxi.get_mob_by_index(player.index) ~= null then
+        current_pos_x = windower.ffxi.get_mob_by_index(player.index).x
+        current_pos_y = windower.ffxi.get_mob_by_index(player.index).y
+		current_pos_z = windower.ffxi.get_mob_by_index(player.index).z
+		if player.position.x ~= current_pos_x and player.position.y ~= current_pos_y then
+			player.is_moving = true
+		else
+			player.is_moving = false
+		end
+		player.position.x = current_pos_x
+		player.position.y = current_pos_y
+		player.position.z = current_pos_z
+	end
+	
+	return player.is_moving
+end

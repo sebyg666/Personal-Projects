@@ -48,9 +48,10 @@ function user_setup()
     state.PhysicalDefenseMode:options('PDT')
 	options.MagicalDefenseModes = {'MDT'}
 	
-	state.CP  				= M(false, 'CP')
-	state.PhysicalDefense   = M(false, 'PhysicalDefense')
-	state.MagicalDefense    = M(false, 'MagicalDefense')
+	state.CP  						= M(false, 'CP')
+	state.PhysicalDefense   	= M(false, 'PhysicalDefense')
+	state.MagicalDefense    	= M(false, 'MagicalDefense')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
     
 	-- key bind 
 	send_command('bind f12 gs c update user')
@@ -67,16 +68,17 @@ function user_setup()
 	send_command('bind ] gs c toggle MagicalDefense')
 	
 	-- lists for various things
-	Ring_lock = S{"Resolution Ring", "Emperor Band", "Capacity Ring", "Echad Ring", "Trizek Ring", "Facility Ring", "Caliber Ring"}
-	Tele_Ring = S{"Warp Ring", "Dim. Ring (Dem)", "Dim. Ring (Holla)", "Dim. Ring (Mea)"}
-	Ear_lock = S{"Reraise Earring"}
-	Bar_Status = S{'Barsleepra','Barpoisonra','Barparalyzra','Barblindra','Barsilencra','Barvira','Barpetra','Baramnesra',
+	Ring_lock 	= S{"Resolution Ring", "Emperor Band", "Capacity Ring", "Echad Ring", "Trizek Ring", "Facility Ring", "Caliber Ring"}
+	Tele_Ring 	= S{"Warp Ring", "Dim. Ring (Dem)", "Dim. Ring (Holla)", "Dim. Ring (Mea)"}
+	Ear_lock 	= S{"Reraise Earring"}
+	Bar_Status 	= S{'Barsleepra','Barpoisonra','Barparalyzra','Barblindra','Barsilencra','Barvira','Barpetra','Baramnesra',
 						'Barsleep','Barpoison','Barparalyze','Barblind','Barsilence','Barvirus','Barpetrify','Baramnesia'}
 	
 	send_command('gi ugs true')
 	
 	DW_needed = 0
 	DW = false
+	moving = false
 	Ring_slot_locked_1 = false
 	Ring_slot_locked_2 = false
 	unlock_em = false
@@ -229,6 +231,9 @@ function get_custom_wsmode(spell, spellMap, defaut_wsmode)
 	if state.Buff['Ternary Flourish'] then
 		wsmode = 'TF' 
 	end
+	if state.Buff['Striking Flourish'] then
+		wsmode = 'SF' 
+	end
 	
 
     return wsmode
@@ -260,6 +265,9 @@ function customize_idle_set(idleSet)
 		end
 		if state.CP.value == true then
 			idleSet = set_combine(idleSet, sets.CP)
+		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
 		end
 	end
     return idleSet
@@ -405,6 +413,16 @@ function job_update(cmdParams, eventArgs)
 	handle_equipping_gear(player.status)
 end
 
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
+end
+
 
 -- Function to display the current relevant user state when doing an update.
 -- Return true if display was handled, and you don't want the default info shown.
@@ -546,28 +564,7 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
-	if cmdParams[1] == 'gearinfo' then
-		if type(tonumber(cmdParams[2])) == 'number' then
-			if tonumber(cmdParams[2]) ~= DW_needed then
-				DW_needed = tonumber(cmdParams[2])
-				DW = true
-			end
-		elseif type(cmdParams[2]) == 'string' then
-			if cmdParams[2] == 'false' then
-				DW_needed = 0
-				DW = false
-			end
-		end
-		if type(tonumber(cmdParams[3])) == 'number' then
-			if tonumber(cmdParams[3]) ~= Haste then
-				Haste = tonumber(cmdParams[3])
-			end
-		end
-		
-		if not midaction() then
-			job_update()
-		end
-    end
+	gearinfo(cmdParams, eventArgs)
 	if cmdParams[1] == 'help' then
 	
 		local chat_purple = string.char(0x1F, 200)
@@ -633,6 +630,7 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -734,6 +732,14 @@ function update()
 		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 	else
 		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
 	end
 	
 	if not table.equals(old_inform, inform) then

@@ -32,9 +32,10 @@ function user_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	
-	state.PhysicalDefense     = M(false, 'PhysicalDefense')
-	state.MagicalDefense      = M(false, 'MagicalDefense')
-	state.CP  				  = M(false, 'CP')
+	state.PhysicalDefense    = M(false, 'PhysicalDefense')
+	state.MagicalDefense     = M(false, 'MagicalDefense')
+	state.CP  				  		= M(false, 'CP')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
 	
 	send_command('bind ^[ gs c cycle OffenseMode')
 	send_command('bind ^] gs c cycle DefenseMode')
@@ -47,6 +48,13 @@ function user_setup()
 	send_command('bind ^f12 gs c cycle CastingMode')
 	
     select_default_macro_book()
+	
+	send_command('gi ugs true')
+	
+	moving = false
+	Ring_slot_locked_1 = false
+	Ring_slot_locked_2 = false
+	unlock_em = false
 	
 	Notification_color = 200
 	text_color = 160
@@ -451,18 +459,97 @@ end
 
 
 function customize_idle_set(idleSet)
+	lockouts()
 	if state.OffenseMode.value == 'None' then
 		enable('main','sub')
 	end
-	if player.mpp < 51 then
-		idleSet = set_combine(idleSet, sets.latent_refresh)
-	end
-	if state.CP.value == true then
-		idleSet = set_combine(idleSet, sets.CP)
+	if state.DefenseMode.current == 'None' then
+		if player.mpp < 51 then
+			idleSet = set_combine(idleSet, sets.latent_refresh)
+		end
+		if state.CP.value == true then
+			idleSet = set_combine(idleSet, sets.CP)
+		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
+		end
 	end
     
     return idleSet
 end
+
+function lockouts()
+
+	if Tele_Ring:contains(player.equipment.ring1) and unlock_em == false then
+		if Ring_slot_locked_1 == false then
+			add_to_chat(200,('[Tele Ring Equipped: '):color(Notification_color) .. ('-> Locking \"'..player.equipment.ring1 .. '\"'):color(text_color) .. (']'):color(Notification_color) )
+		end
+		Ring_slot_locked_1 = true
+		disable('ring1')
+	end
+	if Tele_Ring:contains(player.equipment.ring2) and unlock_em == false then
+		if Ring_slot_locked_2 == false then
+			add_to_chat(200,('[Tele Ring Equipped: '):color(Notification_color) .. ('-> Locking \"'..player.equipment.ring2 .. '\"'):color(text_color) .. (']'):color(Notification_color) )
+		end
+		Ring_slot_locked_2 = true
+		disable('ring2')
+	end
+	
+	if (Tele_Ring:contains(player.equipment.ring1) or Tele_Ring:contains(player.equipment.ring2)) and unlock_em then
+		enable('ring1')
+		enable('ring2')
+	elseif not (Tele_Ring:contains(player.equipment.ring1) or Tele_Ring:contains(player.equipment.ring2)) and unlock_em then 
+		unlock_em = false
+		Ring_slot_locked_1 = false
+		Ring_slot_locked_2 = false
+		add_to_chat(200,('[Zoned: '):color(Notification_color) .. ('-> Un-locking Tele/Warp Rings '):color(text_color) .. (']'):color(Notification_color) )
+	elseif not Tele_Ring:contains(player.equipment.ring1) and Ring_slot_locked_1 and unlock_em == false then 
+		Ring_slot_locked_1 = false
+		enable('ring1')
+		add_to_chat(200,('[Tele Ring Removed manually: '):color(Notification_color) .. ('-> Un-locking Slot 1'):color(text_color) .. (']'):color(Notification_color) )
+	elseif not Tele_Ring:contains(player.equipment.ring2) and Ring_slot_locked_2 and unlock_em == false then 
+		Ring_slot_locked_2 = false
+		enable('ring2')
+		add_to_chat(200,('[Tele Ring Removed manually: '):color(Notification_color) .. ('-> Un-locking Slot 2'):color(text_color) .. (']'):color(Notification_color) )
+	end
+	--------------------------------
+	-- Ring locks for exp ring use
+	
+	if Ring_lock:contains(player.equipment.ring1) and Ring_slot_locked_1 == false then
+		disable('ring1')
+	elseif not Ring_lock:contains(player.equipment.ring1) and Ring_slot_locked_1 == false then
+		enable('ring1')
+	end
+	
+	if Ring_lock:contains(player.equipment.ring2) and Ring_slot_locked_2 == false then
+		disable('ring2')
+	elseif not Ring_lock:contains(player.equipment.ring2) and Ring_slot_locked_2 == false then
+		enable('ring2')
+	end
+	
+	---------------------------------
+	-- earring locks
+	
+	if Ear_lock:contains(player.equipment.ear1) then
+		disable('Ear1')
+	elseif not Ear_lock:contains(player.equipment.ear1) then
+		enable('Ear1')
+	end
+	if Ear_lock:contains(player.equipment.ear2) then
+		disable('Ear2')
+	elseif not Ear_lock:contains(player.equipment.ear2) then
+		enable('Ear2')
+	end
+	
+end
+
+function reset_rings()
+	if Ring_slot_locked_1 or Ring_slot_locked_2 then
+		unlock_em = true
+	end
+end
+
+windower.raw_register_event('zone change',reset_rings)
 
 -- Called by the 'update' self-command.
 function job_update(cmdParams, eventArgs)
@@ -482,8 +569,22 @@ function job_update(cmdParams, eventArgs)
             end
         end
     end
+	handle_equipping_gear(player.status)
 end
 
+function job_self_command(cmdParams, eventArgs)
+    gearinfo(cmdParams, eventArgs)
+end
+
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
+end
 
 -- Function to display the current relevant user state when doing an update.
 function display_current_job_state(eventArgs)
@@ -547,6 +648,7 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -618,6 +720,14 @@ function update()
 		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 	else
 		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
 	end
 	
 	if not table.equals(old_inform, inform) then

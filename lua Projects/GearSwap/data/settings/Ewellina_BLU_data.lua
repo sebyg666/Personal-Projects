@@ -16,19 +16,19 @@ return {
         }, 
         ["text"]={
             ["fonts"]={}, 
-            ["size"]=12, 
+            ["red"]=255, 
             ["stroke"]={
                 ["blue"]=0, 
                 ["alpha"]=255, 
-                ["red"]=0, 
+                ["width"]=2, 
                 ["green"]=0, 
-                ["width"]=2
+                ["red"]=0
             }, 
             ["alpha"]=255, 
             ["green"]=255, 
             ["font"]="Ubuntu", 
             ["blue"]=255, 
-            ["red"]=255
+            ["size"]=12
         }, 
         ["padding"]=0, 
         ["pos"]={

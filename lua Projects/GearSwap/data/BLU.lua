@@ -188,7 +188,7 @@ end
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
     state.OffenseMode:options('Normal', 'Ilvl~118', 'Ilvl~122', 'Ilvl~124+')
-    state.HybridMode:options('Normal', 'Evasion')
+    state.HybridMode:options('Normal', 'DT')
     state.WeaponskillMode:options('Normal', 'Ilvl~118', 'Ilvl~122', 'Ilvl~124+')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'Refresh', 'PDT')
@@ -198,6 +198,7 @@ function user_setup()
 	
 	state.CP  				= M(false, 'CP')
 	state.Learning  		= M(false, 'Learning')
+	state.Auto_Kite  	= M(false, 'Auto_Kite')
 	
 	state.PhysicalDefense   = M(false, 'PhysicalDefense')
 	state.MagicalDefense    = M(false, 'MagicalDefense')
@@ -211,6 +212,7 @@ function user_setup()
 	
 	DW_needed = 0
 	DW = false
+	moving = false
 	Ring_slot_locked_1 = false
 	Ring_slot_locked_2 = false
 	unlock_em = false
@@ -226,6 +228,11 @@ function user_setup()
 	text_box:register_event('reload', initialize)
 	
 	initialize(text_box)
+	
+	local msg = ''
+	msg = ('You have loaded Seb\'s BLU lua. Please use '):color(text_color) .. ('\"\/\/GS c help\" '):color(Notification_color) .. ('for a full list of key bound functions. Enjoy!'):color(text_color)
+	add_to_chat(122, msg)
+	
 end
 
 -- Called when this job file is unloaded (eg: job change)
@@ -563,6 +570,7 @@ end
 function job_handle_equipping_gear(playerStatus, eventArgs)
     update_combat_form()
 	determine_haste_group()
+	check_moving()
 	update()
 end
 
@@ -601,6 +609,9 @@ function customize_idle_set(idleSet)
 		end
 		if player.mpp < 51 then
 			idleSet = set_combine(idleSet, sets.latent_refresh)
+		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
 		end
 	end
     return idleSet
@@ -721,6 +732,16 @@ function update_combat_form()
 	end
 end
 
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
+end
+
 -- Function to display the current relevant user state when doing an update.
 -- Return true if display was handled, and you don't want the default info shown.
 function display_current_job_state(eventArgs)
@@ -827,7 +848,9 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
+
     gearinfo(cmdParams, eventArgs)
+	
 	if cmdParams[1] == 'help' then
 	
 		local chat_purple = string.char(0x1F, 200)
@@ -839,28 +862,39 @@ function job_self_command(cmdParams, eventArgs)
 		local chat_d_blue = string.char(0x1F, 207)
 		local chat_pink = string.char(0x1E, 5)
 		local chat_l_blue = string.char(0x1E, 6)
-		
+	
 		windower.add_to_chat(6, ' ')
 		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
 		windower.add_to_chat(6, chat_d_blue.. 	'                         Welcome to Sebs Gearswap help!' )
 		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
 		windower.add_to_chat(6, ' ')
 		windower.add_to_chat(6, chat_d_blue.. 	'You may manually type these with \"\/\/gs c [function]\" eg. '.. chat_yellow ..' \"\/\/gs c update user\"')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you wish to macro the functions please use \"\/con gs c [function]\" eg. '.. chat_yellow ..' \"\/con gs c update user\"')
 		windower.add_to_chat(6, chat_yellow.. 	'W-key'.. chat_d_blue ..' means Windows key')
 		windower.add_to_chat(6, ' ')
 		windower.add_to_chat(6, chat_green.. 	'Key Binds available:')
 		windower.add_to_chat(6, chat_yellow.. 	'           \'F12\''..chat_l_blue  ..' = update user ' .. chat_white .. '  --  Will check and equip correct gear.')
+		windower.add_to_chat(6, chat_d_blue.. 	'Will also save the current location of the gearswap info text box to file')
 		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F12\''..chat_l_blue  ..' = cycle CastingMode ' .. chat_white .. '   --  Cycles to resistant mode \(more Macc\).')
 		windower.add_to_chat(6, chat_yellow..	'    \'Alt + F12\''..chat_l_blue  ..' = cycle IdleMode ' .. chat_white .. '  --  Cycle through idle modes.')
 		windower.add_to_chat(6, chat_yellow..	'\'W-Key + F12\''..chat_l_blue  ..' = toggle kiting ' .. chat_white .. '  --  Locks movement speed gear on over any set')
 		windower.add_to_chat(6, ' ')
 		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F11\''..chat_l_blue  ..' = cycle CP ' .. chat_white .. '  --  Makes you utilise CP cape')
+		windower.add_to_chat(6, chat_yellow..	'   \'Alt + F11\''..chat_l_blue  ..' = cycle Learning ' .. chat_white .. '  --  Makes use of the gloves to better learn spells')
 		windower.add_to_chat(6, ' ')
 		windower.add_to_chat(6, chat_yellow.. 	'             \'[\''..chat_l_blue  ..' = toggle PhysicalDefense ' .. chat_white .. '  --  Locks PDT set on.')
-		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + [\''..chat_l_blue  ..' = cycle OffenseMode ' .. chat_white .. '   --  Cycles throught accuracy modes.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + [\''..chat_l_blue  ..' = cycle OffenseMode ' .. chat_white .. '   --  Cycles throught melee accuracy modes.')
 		windower.add_to_chat(6, chat_yellow..	'  \'W-Key + [\''..chat_l_blue  ..' = cycle HybridMode ' .. chat_white .. '  --  Cycles thought Hybrid modes \(usually just DT\)')
 		windower.add_to_chat(6, ' ')
 		windower.add_to_chat(6, chat_yellow..	'             \']\''..chat_l_blue  ..' = toggle MagicalDefense ' .. chat_white .. '  --  Locks MDT set on.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you need more help or run into problems, you can contact me via email at ' .. chat_yellow .. 'sebyg666@hotmail.com')
+		windower.add_to_chat(6, chat_d_blue.. 	'Alternatively if you have me on your skype list, just leave me a message there and ill get back to you.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Warning: Shameless plug follows.')
+		windower.add_to_chat(6, chat_d_blue.. 	'If You are a big fan of my lua\'s and you wish to support me, you are more then welcome to donate any amount of money')
+		windower.add_to_chat(6, chat_d_blue.. 	'via paypal at the above email adress. You may also tell other people you trust about my lua\'s and how to contact me,')
+		windower.add_to_chat(6, chat_d_blue.. 	'for help setting up, and finally you can also find me streaming live on twitch at '.. chat_yellow .. 'www.twitch.tv/Sebbyg')
 		windower.add_to_chat(6, ' ')
 	
 	end
@@ -896,6 +930,8 @@ initialize = function(text, t)
 	if state.DefenseMode then
         properties:append('${DefenseMode}')
     end
+	properties:append('${is_Moving}')
+	
     text:clear()
     text:append(properties:concat(''))
 	update()
@@ -993,6 +1029,14 @@ function update()
 		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
 	else
 		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
 	end
 	
 	if not table.equals(old_inform, inform) then

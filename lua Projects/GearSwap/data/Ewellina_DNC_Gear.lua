@@ -1,7 +1,7 @@
  
 function init_gear_sets()
 
-	print('Ewellina_DNC_Gear.lua sidecar loaded')
+	print('Padrobond_DNC_Gear.lua sidecar loaded')
 	
 	-----------------------------------------------
 	-- Section for Augments and JSE gear
@@ -51,9 +51,9 @@ function init_gear_sets()
 	Toetapper_back 	= { name="Toetapper Mantle", augments={'"Store TP"+4','"Dual Wield"+1','"Rev. Flourish"+28',}}
 	CP_Cape			= { name="Mecisto. Mantle", augments={'Cap. Point+41%','HP+12','DEF+9',}}
 	
-	AF_head 		= { name="Maxixi Tiara +2"	}
-	AF_body			= { name="Maxixi Casaque +2"	}
-	AF_hands 		= { name="Maxixi Bangles +2"	}
+	AF_head 		= { name="Maxixi Tiara +2" }
+	AF_body			= { name="Maxixi Casaque +2" }
+	AF_hands 		= { name="Maxixi Bangles +2" }
 	AF_legs 		= { name="Maxixi Tights +2"	}
 	AF_feet 		= { name="Maxixi toeshoes +2" }
 	
@@ -63,9 +63,9 @@ function init_gear_sets()
 	Relic_legs		= { }
 	Relic_feet		= { }
 	
-	Empy_head 		= { name="Maculele Tiara" }
-	Empy_body		= { name="Maculele Casaque" }
-	Empy_hands		= { name="Maculele Bangles" }
+	Empy_head 		= { name="Maculele Tiara +1" }
+	Empy_body		= { name="Maculele Casaque +1" }
+	Empy_hands		= { name="Maculele Bangles +1" }
 	Empy_legs 		= { name="Maculele Tights" }
 	Empy_feet 		= { name="Maculele Toeshoes" }
 	
@@ -146,6 +146,7 @@ function init_gear_sets()
 	sets.precast.WS['Ilvl~124+'] 	= set_combine(sets.precast.WS['Ilvl~122'], {})
 	sets.precast.WS['CF'] 			= set_combine(sets.precast.WS, {})
 	sets.precast.WS['TF'] 			= set_combine(sets.precast.WS, {})
+	sets.precast.WS['SF'] 			= set_combine(sets.precast.WS, {})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -156,8 +157,9 @@ function init_gear_sets()
     sets.precast.WS["Rudra's Storm"]['Ilvl~118'] 		= set_combine(sets.precast.WS["Rudra's Storm"], {})
 	sets.precast.WS["Rudra's Storm"]['Ilvl~122'] 		= set_combine(sets.precast.WS["Rudra's Storm"]['Ilvl~118'], {})
 	sets.precast.WS["Rudra's Storm"]['Ilvl~124+'] 		= set_combine(sets.precast.WS["Rudra's Storm"]['Ilvl~122'], {})
-    sets.precast.WS["Rudra's Storm"]['CF']				= set_combine(sets.precast.WS["Rudra's Storm"], {})
+    sets.precast.WS["Rudra's Storm"]['CF']				= set_combine(sets.precast.WS["Rudra's Storm"], {Head=Empy_head,Body="Meghanada cuirie +2",Hands=AF_hands})
 	sets.precast.WS["Rudra's Storm"]['TF']				= set_combine(sets.precast.WS["Rudra's Storm"], {})
+	sets.precast.WS["Rudra's Storm"]['SF']				= set_combine(sets.precast.WS["Rudra's Storm"], {})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -170,6 +172,7 @@ function init_gear_sets()
 	sets.precast.WS["Pyrrhic Kleos"]['Ilvl~124+'] 		= set_combine(sets.precast.WS["Pyrrhic Kleos"]['Ilvl~122'], {})
 	sets.precast.WS["Pyrrhic Kleos"]['CF']				= set_combine(sets.precast.WS["Pyrrhic Kleos"], {})
     sets.precast.WS["Pyrrhic Kleos"]['TF']				= set_combine(sets.precast.WS["Pyrrhic Kleos"], {})
+	sets.precast.WS["Pyrrhic Kleos"]['SF']				= set_combine(sets.precast.WS["Pyrrhic Kleos"], {})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -179,6 +182,7 @@ function init_gear_sets()
 	sets.precast.WS["Exenterator"]['Ilvl~124+'] 		= set_combine(sets.precast.WS["Exenterator"]['Ilvl~122'], {})
 	sets.precast.WS["Exenterator"]['CF']				= set_combine(sets.precast.WS["Exenterator"], {})
     sets.precast.WS["Exenterator"]['TF']				= set_combine(sets.precast.WS["Exenterator"], {})
+	sets.precast.WS["Exenterator"]['SF']				= set_combine(sets.precast.WS["Exenterator"], {})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -188,6 +192,7 @@ function init_gear_sets()
 	sets.precast.WS["Evisceration"]['Ilvl~124+'] 		= set_combine(sets.precast.WS["Evisceration"]['Ilvl~122'], {})
 	sets.precast.WS["Evisceration"]['CF']				= set_combine(sets.precast.WS["Evisceration"], {})
     sets.precast.WS["Evisceration"]['TF']				= set_combine(sets.precast.WS["Evisceration"], {})
+	sets.precast.WS["Evisceration"]['SF']				= set_combine(sets.precast.WS["Evisceration"], {})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -197,6 +202,7 @@ function init_gear_sets()
 	sets.precast.WS["Aeolian Edge"]['Ilvl~124+'] 		= set_combine(sets.precast.WS["Aeolian Edge"]['Ilvl~122'], {})
 	sets.precast.WS["Aeolian Edge"]['CF']				= set_combine(sets.precast.WS["Aeolian Edge"], {})
     sets.precast.WS["Aeolian Edge"]['TF']				= set_combine(sets.precast.WS["Aeolian Edge"], {})
+	sets.precast.WS["Aeolian Edge"]['SF']				= set_combine(sets.precast.WS["Aeolian Edge"], {})
 
 	
 	--------------------------------------
@@ -221,27 +227,27 @@ function init_gear_sets()
 
 	-- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
 	sets.idle = {head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
-				body="Meg. Cuirie +1",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
-				back="Solemnity Cape",waist="Flume Belt",legs=HercDTLegs,feet="tandava crackows"}
+				body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+				back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet="tandava crackows"}
 	
 	sets.idle.PDT = {head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
-					body="Meg. Cuirie +1",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
-					back="Solemnity Cape",waist="Flume Belt",legs=HercDTLegs,feet=HercDTFeet}
+					body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+					back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet=HercDTFeet}
 		
 	sets.idle.Refresh = {}
 	
 	sets.idle.Weak = {head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
-					body="Meg. Cuirie +1",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
-					back="Solemnity Cape",waist="Flume Belt",legs=HercDTLegs,feet=HercDTFeet}
+					body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+					back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet=HercDTFeet}
 	
 	-- Defense sets
 	sets.defense.PDT = {head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
-						body="Meg. Cuirie +1",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
-						back="Solemnity Cape",waist="Flume Belt",legs=HercDTLegs,feet=HercDTFeet}
+						body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+						back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet=HercDTFeet}
 
 	sets.defense.MDT = {head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
-						body="Meg. Cuirie +1",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
-						back="Solemnity Cape",waist="Flume Belt",legs=HercDTLegs,feet=HercDTFeet}
+						body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+						back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet=HercDTFeet}
 
 	sets.Kiting = {feet="tandava crackows"}
 
@@ -269,16 +275,32 @@ function init_gear_sets()
 												back=BackDD,waist="Windbuffet Belt +1",legs=Samnuha_Tights,feet=HercDDFeet}
 	sets.engaged['Ilvl~118']				= set_combine(sets.engaged, 			{})
 	sets.engaged['Ilvl~122']				= set_combine(sets.engaged['Ilvl~118'], {})
-	sets.engaged['Ilvl~124+'] 				= set_combine(sets.engaged['Ilvl~122'], {})	
+	sets.engaged['Ilvl~124+'] 				= set_combine(sets.engaged['Ilvl~122'], {})
+
+	sets.engaged.DW 						= {	ammo="Yamarang",
+												head=Adhemar_head,neck="Asperity Necklace",left_ear="Digni. Earring",right_ear="Brutal Earring", 
+												body=Adhemar_body,hands=Adhemar_hands,left_ring="Epona's Ring",right_ring="Petrov Ring",
+												back=BackDD,waist="Windbuffet Belt +1",legs=Samnuha_Tights,feet=HercDDFeet}
+	sets.engaged.DW['Ilvl~118']				= set_combine(sets.engaged.DW, 			{})
+	sets.engaged.DW['Ilvl~122']				= set_combine(sets.engaged.DW['Ilvl~118'], {})
+	sets.engaged.DW['Ilvl~124+'] 			= set_combine(sets.engaged.DW['Ilvl~122'], {})	
 	
 	-- DT = "Damage taken" ie. hybrid tanking sets
-	sets.engaged.DT 							= {	ammo="Yamarang",
-													head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
-													body="Meg. Cuirie +1",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
-													back="Solemnity Cape",waist="Flume Belt",legs=HercDTLegs,feet=HercDTFeet}
-	sets.engaged['Ilvl~118'].DT 				= set_combine(sets.engaged.DT , 			{})
-	sets.engaged['Ilvl~122'].DT 				= set_combine(sets.engaged['Ilvl~118'].DT , {})
-	sets.engaged['Ilvl~124+'].DT  				= set_combine(sets.engaged['Ilvl~122'].DT , {})	
+	sets.engaged.DT 						= {	ammo="Yamarang",
+												head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
+												body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+												back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet=HercDTFeet}
+	sets.engaged['Ilvl~118'].DT 			= set_combine(sets.engaged.DT , 			{})
+	sets.engaged['Ilvl~122'].DT 			= set_combine(sets.engaged['Ilvl~118'].DT , {})
+	sets.engaged['Ilvl~124+'].DT  			= set_combine(sets.engaged['Ilvl~122'].DT , {})
+
+	sets.engaged.DW.DT 						= {	ammo="Yamarang",
+												head=HercDTHead,neck="Warder's Charm +1",left_ear="Digni. Earring",right_ear="Brutal Earring",
+												body="Meg. Cuirie +2",hands=HercDTHands,left_ring="Vocane Ring",right_ring="Defending Ring",
+												back="Solemnity Cape",waist="Flume Belt",legs="Mummu kecks +2",feet=HercDTFeet}
+	sets.engaged.DW['Ilvl~118'].DT 			= set_combine(sets.engaged.DW.DT , 			{})
+	sets.engaged.DW['Ilvl~122'].DT 			= set_combine(sets.engaged.DW['Ilvl~118'].DT , {})
+	sets.engaged.DW['Ilvl~124+'].DT  		= set_combine(sets.engaged.DW['Ilvl~122'].DT , {})	
 	
 	-- SD = "Saber Dance"
 	sets.engaged['SD'] 						= set_combine(sets.engaged, 					{})
@@ -293,10 +315,10 @@ function init_gear_sets()
 	sets.engaged['Ilvl~124+']['AM3'] 		= set_combine(sets.engaged['Ilvl~122']['AM3'], 	{})	
 
 	-- Mix of both saber dance and AM3 active
-	sets.engaged['SD']['AM3'] 						= set_combine(sets.engaged['AM3'], 						{})
-	sets.engaged['Ilvl~118']['SD']['AM3']			= set_combine(sets.engaged['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['SD']['AM3']			= set_combine(sets.engaged['Ilvl~118']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['SD']['AM3'] 			= set_combine(sets.engaged['Ilvl~122']['SD']['AM3'], 	{})	
+	sets.engaged['SD']['AM3'] 				= set_combine(sets.engaged['AM3'], 						{})
+	sets.engaged['Ilvl~118']['SD']['AM3']	= set_combine(sets.engaged['SD']['AM3'], 				{})
+	sets.engaged['Ilvl~122']['SD']['AM3']	= set_combine(sets.engaged['Ilvl~118']['SD']['AM3'], 	{})
+	sets.engaged['Ilvl~124+']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['SD']['AM3'], 	{})	
 	
 	
 	------------------------------------------------------------------
@@ -304,393 +326,393 @@ function init_gear_sets()
 	-- Normal melee group: No Haste (38% DW)
 	----------------------------------------
 											
-	sets.engaged['DW: 38'] 					= set_combine(sets.engaged, 							{ammo="Yamarang",
+	sets.engaged.DW['DW: 38'] 					= set_combine(sets.engaged, 							{ammo="Yamarang",
 												head=Adhemar_head,neck="Asperity Necklace",left_ear="Digni. Earring",right_ear="Brutal Earring", 
 												body=Adhemar_body,hands=Adhemar_hands,left_ring="Epona's Ring",right_ring="Petrov Ring",
 												back=BackDD,waist="Windbuffet Belt +1",legs=Samnuha_Tights,feet=HercDDFeet})
-	sets.engaged['Ilvl~118']['DW: 38']		= set_combine(sets.engaged['DW: 38'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 38'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 38'], 		{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 38'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 38'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['Ilvl~118']['DW: 38']		= set_combine(sets.engaged.DW['DW: 38'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 38'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 38'], 		{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 38'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 38'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 38'].DT 					= set_combine(sets.engaged.DT, 								{})
-	sets.engaged['Ilvl~118']['DW: 38'].DT		= set_combine(sets.engaged['DW: 38'].DT, 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 38'].DT		= set_combine(sets.engaged['Ilvl~118']['DW: 38'].DT, 		{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 38'].DT 		= set_combine(sets.engaged['Ilvl~122']['DW: 38'].DT, 		{})
+	sets.engaged.DW.DT['DW: 38'] 					= set_combine(sets.engaged.DW.DT, 								{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 38']		= set_combine(sets.engaged.DW.DT['DW: 38'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 38']		= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 38'], 		{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 38']		= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 38'], 		{})
 	
-	sets.engaged['DW: 38']['SD'] 					= set_combine(sets.engaged['DW: 38'], 							{})
-	sets.engaged['Ilvl~118']['DW: 38']['SD']		= set_combine(sets.engaged['DW: 38']['SD'], 					{})
-	sets.engaged['Ilvl~122']['DW: 38']['SD'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 38']['SD'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 38']['SD'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 38']['SD'], 		{})
+	sets.engaged.DW['DW: 38']['SD'] 					= set_combine(sets.engaged.DW['DW: 38'], 						{Head=AF_head})
+	sets.engaged.DW['Ilvl~118']['DW: 38']['SD']			= set_combine(sets.engaged.DW['DW: 38']['SD'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 38']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 38']['SD'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 38']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 38']['SD'], 		{})
 	
-	sets.engaged['DW: 38']['AM3'] 					= set_combine(sets.engaged['DW: 38'], 							{})
-	sets.engaged['Ilvl~118']['DW: 38']['AM3']		= set_combine(sets.engaged['DW: 38']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 38']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 38']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 38']['AM3'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 38']['AM3'], 		{})
+	sets.engaged.DW['DW: 38']['AM3'] 					= set_combine(sets.engaged.DW['DW: 38'], 							{Body="Meghanada cuirie +2"})
+	sets.engaged.DW['Ilvl~118']['DW: 38']['AM3']		= set_combine(sets.engaged.DW['DW: 38']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 38']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 38']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 38']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 38']['AM3'], 		{})
 	
-	sets.engaged['DW: 38']['SD']['AM3'] 				= set_combine(sets.engaged['DW: 38'], 								{})
-	sets.engaged['Ilvl~118']['DW: 38']['SD']['AM3']		= set_combine(sets.engaged['DW: 38']['SD']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 38']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 38']['SD']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 38']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 38']['SD']['AM3'], 		{})
+	sets.engaged.DW['DW: 38']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 38'], 								{Hands=AF_hands})
+	sets.engaged.DW['Ilvl~118']['DW: 38']['SD']['AM3']		= set_combine(sets.engaged.DW['DW: 38']['SD']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 38']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 38']['SD']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 38']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 38']['SD']['AM3'], 		{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	--------------------------------------------
 	-- Custom melee group: low Haste ('DW: 36-37')     
 	--------------------------------------------         
 	
-	sets.engaged['DW: 36-37'] 				= set_combine(sets.engaged['DW: 38'], 					{})
-	sets.engaged['Ilvl~118']['DW: 36-37'] 	= set_combine(sets.engaged['DW: 36-37'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 36-37'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 36-37'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 36-37'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 36-37'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 36-37'] 				= set_combine(sets.engaged.DW['DW: 38'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 36-37'] 	= set_combine(sets.engaged.DW['DW: 36-37'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 36-37'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 36-37'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 36-37'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 36-37'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 36-37'].DT 				= set_combine(sets.engaged['DW: 38'].DT, 					{})
-	sets.engaged['Ilvl~118']['DW: 36-37'].DT 	= set_combine(sets.engaged['DW: 36-37'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 36-37'].DT 	= set_combine(sets.engaged['Ilvl~118']['DW: 36-37'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 36-37'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 36-37'].DT, 	{})
+	sets.engaged.DW.DT['DW: 36-37'] 				= set_combine(sets.engaged.DW.DT['DW: 38'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 36-37'] 	= set_combine(sets.engaged.DW.DT['DW: 36-37'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 36-37'] 	= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 36-37'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 36-37']	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 36-37'], 	{})
 	
-	sets.engaged['DW: 36-37']['SD'] 				= set_combine(sets.engaged['DW: 36-37'], 					{})
-	sets.engaged['Ilvl~118']['DW: 36-37']['SD'] 	= set_combine(sets.engaged['DW: 36-37']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 36-37']['SD'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 36-37']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 36-37']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 36-37']['SD'], 	{})
+	sets.engaged.DW['DW: 36-37']['SD'] 					= set_combine(sets.engaged.DW['DW: 36-37'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 36-37']['SD'] 		= set_combine(sets.engaged.DW['DW: 36-37']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 36-37']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 36-37']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 36-37']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 36-37']['SD'], 	{})
 	
-	sets.engaged['DW: 36-37']['AM3'] 				= set_combine(sets.engaged['DW: 36-37'], 						{})
-	sets.engaged['Ilvl~118']['DW: 36-37']['AM3'] 	= set_combine(sets.engaged['DW: 36-37']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 36-37']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 36-37']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 36-37']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 36-37']['AM3'], 	{})
+	sets.engaged.DW['DW: 36-37']['AM3'] 				= set_combine(sets.engaged.DW['DW: 36-37'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 36-37']['AM3'] 	= set_combine(sets.engaged.DW['DW: 36-37']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 36-37']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 36-37']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 36-37']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 36-37']['AM3'], 	{})
 	
-	sets.engaged['DW: 36-37']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 36-37'], 								{})
-	sets.engaged['Ilvl~118']['DW: 36-37']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 36-37']['SD']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 36-37']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 36-37']['SD']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 36-37']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 36-37']['SD']['AM3'], 		{})
+	sets.engaged.DW['DW: 36-37']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 36-37'], 								{})
+	sets.engaged.DW['Ilvl~118']['DW: 36-37']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 36-37']['SD']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 36-37']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 36-37']['SD']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 36-37']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 36-37']['SD']['AM3'], 		{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	--------------------------------------------		
 	-- Custom melee group: low Haste ('DW: 34-35')-        
 	--------------------------------------------           
 	
-	sets.engaged['DW: 34-35'] 				= set_combine(sets.engaged['DW: 36-37'], 				{})
-	sets.engaged['Ilvl~118']['DW: 34-35'] 	= set_combine(sets.engaged['DW: 34-35'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 34-35'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 34-35'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 34-35'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 34-35'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 34-35'] 				= set_combine(sets.engaged.DW['DW: 36-37'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 34-35'] 	= set_combine(sets.engaged.DW['DW: 34-35'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 34-35'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 34-35'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 34-35'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 34-35'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 34-35'].DT 				= set_combine(sets.engaged['DW: 36-37'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 34-35'].DT 	= set_combine(sets.engaged['DW: 34-35'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 34-35'].DT	= set_combine(sets.engaged['Ilvl~118']['DW: 34-35'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 34-35'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 34-35'].DT, 	{})
+	sets.engaged.DW.DT['DW: 34-35'] 				= set_combine(sets.engaged.DW.DT['DW: 36-37'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 34-35']		= set_combine(sets.engaged.DW.DT['DW: 34-35'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 34-35']		= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 34-35'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 34-35']	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 34-35'], 	{})
 	
-	sets.engaged['DW: 34-35']['SD'] 				= set_combine(sets.engaged['DW: 34-35'], 					{})
-	sets.engaged['Ilvl~118']['DW: 34-35']['SD'] 	= set_combine(sets.engaged['DW: 34-35']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 34-35']['SD']		= set_combine(sets.engaged['Ilvl~118']['DW: 34-35']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 34-35']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 34-35']['SD'], 	{})
+	sets.engaged.DW['DW: 34-35']['SD'] 					= set_combine(sets.engaged.DW['DW: 34-35'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 34-35']['SD'] 		= set_combine(sets.engaged.DW['DW: 34-35']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 34-35']['SD']		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 34-35']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 34-35']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 34-35']['SD'], 	{})
 	
-	sets.engaged['DW: 34-35']['AM3'] 				= set_combine(sets.engaged['DW: 34-35'], 						{})
-	sets.engaged['Ilvl~118']['DW: 34-35']['AM3'] 	= set_combine(sets.engaged['DW: 34-35']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 34-35']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 34-35']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 34-35']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 34-35']['AM3'], 	{})
+	sets.engaged.DW['DW: 34-35']['AM3'] 				= set_combine(sets.engaged.DW['DW: 34-35'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 34-35']['AM3'] 	= set_combine(sets.engaged.DW['DW: 34-35']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 34-35']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 34-35']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 34-35']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 34-35']['AM3'], 	{})
 	
-	sets.engaged['DW: 34-35']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 34-35'], 							{})
-	sets.engaged['Ilvl~118']['DW: 34-35']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 34-35']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 34-35']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 34-35']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 34-35']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 34-35']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 34-35']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 34-35'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 34-35']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 34-35']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 34-35']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 34-35']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 34-35']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 34-35']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	--------------------------------------------			
 	-- Custom melee group: low Haste ('DW: 31-33')-         
 	--------------------------------------------            
 	
-	sets.engaged['DW: 31-33'] 				= set_combine(sets.engaged['DW: 34-35'], 				{})
-	sets.engaged['Ilvl~118']['DW: 31-33'] 	= set_combine(sets.engaged['DW: 31-33'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 31-33'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 31-33'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 31-33'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 31-33'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 31-33'] 				= set_combine(sets.engaged.DW['DW: 34-35'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 31-33'] 	= set_combine(sets.engaged.DW['DW: 31-33'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 31-33'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 31-33'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 31-33'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 31-33'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 31-33'].DT 				= set_combine(sets.engaged['DW: 34-35'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 31-33'].DT 	= set_combine(sets.engaged['DW: 31-33'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 31-33'].DT 	= set_combine(sets.engaged['Ilvl~118']['DW: 31-33'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 31-33'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 31-33'].DT, 	{})
+	sets.engaged.DW.DT['DW: 31-33'] 				= set_combine(sets.engaged.DW.DT['DW: 34-35'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 31-33'] 	= set_combine(sets.engaged.DW.DT['DW: 31-33'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 31-33'] 	= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 31-33'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 31-33']	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 31-33'], 	{})
 	
-	sets.engaged['DW: 31-33']['SD'] 				= set_combine(sets.engaged['DW: 31-33'], 					{})
-	sets.engaged['Ilvl~118']['DW: 31-33']['SD'] 	= set_combine(sets.engaged['DW: 31-33']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 31-33']['SD'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 31-33']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 31-33']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 31-33']['SD'], 	{})
+	sets.engaged.DW['DW: 31-33']['SD'] 					= set_combine(sets.engaged.DW['DW: 31-33'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 31-33']['SD'] 		= set_combine(sets.engaged.DW['DW: 31-33']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 31-33']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 31-33']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 31-33']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 31-33']['SD'], 	{})
 	
-	sets.engaged['DW: 31-33']['AM3'] 				= set_combine(sets.engaged['DW: 31-33'], 						{})
-	sets.engaged['Ilvl~118']['DW: 31-33']['AM3'] 	= set_combine(sets.engaged['DW: 31-33']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 31-33']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 31-33']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 31-33']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 31-33']['AM3'], 	{})
+	sets.engaged.DW['DW: 31-33']['AM3'] 				= set_combine(sets.engaged.DW['DW: 31-33'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 31-33']['AM3'] 	= set_combine(sets.engaged.DW['DW: 31-33']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 31-33']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 31-33']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 31-33']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 31-33']['AM3'], 	{})
 	
-	sets.engaged['DW: 31-33']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 31-33'], 							{})
-	sets.engaged['Ilvl~118']['DW: 31-33']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 31-33']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 31-33']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 31-33']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 31-33']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 31-33']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 31-33']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 31-33'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 31-33']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 31-33']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 31-33']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 31-33']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 31-33']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 31-33']['SD']['AM3'], 	{})
 		
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	--------------------------------------------			
 	-- Custom melee group: low Haste ('DW: 28-30')-         
 	--------------------------------------------            
 	
-	sets.engaged['DW: 28-30'] 				= set_combine(sets.engaged['DW: 31-33'], 				{})
-	sets.engaged['Ilvl~118']['DW: 28-30'] 	= set_combine(sets.engaged['DW: 28-30'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 28-30'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 28-30'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 28-30'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 28-30'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 28-30'] 				= set_combine(sets.engaged.DW['DW: 31-33'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 28-30'] 	= set_combine(sets.engaged.DW['DW: 28-30'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 28-30'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 28-30'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 28-30'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 28-30'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 28-30'].DT				= set_combine(sets.engaged['DW: 31-33'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 28-30'].DT 	= set_combine(sets.engaged['DW: 28-30'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 28-30'].DT 	= set_combine(sets.engaged['Ilvl~118']['DW: 28-30'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 28-30'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 28-30'].DT, 	{})
+	sets.engaged.DW.DT['DW: 28-30']					= set_combine(sets.engaged.DW.DT['DW: 31-33'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 28-30'] 	= set_combine(sets.engaged.DW.DT['DW: 28-30'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 28-30'] 	= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 28-30'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 28-30'] 	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 28-30'], 	{})
 	
-	sets.engaged['DW: 28-30']['SD']					= set_combine(sets.engaged['DW: 28-30'], 					{})
-	sets.engaged['Ilvl~118']['DW: 28-30']['SD'] 	= set_combine(sets.engaged['DW: 28-30']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 28-30']['SD'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 28-30']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 28-30']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 28-30']['SD'], 	{})
+	sets.engaged.DW['DW: 28-30']['SD']					= set_combine(sets.engaged.DW['DW: 28-30'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 28-30']['SD'] 		= set_combine(sets.engaged.DW['DW: 28-30']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 28-30']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 28-30']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 28-30']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 28-30']['SD'], 	{})
 	
-	sets.engaged['DW: 28-30']['AM3'] 				= set_combine(sets.engaged['DW: 28-30'], 						{})
-	sets.engaged['Ilvl~118']['DW: 28-30']['AM3'] 	= set_combine(sets.engaged['DW: 28-30']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 28-30']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 28-30']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 28-30']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 28-30']['AM3'], 	{})
+	sets.engaged.DW['DW: 28-30']['AM3'] 				= set_combine(sets.engaged.DW['DW: 28-30'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 28-30']['AM3'] 	= set_combine(sets.engaged.DW['DW: 28-30']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 28-30']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 28-30']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 28-30']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 28-30']['AM3'], 	{})
 	
-	sets.engaged['DW: 28-30']['SD']['AM3']					= set_combine(sets.engaged['DW: 28-30'], 							{})
-	sets.engaged['Ilvl~118']['DW: 28-30']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 28-30']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 28-30']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 28-30']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 28-30']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 28-30']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 28-30']['SD']['AM3']					= set_combine(sets.engaged.DW['DW: 28-30'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 28-30']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 28-30']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 28-30']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 28-30']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 28-30']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 28-30']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	--------------------------------------------			
 	-- Custom melee group: MidHaste ('DW: 25-27')-          
 	--------------------------------------------            
 	
-	sets.engaged['DW: 25-27'] 				= set_combine(sets.engaged['DW: 28-30'], 				{})
-	sets.engaged['Ilvl~118']['DW: 25-27']  	= set_combine(sets.engaged['DW: 25-27'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 25-27'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 25-27'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 25-27']  = set_combine(sets.engaged['Ilvl~122']['DW: 25-27'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 25-27'] 				= set_combine(sets.engaged.DW['DW: 28-30'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 25-27']  	= set_combine(sets.engaged.DW['DW: 25-27'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 25-27'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 25-27'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 25-27']  	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 25-27'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 25-27'].DT 				= set_combine(sets.engaged['DW: 28-30'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 25-27'].DT  	= set_combine(sets.engaged['DW: 25-27'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 25-27'].DT	= set_combine(sets.engaged['Ilvl~118']['DW: 25-27'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 25-27'].DT  	= set_combine(sets.engaged['Ilvl~122']['DW: 25-27'].DT, 	{})
+	sets.engaged.DW.DT['DW: 25-27'] 					= set_combine(sets.engaged.DW.DT['DW: 28-30'],	 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 25-27']		  	= set_combine(sets.engaged.DW.DT['DW: 25-27'],	 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 25-27']			= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 25-27'],	 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 25-27']	  	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 25-27'],	 	{})
 	
-	sets.engaged['DW: 25-27']['SD'] 				= set_combine(sets.engaged['DW: 25-27'], 					{})
-	sets.engaged['Ilvl~118']['DW: 25-27']['SD']  	= set_combine(sets.engaged['DW: 25-27']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 25-27']['SD']		= set_combine(sets.engaged['Ilvl~118']['DW: 25-27']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 25-27']['SD']  	= set_combine(sets.engaged['Ilvl~122']['DW: 25-27']['SD'], 	{})
+	sets.engaged.DW['DW: 25-27']['SD'] 					= set_combine(sets.engaged.DW['DW: 25-27'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 25-27']['SD']  	= set_combine(sets.engaged.DW['DW: 25-27']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 25-27']['SD']		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 25-27']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 25-27']['SD']  	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 25-27']['SD'], 	{})
 	
-	sets.engaged['DW: 25-27']['AM3'] 				= set_combine(sets.engaged['DW: 25-27'], 						{})
-	sets.engaged['Ilvl~118']['DW: 25-27']['AM3']  	= set_combine(sets.engaged['DW: 25-27']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 25-27']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 25-27']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 25-27']['AM3']  	= set_combine(sets.engaged['Ilvl~122']['DW: 25-27']['AM3'], 	{})
+	sets.engaged.DW['DW: 25-27']['AM3'] 				= set_combine(sets.engaged.DW['DW: 25-27'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 25-27']['AM3']  	= set_combine(sets.engaged.DW['DW: 25-27']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 25-27']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 25-27']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 25-27']['AM3']  	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 25-27']['AM3'], 	{})
 	
-	sets.engaged['DW: 25-27']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 25-27'], 							{})
-	sets.engaged['Ilvl~118']['DW: 25-27']['SD']['AM3']  	= set_combine(sets.engaged['DW: 25-27']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 25-27']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 25-27']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 25-27']['SD']['AM3']  	= set_combine(sets.engaged['Ilvl~122']['DW: 25-27']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 25-27']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 25-27'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 25-27']['SD']['AM3']  		= set_combine(sets.engaged.DW['DW: 25-27']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 25-27']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 25-27']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 25-27']['SD']['AM3']  	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 25-27']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------------			
 	-- Custom melee group: High Haste ('DW: 21-24')         
 	---------------------------------------------           
 	
-	sets.engaged['DW: 21-24'] 				= set_combine(sets.engaged['DW: 25-27'], 				{})
-	sets.engaged['Ilvl~118']['DW: 21-24'] 	= set_combine(sets.engaged['DW: 21-24'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 21-24'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 21-24'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 21-24'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 21-24'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 21-24'] 				= set_combine(sets.engaged.DW['DW: 25-27'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 21-24'] 	= set_combine(sets.engaged.DW['DW: 21-24'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 21-24'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 21-24'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 21-24'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 21-24'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 21-24'].DT 				= set_combine(sets.engaged['DW: 25-27'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 21-24'].DT 	= set_combine(sets.engaged['DW: 21-24'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 21-24'].DT	= set_combine(sets.engaged['Ilvl~118']['DW: 21-24'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 21-24'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 21-24'].DT, 	{})
+	sets.engaged.DW.DT['DW: 21-24'] 				= set_combine(sets.engaged.DW.DT['DW: 25-27'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 21-24'] 	= set_combine(sets.engaged.DW.DT['DW: 21-24'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 21-24']		= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 21-24'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 21-24'] 	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 21-24'], 	{})
 	
-	sets.engaged['DW: 21-24']['SD'] 				= set_combine(sets.engaged['DW: 21-24'], 					{})
-	sets.engaged['Ilvl~118']['DW: 21-24']['SD'] 	= set_combine(sets.engaged['DW: 21-24']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 21-24']['SD']		= set_combine(sets.engaged['Ilvl~118']['DW: 21-24']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 21-24']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 21-24']['SD'], 	{})
+	sets.engaged.DW['DW: 21-24']['SD'] 					= set_combine(sets.engaged.DW['DW: 21-24'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 21-24']['SD'] 		= set_combine(sets.engaged.DW['DW: 21-24']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 21-24']['SD']		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 21-24']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 21-24']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 21-24']['SD'], 	{})
 	
-	sets.engaged['DW: 21-24']['AM3'] 				= set_combine(sets.engaged['DW: 21-24'], 						{})
-	sets.engaged['Ilvl~118']['DW: 21-24']['AM3'] 	= set_combine(sets.engaged['DW: 21-24']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 21-24']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 21-24']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 21-24']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 21-24']['AM3'], 	{})
+	sets.engaged.DW['DW: 21-24']['AM3'] 				= set_combine(sets.engaged.DW['DW: 21-24'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 21-24']['AM3'] 	= set_combine(sets.engaged.DW['DW: 21-24']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 21-24']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 21-24']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 21-24']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 21-24']['AM3'], 	{})
 	
-	sets.engaged['DW: 21-24']['SD']['AM3']					= set_combine(sets.engaged['DW: 21-24'], 							{})
-	sets.engaged['Ilvl~118']['DW: 21-24']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 21-24']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 21-24']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 21-24']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 21-24']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 21-24']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 21-24']['SD']['AM3']					= set_combine(sets.engaged.DW['DW: 21-24'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 21-24']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 21-24']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 21-24']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 21-24']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 21-24']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 21-24']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------------			
 	-- Custom melee group: High Haste ('DW: 20')            
 	---------------------------------------------           
 	
-	sets.engaged['DW: 20'] 					= set_combine(sets.engaged['DW: 21-24'], 				{})
-	sets.engaged['Ilvl~118']['DW: 20'] 		= set_combine(sets.engaged['DW: 20'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 20'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 20'], 		{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 20'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 20'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 20'] 					= set_combine(sets.engaged.DW['DW: 21-24'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 20'] 		= set_combine(sets.engaged.DW['DW: 20'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 20'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 20'], 		{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 20'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 20'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 20'].DT 					= set_combine(sets.engaged['DW: 21-24'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 20'].DT 		= set_combine(sets.engaged['DW: 20'].DT, 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 20'].DT 		= set_combine(sets.engaged['Ilvl~118']['DW: 20'].DT, 		{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 20'].DT 		= set_combine(sets.engaged['Ilvl~122']['DW: 20'].DT, 		{})
+	sets.engaged.DW.DT['DW: 20'] 					= set_combine(sets.engaged.DW.DT['DW: 21-24'], 					{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 20'] 		= set_combine(sets.engaged.DW.DT['DW: 20'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 20'] 		= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 20'], 		{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 20'] 		= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 20'], 		{})
 	
-	sets.engaged['DW: 20']['SD'] 					= set_combine(sets.engaged['DW: 20'], 							{})
-	sets.engaged['Ilvl~118']['DW: 20']['SD'] 		= set_combine(sets.engaged['DW: 20']['SD'], 					{})
-	sets.engaged['Ilvl~122']['DW: 20']['SD'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 20']['SD'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 20']['SD'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 20']['SD'], 		{})
+	sets.engaged.DW['DW: 20']['SD'] 					= set_combine(sets.engaged.DW['DW: 20'], 						{})
+	sets.engaged.DW['Ilvl~118']['DW: 20']['SD'] 		= set_combine(sets.engaged.DW['DW: 20']['SD'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 20']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 20']['SD'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 20']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 20']['SD'], 		{})
 	
-	sets.engaged['DW: 20']['AM3'] 					= set_combine(sets.engaged['DW: 20'], 							{})
-	sets.engaged['Ilvl~118']['DW: 20']['AM3'] 		= set_combine(sets.engaged['DW: 20']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 20']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 20']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 20']['AM3'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 20']['AM3'], 		{})
+	sets.engaged.DW['DW: 20']['AM3'] 					= set_combine(sets.engaged.DW['DW: 20'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 20']['AM3'] 		= set_combine(sets.engaged.DW['DW: 20']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 20']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 20']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 20']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 20']['AM3'], 		{})
 	
-	sets.engaged['DW: 20']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 20'], 								{})
-	sets.engaged['Ilvl~118']['DW: 20']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 20']['SD']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 20']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 20']['SD']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 20']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 20']['SD']['AM3'], 		{})
+	sets.engaged.DW['DW: 20']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 20'], 								{})
+	sets.engaged.DW['Ilvl~118']['DW: 20']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 20']['SD']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 20']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 20']['SD']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 20']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 20']['SD']['AM3'], 		{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------------			
 	-- Custom melee group: High Haste ('DW: 19')            
 	---------------------------------------------           
 	
-	sets.engaged['DW: 19'] 					= set_combine(sets.engaged['DW: 20'], 					{})
-	sets.engaged['Ilvl~118']['DW: 19'] 		= set_combine(sets.engaged['DW: 19'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 19'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 19'], 		{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 19'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 19'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 19'] 					= set_combine(sets.engaged.DW['DW: 20'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 19'] 		= set_combine(sets.engaged.DW['DW: 19'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 19'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 19'], 		{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 19'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 19'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 19'].DT 					= set_combine(sets.engaged['DW: 20'].DT,					{})
-	sets.engaged['Ilvl~118']['DW: 19'].DT 		= set_combine(sets.engaged['DW: 19'].DT, 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 19'].DT 		= set_combine(sets.engaged['Ilvl~118']['DW: 19'].DT, 		{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 19'].DT 		= set_combine(sets.engaged['Ilvl~122']['DW: 19'].DT, 		{})
+	sets.engaged.DW.DT['DW: 19']	 				= set_combine(sets.engaged.DW.DT['DW: 20'],						{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 19'] 		= set_combine(sets.engaged.DW.DT['DW: 19'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 19'] 		= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 19'], 		{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 19'] 		= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 19'], 		{})
 	
-	sets.engaged['DW: 19']['SD'] 					= set_combine(sets.engaged['DW: 19'], 							{})
-	sets.engaged['Ilvl~118']['DW: 19']['SD'] 		= set_combine(sets.engaged['DW: 19']['SD'], 					{})
-	sets.engaged['Ilvl~122']['DW: 19']['SD'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 19']['SD'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 19']['SD'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 19']['SD'], 		{})
+	sets.engaged.DW['DW: 19']['SD'] 					= set_combine(sets.engaged.DW['DW: 19'], 						{})
+	sets.engaged.DW['Ilvl~118']['DW: 19']['SD'] 		= set_combine(sets.engaged.DW['DW: 19']['SD'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 19']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 19']['SD'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 19']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 19']['SD'], 		{})
 	
-	sets.engaged['DW: 19']['AM3'] 					= set_combine(sets.engaged['DW: 19'], 							{})
-	sets.engaged['Ilvl~118']['DW: 19']['AM3'] 		= set_combine(sets.engaged['DW: 19']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 19']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 19']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 19']['AM3'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 19']['AM3'], 		{})
+	sets.engaged.DW['DW: 19']['AM3'] 					= set_combine(sets.engaged.DW['DW: 19'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 19']['AM3'] 		= set_combine(sets.engaged.DW['DW: 19']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 19']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 19']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 19']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 19']['AM3'], 		{})
 	
-	sets.engaged['DW: 19']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 19'], 								{})
-	sets.engaged['Ilvl~118']['DW: 19']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 19']['SD']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 19']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 19']['SD']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 19']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~122']['DW: 19']['SD']['AM3'], 		{})
+	sets.engaged.DW['DW: 19']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 19'], 								{})
+	sets.engaged.DW['Ilvl~118']['DW: 19']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 19']['SD']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 19']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 19']['SD']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 19']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 19']['SD']['AM3'], 		{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------------			
 	-- Custom melee group: High Haste ('DW: 16-18')         
 	---------------------------------------------           
 	
-	sets.engaged['DW: 16-18'] 				= set_combine(sets.engaged['DW: 19'], 					{})
-	sets.engaged['Ilvl~118']['DW: 16-18'] 	= set_combine(sets.engaged['DW: 16-18'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 16-18'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 16-18'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 16-18'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 16-18'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 16-18'] 				= set_combine(sets.engaged.DW['DW: 19'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 16-18'] 	= set_combine(sets.engaged.DW['DW: 16-18'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 16-18'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 16-18'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 16-18'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 16-18'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 16-18'].DT 				= set_combine(sets.engaged['DW: 19'].DT, 					{})
-	sets.engaged['Ilvl~118']['DW: 16-18'].DT 	= set_combine(sets.engaged['DW: 16-18'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 16-18'].DT 	= set_combine(sets.engaged['Ilvl~118']['DW: 16-18'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 16-18'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 16-18'].DT, 	{})
+	sets.engaged.DW.DT['DW: 16-18'] 				= set_combine(sets.engaged.DW.DT['DW: 19'], 					{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 16-18'] 	= set_combine(sets.engaged.DW.DT['DW: 16-18'],	 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 16-18'] 	= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 16-18'], 		{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 16-18']	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 16-18'], 		{})
 	
-	sets.engaged['DW: 16-18']['SD'] 				= set_combine(sets.engaged['DW: 16-18'], 					{})
-	sets.engaged['Ilvl~118']['DW: 16-18']['SD'] 	= set_combine(sets.engaged['DW: 16-18']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 16-18']['SD'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 16-18']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 16-18']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 16-18']['SD'], 	{})
+	sets.engaged.DW['DW: 16-18']['SD'] 					= set_combine(sets.engaged.DW['DW: 16-18'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 16-18']['SD'] 		= set_combine(sets.engaged.DW['DW: 16-18']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 16-18']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 16-18']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 16-18']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 16-18']['SD'], 	{})
 	
-	sets.engaged['DW: 16-18']['AM3'] 				= set_combine(sets.engaged['DW: 16-18'], 						{})
-	sets.engaged['Ilvl~118']['DW: 16-18']['AM3'] 	= set_combine(sets.engaged['DW: 16-18']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 16-18']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 16-18']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 16-18']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 16-18']['AM3'], 	{})
+	sets.engaged.DW['DW: 16-18']['AM3'] 				= set_combine(sets.engaged.DW['DW: 16-18'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 16-18']['AM3'] 	= set_combine(sets.engaged.DW['DW: 16-18']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 16-18']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 16-18']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 16-18']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 16-18']['AM3'], 	{})
 	
-	sets.engaged['DW: 16-18']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 16-18'], 							{})
-	sets.engaged['Ilvl~118']['DW: 16-18']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 16-18']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 16-18']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 16-18']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 16-18']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 16-18']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 16-18']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 16-18'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 16-18']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 16-18']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 16-18']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 16-18']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 16-18']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 16-18']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------------			
 	-- Custom melee group: High Haste ('DW: 13-15')         
 	---------------------------------------------           
 	
-	sets.engaged['DW: 13-15'] 				= set_combine(sets.engaged['DW: 16-18'], 				{})
-	sets.engaged['Ilvl~118']['DW: 13-15'] 	= set_combine(sets.engaged['DW: 13-15'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 13-15'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 13-15'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 13-15'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 13-15'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 13-15'] 				= set_combine(sets.engaged.DW['DW: 16-18'], 				{})
+	sets.engaged.DW['Ilvl~118']['DW: 13-15'] 	= set_combine(sets.engaged.DW['DW: 13-15'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 13-15'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 13-15'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 13-15'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 13-15'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 13-15'].DT 				= set_combine(sets.engaged['DW: 16-18'].DT, 				{})
-	sets.engaged['Ilvl~118']['DW: 13-15'].DT 	= set_combine(sets.engaged['DW: 13-15'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 13-15'].DT 	= set_combine(sets.engaged['Ilvl~118']['DW: 13-15'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 13-15'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 13-15'].DT, 	{})
+	sets.engaged.DW.DT['DW: 13-15'] 				= set_combine(sets.engaged.DW.DT['DW: 16-18'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 13-15'] 	= set_combine(sets.engaged.DW.DT['DW: 13-15'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 13-15'] 	= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 13-15'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 13-15']	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 13-15'], 	{})
 	
-	sets.engaged['DW: 13-15']['SD'] 				= set_combine(sets.engaged['DW: 13-15'], 					{})
-	sets.engaged['Ilvl~118']['DW: 13-15']['SD'] 	= set_combine(sets.engaged['DW: 13-15']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 13-15']['SD'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 13-15']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 13-15']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 13-15']['SD'], 	{})
+	sets.engaged.DW['DW: 13-15']['SD'] 					= set_combine(sets.engaged.DW['DW: 13-15'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 13-15']['SD'] 		= set_combine(sets.engaged.DW['DW: 13-15']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 13-15']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 13-15']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 13-15']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 13-15']['SD'], 	{})
 	
-	sets.engaged['DW: 13-15']['AM3'] 				= set_combine(sets.engaged['DW: 13-15'], 						{})
-	sets.engaged['Ilvl~118']['DW: 13-15']['AM3'] 	= set_combine(sets.engaged['DW: 13-15']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 13-15']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 13-15']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 13-15']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 13-15']['AM3'], 	{})
+	sets.engaged.DW['DW: 13-15']['AM3'] 				= set_combine(sets.engaged.DW['DW: 13-15'], 					{})
+	sets.engaged.DW['Ilvl~118']['DW: 13-15']['AM3'] 	= set_combine(sets.engaged.DW['DW: 13-15']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 13-15']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 13-15']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 13-15']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 13-15']['AM3'], 	{})
 	
-	sets.engaged['DW: 13-15']['SD']['AM3'] 					= set_combine(sets.engaged['DW: 13-15'], 							{})
-	sets.engaged['Ilvl~118']['DW: 13-15']['SD']['AM3'] 		= set_combine(sets.engaged['DW: 13-15']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 13-15']['SD']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 13-15']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 13-15']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 13-15']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 13-15']['SD']['AM3'] 					= set_combine(sets.engaged.DW['DW: 13-15'], 							{})
+	sets.engaged.DW['Ilvl~118']['DW: 13-15']['SD']['AM3'] 		= set_combine(sets.engaged.DW['DW: 13-15']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 13-15']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 13-15']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 13-15']['SD']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 13-15']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------------			
 	-- Custom melee group: High Haste ('DW: 9-12')          
 	---------------------------------------------           
 	
-	sets.engaged['DW: 9-12'] 				= set_combine(sets.engaged['DW: 13-15'], 				{})
-	sets.engaged['Ilvl~118']['DW: 9-12'] 	= set_combine(sets.engaged['DW: 9-12'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 9-12'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 9-12'], 	{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 9-12'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 9-12'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 9-12'] 				= set_combine(sets.engaged.DW['DW: 13-15'], 			{})
+	sets.engaged.DW['Ilvl~118']['DW: 9-12'] 	= set_combine(sets.engaged.DW['DW: 9-12'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 9-12'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 9-12'], 	{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 9-12'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 9-12'], 	{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 9-12'].DT 					= set_combine(sets.engaged['DW: 13-15'].DT, 			{})
-	sets.engaged['Ilvl~118']['DW: 9-12'].DT 		= set_combine(sets.engaged['DW: 9-12'].DT, 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 9-12'].DT 		= set_combine(sets.engaged['Ilvl~118']['DW: 9-12'].DT, 	{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 9-12'].DT 		= set_combine(sets.engaged['Ilvl~122']['DW: 9-12'].DT, 	{})
+	sets.engaged.DW.DT['DW: 9-12'] 					= set_combine(sets.engaged.DW.DT['DW: 13-15'], 				{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 9-12'] 		= set_combine(sets.engaged.DW.DT['DW: 9-12'], 				{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 9-12'] 		= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 9-12'], 	{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 9-12'] 	= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 9-12'], 	{})
 	
-	sets.engaged['DW: 9-12']['SD'] 					= set_combine(sets.engaged['DW: 9-12'], 					{})
-	sets.engaged['Ilvl~118']['DW: 9-12']['SD'] 		= set_combine(sets.engaged['DW: 9-12']['SD'], 				{})
-	sets.engaged['Ilvl~122']['DW: 9-12']['SD'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 9-12']['SD'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 9-12']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 9-12']['SD'], 	{})
+	sets.engaged.DW['DW: 9-12']['SD'] 					= set_combine(sets.engaged.DW['DW: 9-12'], 						{})
+	sets.engaged.DW['Ilvl~118']['DW: 9-12']['SD'] 		= set_combine(sets.engaged.DW['DW: 9-12']['SD'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 9-12']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 9-12']['SD'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 9-12']['SD'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 9-12']['SD'], 	{})
 	
-	sets.engaged['DW: 9-12']['AM3'] 				= set_combine(sets.engaged['DW: 9-12'], 					{})
-	sets.engaged['Ilvl~118']['DW: 9-12']['AM3'] 	= set_combine(sets.engaged['DW: 9-12']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 9-12']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 9-12']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 9-12']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 9-12']['AM3'], 	{})
+	sets.engaged.DW['DW: 9-12']['AM3'] 					= set_combine(sets.engaged.DW['DW: 9-12'], 						{})
+	sets.engaged.DW['Ilvl~118']['DW: 9-12']['AM3'] 		= set_combine(sets.engaged.DW['DW: 9-12']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 9-12']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 9-12']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 9-12']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 9-12']['AM3'], 	{})
 	
-	sets.engaged['DW: 9-12']['SD']['AM3'] 				= set_combine(sets.engaged['DW: 9-12'], 							{})
-	sets.engaged['Ilvl~118']['DW: 9-12']['SD']['AM3'] 	= set_combine(sets.engaged['DW: 9-12']['SD']['AM3'], 				{})
-	sets.engaged['Ilvl~122']['DW: 9-12']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 9-12']['SD']['AM3'], 	{})
-	sets.engaged['Ilvl~124+']['DW: 9-12']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 9-12']['SD']['AM3'], 	{})
+	sets.engaged.DW['DW: 9-12']['SD']['AM3'] 				= set_combine(sets.engaged.DW['DW: 9-12'], 								{})
+	sets.engaged.DW['Ilvl~118']['DW: 9-12']['SD']['AM3'] 	= set_combine(sets.engaged.DW['DW: 9-12']['SD']['AM3'], 				{})
+	sets.engaged.DW['Ilvl~122']['DW: 9-12']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 9-12']['SD']['AM3'], 	{})
+	sets.engaged.DW['Ilvl~124+']['DW: 9-12']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 9-12']['SD']['AM3'], 	{})
 	
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-----------------------------------------			
 	-- Custom melee group: Max Haste ('DW: 0-8')        
 	-----------------------------------------           
 	
-	sets.engaged['DW: 0-8'] 				= set_combine(sets.engaged['DW: 9-12'],					{})
-	sets.engaged['Ilvl~118']['DW: 0-8'] 	= set_combine(sets.engaged['DW: 0-8'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 0-8'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 0-8'], 		{head=AF_head,Hands=AF_hands})
-	sets.engaged['Ilvl~124+']['DW: 0-8'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 0-8'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
+	sets.engaged.DW['DW: 0-8'] 				= set_combine(sets.engaged.DW['DW: 9-12'],					{})
+	sets.engaged.DW['Ilvl~118']['DW: 0-8'] 	= set_combine(sets.engaged.DW['DW: 0-8'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122']['DW: 0-8'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 0-8'], 		{head=AF_head,Hands=AF_hands})
+	sets.engaged.DW['Ilvl~124+']['DW: 0-8'] = set_combine(sets.engaged.DW['Ilvl~122']['DW: 0-8'], 		{body=AF_body,Legs=AF_legs,Feet=AF_feet})
 	
-	sets.engaged['DW: 0-8'].DT 					= set_combine(sets.engaged['DW: 9-12'].DT,					{})
-	sets.engaged['Ilvl~118']['DW: 0-8'].DT 		= set_combine(sets.engaged['DW: 0-8'].DT, 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
-	sets.engaged['Ilvl~122']['DW: 0-8'].DT 		= set_combine(sets.engaged['Ilvl~118']['DW: 0-8'].DT, 		{head=AF_head,Body=AF_body})
-	sets.engaged['Ilvl~124+']['DW: 0-8'].DT 	= set_combine(sets.engaged['Ilvl~122']['DW: 0-8'].DT, 		{})
+	sets.engaged.DW.DT['DW: 0-8']	 				= set_combine(sets.engaged.DW.DT['DW: 9-12'],					{})
+	sets.engaged.DW['Ilvl~118'].DT['DW: 0-8']	 	= set_combine(sets.engaged.DW.DT['DW: 0-8'], 					{Neck="Sanctity Necklace",Right_ear="Zennaroi earring"})
+	sets.engaged.DW['Ilvl~122'].DT['DW: 0-8']	 	= set_combine(sets.engaged.DW['Ilvl~118'].DT['DW: 0-8'], 		{head=AF_head,Body=AF_body})
+	sets.engaged.DW['Ilvl~124+'].DT['DW: 0-8'] 		= set_combine(sets.engaged.DW['Ilvl~122'].DT['DW: 0-8'], 		{})
 	
-	sets.engaged['DW: 0-8']['SD'] 				= set_combine(sets.engaged['DW: 0-8'],							{})
-	sets.engaged['Ilvl~118']['DW: 0-8']['SD'] 	= set_combine(sets.engaged['DW: 0-8']['SD'], 					{})
-	sets.engaged['Ilvl~122']['DW: 0-8']['SD'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 0-8']['SD'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 0-8']['SD'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 0-8']['SD'], 		{})
+	sets.engaged.DW['DW: 0-8']['SD'] 				= set_combine(sets.engaged.DW['DW: 0-8'],							{})
+	sets.engaged.DW['Ilvl~118']['DW: 0-8']['SD'] 	= set_combine(sets.engaged.DW['DW: 0-8']['SD'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 0-8']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 0-8']['SD'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 0-8']['SD'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 0-8']['SD'], 		{})
 	
-	sets.engaged['DW: 0-8']['AM3'] 					= set_combine(sets.engaged['DW: 0-8'],							{})
-	sets.engaged['Ilvl~118']['DW: 0-8']['AM3'] 		= set_combine(sets.engaged['DW: 0-8']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 0-8']['AM3'] 		= set_combine(sets.engaged['Ilvl~118']['DW: 0-8']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 0-8']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 0-8']['AM3'], 		{})
+	sets.engaged.DW['DW: 0-8']['AM3'] 					= set_combine(sets.engaged.DW['DW: 0-8'],							{})
+	sets.engaged.DW['Ilvl~118']['DW: 0-8']['AM3'] 		= set_combine(sets.engaged.DW['DW: 0-8']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 0-8']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~118']['DW: 0-8']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 0-8']['AM3'] 		= set_combine(sets.engaged.DW['Ilvl~122']['DW: 0-8']['AM3'], 		{})
 	
-	sets.engaged['DW: 0-8']['SD']['AM3'] 				= set_combine(sets.engaged['DW: 0-8'],									{})
-	sets.engaged['Ilvl~118']['DW: 0-8']['SD']['AM3'] 	= set_combine(sets.engaged['DW: 0-8']['SD']['AM3'], 					{})
-	sets.engaged['Ilvl~122']['DW: 0-8']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 0-8']['SD']['AM3'], 		{})
-	sets.engaged['Ilvl~124+']['DW: 0-8']['SD']['AM3'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 0-8']['SD']['AM3'], 		{})
+	sets.engaged.DW['DW: 0-8']['SD']['AM3'] 				= set_combine(sets.engaged.DW['DW: 0-8'],								{})
+	sets.engaged.DW['Ilvl~118']['DW: 0-8']['SD']['AM3'] 	= set_combine(sets.engaged.DW['DW: 0-8']['SD']['AM3'], 					{})
+	sets.engaged.DW['Ilvl~122']['DW: 0-8']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~118']['DW: 0-8']['SD']['AM3'], 		{})
+	sets.engaged.DW['Ilvl~124+']['DW: 0-8']['SD']['AM3'] 	= set_combine(sets.engaged.DW['Ilvl~122']['DW: 0-8']['SD']['AM3'], 		{})
 																													
 	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	---------------------------------------
@@ -706,7 +728,7 @@ end
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
     -- Default macro set/book
-    set_macro_page(1,3)
+    set_macro_page(2,13)
 	
 end
  

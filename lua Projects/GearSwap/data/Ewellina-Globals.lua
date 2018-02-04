@@ -213,7 +213,13 @@ function gearinfo(cmdParams, eventArgs)
 				DW = false
 			end
 		end
-		
+		if type(cmdParams[4]) == 'string' then
+			if cmdParams[4] == 'true' then
+				moving = true
+			elseif cmdParams[4] == 'false' then
+				moving = false
+			end
+		end
 		if not midaction() then
 			job_update()
 		end
