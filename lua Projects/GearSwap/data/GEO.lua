@@ -298,6 +298,7 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function job_handle_equipping_gear(playerStatus, eventArgs)
+	check_moving()
 	update()
 end
 

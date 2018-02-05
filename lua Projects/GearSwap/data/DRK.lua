@@ -724,6 +724,7 @@ end
 function job_handle_equipping_gear(playerStatus, eventArgs)
     update_combat_form()
 	determine_haste_group()
+	check_moving()
 	update()
 end
 

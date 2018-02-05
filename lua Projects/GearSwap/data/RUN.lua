@@ -193,6 +193,7 @@ end
 -- Called any time we attempt to handle automatic gear equips (ie: engaged or idle gear).
 function job_handle_equipping_gear(playerStatus, eventArgs)
     update_combat_form()
+	check_moving()
 	--determine_haste_group()
 	update()
 end

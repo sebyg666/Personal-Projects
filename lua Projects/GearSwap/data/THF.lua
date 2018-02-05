@@ -574,6 +574,7 @@ function job_handle_equipping_gear(playerStatus, eventArgs)
     -- that gear specifically, and block equipping default gear.
     check_buff('Sneak Attack', eventArgs)
     check_buff('Trick Attack', eventArgs)
+	check_moving()
 	update()
 end
 

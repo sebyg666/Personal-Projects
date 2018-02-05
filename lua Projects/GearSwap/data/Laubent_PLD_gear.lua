@@ -213,7 +213,7 @@ function init_gear_sets()
    sets.idle.PDT = {ammo="Staunch tathlum",
 		head=Souveran_head_cure,neck="Loricate Torque +1",ear1="Ethereal Earring",ear2="Etiolation Earring",
 		body="Reverence surcoat +3",hands=Souveran_hands,ring1="Sheltered Ring",ring2="Paguroidea Ring",
-		back=TP_back,waist="Nierenschutz",legs=Carmine_legs,feet=Souveran_feet_cure}
+		back=TP_back,waist="Nierenschutz",legs=Souveran_legs_cure,feet=Souveran_feet_cure}
 
 	--sets.idle.Town = {ammo="Paeapua",
 		-- head="Sulevia's Mask +1",neck="Loricate Torque +1",ear1="Dawn Earring",ear2="Merman's Earring",
@@ -223,7 +223,7 @@ function init_gear_sets()
 	sets.idle.Weak = {ammo="Staunch tathlum",
 		head="Sulevia's Mask +1",neck="Loricate Torque +1",ear1="Etiolation Earring",ear2="Ethereal Earring",
 		body=Souveran_body,hands=Souveran_hands,ring1="Sheltered Ring",ring2="Paguroidea Ring",
-		back="Solemnity Cape",waist="Nierenschutz",legs=Carmine_legs,feet="Sulevia's leggings +2"}
+		back="Solemnity Cape",waist="Nierenschutz",legs=Souveran_legs_cure,feet="Sulevia's leggings +2"}
     
     sets.idle.Weak.Reraise = set_combine(sets.idle.PDT, sets.Reraise)
 	
@@ -330,6 +330,9 @@ end
  
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
+
+	send_command('input /lockstyleset 4')
+	
     send_command('bind ^` input /ja "sentinel" <me>')
 	send_command('bind !` input /ma "flash" <stnpc>')
 	

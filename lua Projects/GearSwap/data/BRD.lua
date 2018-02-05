@@ -198,6 +198,7 @@ end
 -------------------------------------------------------------------------------------------------------------------
 function job_handle_equipping_gear(playerStatus, eventArgs)
 	update_combat_form()
+	check_moving()
 	update()
 end
 

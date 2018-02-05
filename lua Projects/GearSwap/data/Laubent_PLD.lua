@@ -173,6 +173,7 @@ end
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------
 function job_handle_equipping_gear(playerStatus, eventArgs)
+	check_moving()
 	update()
 end
 
