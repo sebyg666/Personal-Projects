@@ -295,12 +295,27 @@ function customize_melee_set(meleeSet)
 	if state.Buff.Cover then
 		meleeSet = set_combine(meleeSet, sets.buff.Cover)
 	end
-	if state.Buff.sleep and player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] then
+	
+	if state.Buff.sleep then
+		local torque = false
+		local torque_name = ''
+		
+		if player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] or player.wardrobe3['Berserkers Torque'] or player.wardrobe4['Berserkers Torque'] then
+			torque_name ={ name="Berserkers Torque" }
+			torque = true
+		elseif player.inventory['Vim Torque'] or player.wardrobe['Vim Torque'] or player.wardrobe2['Vim Torque'] or player.wardrobe3['Vim Torque'] or player.wardrobe4['Vim Torque']  then
+			torque_name ={ name="Vim Torque" }
+			torque = true
+		elseif player.inventory['Vim Torque +1'] or player.wardrobe['Vim Torque +1'] or player.wardrobe2['Vim Torque +1'] or player.wardrobe3['Vim Torque +1'] or player.wardrobe4['Vim Torque +1'] then
+			torque_name ={ name="Vim Torque +1" }
+			torque = true
+		end
+		
 		if player.buffs then
 			for index, buff in pairs(player.buffs) do
-				if buff == 19 then
-					meleeSet = set_combine(meleeSet, sets.buff.sleep)
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping Berserkers Torque '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+				if buff == 2 and torque == true then
+					meleeSet = set_combine(meleeSet, {neck=torque_name})
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
@@ -529,6 +544,15 @@ function job_self_command(cmdParams, eventArgs)
 
     gearinfo(cmdParams, eventArgs)
 	
+	if cmdParams[1] == 'hide' then
+		if hide_window then
+			hide_window = false
+		else
+			hide_window = true
+		end
+		old_inform.hide_window = hide_window
+	end
+	
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -584,109 +608,116 @@ initialize = function(text, t)
 end
 
 function update()
-	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() then
+	
+	local white = '\\cs(220,220,220)'
+	local blue = '\\cs(150,150,235)'
+	local red = '\\cs(255,0,0)'
+	local orange = '\\cs(232,138,13)'
+	local yellow = '\\cs(220,220,0)'
+	local green = '\\cs(0,225,0)'
+	local purple = '\\cs(213,43,196)'
+	
+	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() or zoning_bool or hide_window then
         text_box:hide()
         return
     end
-    if zoning_bool then
-        text_box:hide()
-        return
+	local inform = {}
+	local msg = ' [Melee'
+	if #classes.CustomMeleeGroups > 0 then
+		for i = 1,#classes.CustomMeleeGroups do
+			if classes.CustomMeleeGroups[i] ~= 'None' then
+				if i == 1 then msg = msg .. ' (' end
+				msg = msg .. classes.CustomMeleeGroups[i]
+				if i < #classes.CustomMeleeGroups then msg = msg .. ' + ' end
+				if i == #classes.CustomMeleeGroups then msg = msg .. ')' end
+			end
+		end
+	end
+	
+	msg = msg .. ': '
+	
+	if state.DefenseMode.value == 'None' then
+		if state.HybridMode.value ~= 'Normal' then
+			msg = blue .. msg .. white .. state.OffenseMode.value .. blue .. ' + ' .. yellow .. state.HybridMode.value .. blue .. '] '
+		else
+			msg = blue .. msg .. white .. state.OffenseMode.value .. blue .. '] '
+		end
 	else
-        local inform = {}
-		local msg = ' [Melee'
-		if #classes.CustomMeleeGroups > 0 then
-			for i = 1,#classes.CustomMeleeGroups do
-				if classes.CustomMeleeGroups[i] ~= 'None' then
-					if i == 1 then msg = msg .. ' (' end
-					msg = msg .. classes.CustomMeleeGroups[i]
-					if i < #classes.CustomMeleeGroups then msg = msg .. ' + ' end
-					if i == #classes.CustomMeleeGroups then msg = msg .. ')' end
-				end
-			end
-		end
-		
-		msg = msg .. ': '
-		
-		if state.DefenseMode.value == 'None' then
-			msg = msg .. state.OffenseMode.value
-			if state.HybridMode.value ~= 'Normal' then
-				msg = msg .. ' + ' .. state.HybridMode.value
-			end
-			msg = msg .. '] '
+		if state.HybridMode.value ~= 'Normal' then
+			msg = red .. msg .. state.OffenseMode.value .. ' + ' .. state.HybridMode.value .. '] '
 		else
-			msg = msg .. state.OffenseMode.value
-			if state.HybridMode.value ~= 'Normal' then
-				msg = msg .. ' + ' .. state.HybridMode.value
-			end
-			msg = msg .. '] LOCKED '
+			msg = red .. msg .. state.OffenseMode.value .. '] '
 		end
+	end
+
+	if state.DefenseMode.value ~= 'None' then 
+		inform.OffenseMode = msg .. '\\cr'
+	else
+		inform.OffenseMode = msg .. '\\cr'
+	end
 	
+	inform.EquipShield = (purple .. ('\n [EquipShield: '.. white .. tostring(state.EquipShield.value):lpad(' ', 2) .. purple ..'] ' )) .. '\\cr'
 	
-        if state.DefenseMode.value ~= 'None' then 
-			inform.OffenseMode = ('\\cs(255,0,0)' .. (msg)) .. '\\cr'
+	if state.DefenseMode.value == 'Turtle' then
+		inform.CastingMode = (red .. ('\n [Casting: ' .. state.CastingMode.value:lpad(' ', 2) .. '] ' )) .. '\\cr'
+	else
+		inform.CastingMode = (blue .. ('\n [Casting: '.. white .. state.CastingMode.value:lpad(' ', 2) .. blue .. '] ' )) .. '\\cr'
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		inform.IdleMode = (blue .. ('\n [Idle: '.. white .. state.IdleMode.value:lpad(' ', 2) .. blue .. '] ' )) .. '\\cr'
+	else
+		inform.IdleMode = (red .. ('\n [Idle: '..state.IdleMode.value:lpad(' ', 2) .. '] ' )) .. '\\cr'
+	end
+		
+	if state.DefenseMode.value == 'None' then
+		if state.Kiting.value == true and state.CP.value == true then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = (orange .. ('[CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == true and state.CP.value == false then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = ('')
+		elseif state.Kiting.value == false and state.CP.value == true then
+			inform.Kiting = ('')
+			inform.CP = (orange .. ('\n [CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == false and state.CP.value == false then
+			inform.Kiting = ('')
+			inform.CP = ('')
+		end
+	else
+		if state.Kiting.value == true and state.CP.value == true then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = (red .. ('[CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == true and state.CP.value == false then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = ('')
+		elseif state.Kiting.value == false and state.CP.value == true then
+			inform.Kiting = ('')
+			inform.CP = (red .. ('\n [CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == false and state.CP.value == false then
+			inform.Kiting = ('')
+			inform.CP = ('')
+		end
+	end		
+	if state.DefenseMode.value ~= 'None' then
+		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
+	else
+		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
 		else
-			inform.OffenseMode = ('\\cs(0,255,0)' .. (msg)) .. '\\cr'
+			inform.is_Moving = ('')
 		end
-		
-		inform.EquipShield = ('\\cs(150,150,255)' .. ('\n [EquipShield: '..tostring(state.EquipShield.value):lpad(' ', 2) .. '] ' )) .. '\\cr'
-		
-		inform.CastingMode = ('\\cs(0,255,0)' .. ('\n [Casting: '..state.CastingMode.value:lpad(' ', 2) .. '] ' )) .. '\\cr'
-		
-		if state.DefenseMode.value == 'None' then
-			inform.IdleMode = ('\\cs(0,255,0)' .. ('\n [Idle: '..state.IdleMode.value:lpad(' ', 2) .. '] ' )) .. '\\cr'
-		else
-			inform.IdleMode = ('\\cs(255,0,0)' .. ('\n [Idle: '..state.IdleMode.value:lpad(' ', 2) .. '] LOCKED ' )) .. '\\cr'
-		end
-			
-		if state.DefenseMode.value == 'None' then
-			if state.Kiting.value == true and state.CP.value == true then
-				inform.Kiting = ('\\cs(255,255,0)' .. ('\n [Kiting] ' )) .. '\\cr'
-				inform.CP = ('\\cs(232,138,13)' .. ('[CP Cape] ' )) .. '\\cr'
-			elseif state.Kiting.value == true and state.CP.value == false then
-				inform.Kiting = ('\\cs(255,255,0)' .. ('\n [Kiting] ' )) .. '\\cr'
-				inform.CP = ('')
-			elseif state.Kiting.value == false and state.CP.value == true then
-				inform.Kiting = ('')
-				inform.CP = ('\\cs(232,138,13)' .. ('\n [CP Cape] ' )) .. '\\cr'
-			elseif state.Kiting.value == false and state.CP.value == false then
-				inform.Kiting = ('')
-				inform.CP = ('')
-			end
-		else
-			if state.Kiting.value == true and state.CP.value == true then
-				inform.Kiting = ('\\cs(255,255,0)' .. ('\n [Kiting] ' )) .. '\\cr'
-				inform.CP = ('\\cs(255,0,0)' .. ('[CP Cape] LOCKED ' )) .. '\\cr'
-			elseif state.Kiting.value == true and state.CP.value == false then
-				inform.Kiting = ('\\cs(255,255,0)' .. ('\n [Kiting] ' )) .. '\\cr'
-				inform.CP = ('')
-			elseif state.Kiting.value == false and state.CP.value == true then
-				inform.Kiting = ('')
-				inform.CP = ('\\cs(255,0,0)' .. ('\n [CP Cape] LOCKED ' )) .. '\\cr'
-			elseif state.Kiting.value == false and state.CP.value == false then
-				inform.Kiting = ('')
-				inform.CP = ('')
-			end
-		end		
-		if state.DefenseMode.value ~= 'None' then
-			inform.DefenseMode = ('\\cs(255,0,0)' .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. ' (' .. state[state.DefenseMode.value .. 'DefenseMode'].value .. ')]' )) .. '\\cr'
-		else
-			inform.DefenseMode = ('')
-		end
-		
-		if state.DefenseMode.value == 'None' then
-			if moving == true then
-				inform.is_Moving = ('\\cs(255,255,0)' .. ('\n [Moving]' )) .. '\\cr'
-			else
-				inform.is_Moving = ('')
-			end
-		end
-		
-		if old_inform ~= inform then
-			text_box:update(inform)
-			text_box:show()
-			old_inform = inform
-		end
-    end
+	end
+	
+	if not table.equals(old_inform, inform) then
+		text_box:update(inform)
+		text_box:show()
+		old_inform = inform
+	end
 end
 
 windower.register_event('unload', function()

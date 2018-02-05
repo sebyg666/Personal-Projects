@@ -238,6 +238,31 @@ function customize_melee_set(meleeSet)
         meleeSet = set_combine(meleeSet, sets[state.ResistMode.value])
     end
 	
+	if state.Buff.sleep then
+		local helm = false
+		local helm_name = ''
+		
+		if pplayer.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
+			helm_name ={ name="Frenzy Sallet" }
+			helm = true
+		end
+		
+		if player.buffs then
+			for index, buff in pairs(player.buffs) do
+				if buff == 2 and helm == true then
+					meleeSet = set_combine(meleeSet, {head=helm_name})
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					if state.Buff.Stoneskin then
+						send_command('cancel 37')
+						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
+					end
+				elseif buff == 2 then
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Nightmare'):color(warning_text)  .. (' while Engaged *****__\\||//__'):color(text_color) )
+				end
+			end
+		end
+	end
+	
 	if state.Buff.sleep and player.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] then
 		if player.buffs then
 			for index, buff in pairs(player.buffs) do
@@ -523,7 +548,18 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
+
 	gearinfo(cmdParams, eventArgs)
+	
+	if cmdParams[1] == 'hide' then
+		if hide_window then
+			hide_window = false
+		else
+			hide_window = true
+		end
+		old_inform.hide_window = hide_window
+	end
+	
 	if cmdParams[1] == 'list' then
 		text = 160
 		red = 039
@@ -589,7 +625,7 @@ function update()
 	local green = '\\cs(0,225,0)'
 	local purple = '\\cs(213,43,196)'
 	
-	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() then
+	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() or zoning_bool or hide_window then
 		text_box:hide()
 		return
 	end

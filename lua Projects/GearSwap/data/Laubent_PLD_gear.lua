@@ -314,7 +314,7 @@ function init_gear_sets()
 
     sets.buff.Doom 		= set_combine(sets.Reraise, {ring1="Saida Ring",ring2="Blenmot's Ring"})
     sets.buff.Cover 	= {}
-	sets.buff.sleep 	= {neck="Berserker's Torque"}
+	-- sets.buff.sleep 	= {neck="Vim Torque"}
 	sets.buff.Sentinel	= {}
 	sets.buff.Reive 	= {neck = "Arciela's grace +1"}
 	sets.CP 			= {back="Mecistopins Mantle"}

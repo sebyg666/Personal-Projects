@@ -441,7 +441,6 @@ function init_gear_sets()
     --------------------------------------
    
 	sets.buff.Doom 		= {head="Twilight Helm", body="Twilight Mail", ring1="Purity Ring",ring2="Saida Ring",waist="Gishdubar Sash"}
-	sets.buff.sleep 	= {neck="Vim torque"}
 	sets.Sekkanoki    	= {hands=Empy_hands}
 	sets.Meikyo_Shisui 	= {feet=Relic_feet}
 	sets.CP 			= {back=CP_Cape}
@@ -574,19 +573,47 @@ function customize_melee_set(meleeSet)
 	
 	lockouts()
 	
-	if state.Buff.sleep and player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] or player.wardrobe3['Berserkers Torque'] or player.wardrobe4['Berserkers Torque'] 
-	or player.inventory['Vim Torque'] or player.wardrobe['Vim Torque'] or player.wardrobe2['Vim Torque'] or player.wardrobe3['Vim Torque'] or player.wardrobe4['Vim Torque'] 
-	or player.inventory['Vim Torque +1'] or player.wardrobe['Vim Torque +1'] or player.wardrobe2['Vim Torque +1'] or player.wardrobe3['Vim Torque +1'] or player.wardrobe4['Vim Torque +1'] then
+	if state.Buff.sleep then
+		local torque = false
+		local torque_name = ''
+		local helm = false
+		local helm_name = ''
+		
+		if pplayer.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
+			helm_name ={ name="Frenzy Sallet" }
+			helm = true
+		end
+		
+		if player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] or player.wardrobe3['Berserkers Torque'] or player.wardrobe4['Berserkers Torque'] then
+			torque_name ={ name="Berserkers Torque" }
+			torque = true
+		elseif player.inventory['Vim Torque'] or player.wardrobe['Vim Torque'] or player.wardrobe2['Vim Torque'] or player.wardrobe3['Vim Torque'] or player.wardrobe4['Vim Torque']  then
+			torque_name ={ name="Vim Torque" }
+			torque = true
+		elseif player.inventory['Vim Torque +1'] or player.wardrobe['Vim Torque +1'] or player.wardrobe2['Vim Torque +1'] or player.wardrobe3['Vim Torque +1'] or player.wardrobe4['Vim Torque +1'] then
+			torque_name ={ name="Vim Torque +1" }
+			torque = true
+		end
+		
 		if player.buffs then
 			for index, buff in pairs(player.buffs) do
 				if buff == 2 then
-					meleeSet = set_combine(meleeSet, sets.buff.sleep)
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping Frenzy Sallet '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					if helm == true and torque == true then 
+						meleeSet = set_combine(meleeSet, {neck=torque_name})
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					elseif helm == true then 
+						meleeSet = set_combine(meleeSet, {head=helm_name})
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					elseif torque == true then
+						meleeSet = set_combine(meleeSet, {neck=torque_name})
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					end
+					
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
 					end
-				elseif buff == 19 then
+				elseif buff == 2 then
 					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Nightmare'):color(warning_text)  .. (' while Engaged *****__\\||//__'):color(text_color) )
 				end
 			end
@@ -860,7 +887,18 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
+
 	gearinfo(cmdParams, eventArgs)
+	
+	if cmdParams[1] == 'hide' then
+		if hide_window then
+			hide_window = false
+		else
+			hide_window = true
+		end
+		old_inform.hide_window = hide_window
+	end
+	
 	if cmdParams[1] == 'help' then
 	
 		local chat_purple = string.char(0x1F, 200)
@@ -939,7 +977,7 @@ function update()
 	local green = '\\cs(0,225,0)'
 	local purple = '\\cs(213,43,196)'
 	
-	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() then
+	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() or zoning_bool or hide_window then
 		text_box:hide()
 		return
 	end

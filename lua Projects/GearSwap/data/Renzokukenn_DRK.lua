@@ -1031,28 +1031,9 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
-	if cmdParams[1] == 'gearinfo' then
-		if type(tonumber(cmdParams[2])) == 'number' then
-			if tonumber(cmdParams[2]) ~= DW_needed then
-				DW_needed = tonumber(cmdParams[2])
-				DW = true
-			end
-		elseif type(cmdParams[2]) == 'string' then
-			if cmdParams[2] == 'false' then
-				DW_needed = 0
-				DW = false
-			end
-		end
-		if type(tonumber(cmdParams[3])) == 'number' then
-			if tonumber(cmdParams[3]) ~= Haste then
-				Haste = tonumber(cmdParams[3])
-			end
-		end
-		
-		if not midaction() then
-			job_update()
-		end
-    end
+	
+	gearinfo(cmdParams, eventArgs)
+	
 	if cmdParams[1] == 'help' then
 	
 		local chat_purple = string.char(0x1F, 200)

@@ -528,7 +528,18 @@ function check_moving()
 end
 
 function job_self_command(cmdParams, eventArgs)
+
    gearinfo(cmdParams, eventArgs)
+   
+   if cmdParams[1] == 'hide' then
+		if hide_window then
+			hide_window = false
+		else
+			hide_window = true
+		end
+		old_inform.hide_window = hide_window
+	end
+	
 end
 
 -- Function to display the current relevant user state when doing an update.
@@ -624,7 +635,7 @@ function update()
 	local green = '\\cs(0,225,0)'
 	local purple = '\\cs(213,43,196)'
 	
-	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() then
+	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() or zoning_bool or hide_window then
         text_box:hide()
         return
     end

@@ -11,6 +11,7 @@
 
 print('Theous_Globals.lua Loaded')
 
+hide_window = false
 Notification_color = 200
 text_color = 160
 warning_text = 167
@@ -201,6 +202,7 @@ function user_buff_change(buff, gain, eventArgs)
 end
 
 function gearinfo(cmdParams, eventArgs)
+
     if cmdParams[1] == 'gearinfo' then
 		if type(tonumber(cmdParams[2])) == 'number' then
 			if tonumber(cmdParams[2]) ~= DW_needed then
@@ -211,6 +213,11 @@ function gearinfo(cmdParams, eventArgs)
 			if cmdParams[2] == 'false' then
 				DW_needed = 0
 				DW = false
+			end
+		end
+		if type(tonumber(cmdParams[3])) == 'number' then
+			if tonumber(cmdParams[3]) ~= Haste then
+				Haste = tonumber(cmdParams[3])
 			end
 		end
 		if type(cmdParams[4]) == 'string' then

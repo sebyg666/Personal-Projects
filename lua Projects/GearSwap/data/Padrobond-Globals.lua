@@ -9,8 +9,9 @@
 -- the 'gear' table.
 -------------------------------------------------------------------------------------------------------------------
 
-print('Laubent_Globals.lua Loaded')
+print('Padrobond_Globals.lua Loaded')
 
+hide_window = false
 Notification_color = 200
 text_color = 160
 warning_text = 167
@@ -156,6 +157,11 @@ function gearinfo(cmdParams, eventArgs)
 			if cmdParams[2] == 'false' then
 				DW_needed = 0
 				DW = false
+			end
+		end
+		if type(tonumber(cmdParams[3])) == 'number' then
+			if tonumber(cmdParams[3]) ~= Haste then
+				Haste = tonumber(cmdParams[3])
 			end
 		end
 		if type(cmdParams[4]) == 'string' then

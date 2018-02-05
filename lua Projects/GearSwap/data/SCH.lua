@@ -590,11 +590,23 @@ end
 
 -- Called for direct player commands.
 function job_self_command(cmdParams, eventArgs)
+
     if cmdParams[1]:lower() == 'scholar' then
         handle_strategems(cmdParams)
         eventArgs.handled = true
     end
+	
 	gearinfo(cmdParams, eventArgs)
+	
+	if cmdParams[1] == 'hide' then
+		if hide_window then
+			hide_window = false
+		else
+			hide_window = true
+		end
+		old_inform.hide_window = hide_window
+	end
+	
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -789,7 +801,7 @@ function update()
 	local green = '\\cs(0,225,0)'
 	local purple = '\\cs(213,43,196)'
 	
-	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() then
+	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() or zoning_bool or hide_window then
         text_box:hide()
         return
     end
