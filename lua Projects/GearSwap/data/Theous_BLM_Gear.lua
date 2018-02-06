@@ -232,8 +232,8 @@ function init_gear_sets()
     
     -- Normal refresh idle set
     sets.idle = {main=Lathi,sub={name="Niobid Strap",priority=-1},ammo="Staunch Tathlum",
-        head="Ea Hat",neck="Bathy Choker",ear1="Infused Earring",ear2="Regal Earring",
-        body="Ea Houppelande",hands=Merlinic_hands,ring1="Sheltered Ring",ring2="Paguroidea Ring",
+        head=Amalric_head,neck="Bathy Choker",ear1="Infused Earring",ear2="Regal Earring",
+        body="Jhakri Robe +1",hands=Merlinic_hands,ring1="Sheltered Ring",ring2="Paguroidea Ring",
         back="Moonbeam Cape",waist="Fucho-no-obi",legs="Assiduity Pants +1",feet="Mallquis Clogs +1"}
 		
 	sets.idle['Death'] = {main=Lathi,sub={name="Niobid Strap",priority=-1},ammo="Strobilus",

@@ -1,7 +1,11 @@
 return {
     ["display"]={
         ["flags"]={
-            ["draggable"]=true
+            ["draggable"]=true, 
+            ["bold"]=false, 
+            ["bottom"]=false, 
+            ["italic"]=false, 
+            ["right"]=false
         }, 
         ["bg"]={
             ["visible"]=true, 
@@ -11,7 +15,8 @@ return {
             ["red"]=0
         }, 
         ["text"]={
-            ["font"]="Ubuntu", 
+            ["fonts"]={}, 
+            ["size"]=12, 
             ["stroke"]={
                 ["blue"]=0, 
                 ["alpha"]=255, 
@@ -20,14 +25,15 @@ return {
                 ["width"]=2
             }, 
             ["alpha"]=255, 
-            ["size"]=12, 
-            ["blue"]=255, 
             ["green"]=255, 
+            ["font"]="Ubuntu", 
+            ["blue"]=255, 
             ["red"]=255
         }, 
+        ["padding"]=0, 
         ["pos"]={
-            ["y"]=0, 
-            ["x"]=0
+            ["y"]=513, 
+            ["x"]=1333
         }
     }
 }

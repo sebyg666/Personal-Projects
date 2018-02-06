@@ -1,0 +1,17 @@
+sets.exported={
+    main="Flyssa +1",
+    sub="Aegis",
+    ammo="Staunch Tathlum",
+    head="Flam. Zucchetto +1",
+    body="Rev. Surcoat +1",
+    hands="Rev. Gauntlets +1",
+    legs={ name="Souv. Diechlings +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}},
+    feet={ name="Souveran Schuhs +1", augments={'HP+65','Attack+25','Magic dmg. taken -4',}},
+    neck="Bathy Choker",
+    waist="Flume Belt +1",
+    left_ear="Grit Earring",
+    right_ear="Oneiros Earring",
+    left_ring="Moonbeam Ring",
+    right_ring="Prolix Ring",
+    back="Moonbeam Cape",
+}
