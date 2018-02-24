@@ -600,13 +600,13 @@ function customize_melee_set(meleeSet)
 				if buff == 2 then
 					if helm == true and torque == true then 
 						meleeSet = set_combine(meleeSet, {neck=torque_name})
-						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					elseif helm == true then 
 						meleeSet = set_combine(meleeSet, {head=helm_name})
-						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					elseif torque == true then
 						meleeSet = set_combine(meleeSet, {neck=torque_name})
-						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					end
 					
 					if state.Buff.Stoneskin then

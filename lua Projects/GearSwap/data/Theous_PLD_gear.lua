@@ -3,14 +3,14 @@ function init_gear_sets()
 	
 	print('Theous_PLD_Gear side_cart loaded')	
 	
-	Carmine_body		={ name="Carm. Scale Mail", 	augments={}}
+	Carmine_body				={ name="Carm. Scale Mail", 	augments={}}
 	
 	Souveran_legs_HQ		={ name="Souv. Diechlings +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}
     Souveran_feet_HQ		={ name="Souveran Schuhs +1", augments={'HP+65','Attack+25','Magic dmg. taken -4',}}
     
 	--head							={ name="Despair Helm", augments={'STR+12','VIT+7','Haste+2%',}}
 	
-	--head							={ name="Valorous Mask", augments={'"Dbl.Atk."+2','Accuracy+11','Attack+14',}}
+	Valorous_head_acc		={ name="Valorous Mask", augments={'"Dbl.Atk."+2','Accuracy+11','Attack+14',}}
 	--head							={ name="Valorous Mask", augments={'Accuracy+25 Attack+25','Crit.hit rate+4','VIT+4','Attack+13',}}
 	
 	Eschite_legs			={ name="Eschite Cuisses"	}
@@ -49,7 +49,7 @@ function init_gear_sets()
     --------------------------------------
     
 	sets.precast.Enmity = { ammo="Staunch Tathlum",
-		head=AF_head,neck="Homeric Gorget",ear1="Friomisi Earring",ear2="Merman's Earring",
+		head=AF_head,neck="Moonbeam Necklace",ear1="Friomisi Earring",ear2="Merman's Earring",
 		body=AF_body,hands=AF_hands,ring1="Apeile Ring",ring2="Apeile Ring +1",
 		back=Enmity_back,waist="Flume Belt +1",legs=Souveran_legs_HQ,feet=Eschite_feet}
 	
@@ -208,9 +208,9 @@ function init_gear_sets()
 		back="Moonbeam Cape",waist="Flume Belt",legs=Souveran_legs_HQ,feet=Souveran_feet_HQ}
     
     sets.idle.Weak.Reraise 	= set_combine(sets.idle.PDT, sets.Reraise)
-	sets.idle.Reraise 		= set_combine(sets.idle.PDT, sets.Reraise)
-	sets.idle.Refresh 		= set_combine(sets.idle.PDT, sets.Refresh)
-    sets.latent_refresh 	= {waist="Fucho-no-obi"}
+	sets.idle.Reraise 			= set_combine(sets.idle.PDT, sets.Reraise)
+	sets.idle.Refresh 			= set_combine(sets.idle.PDT, sets.Refresh)
+    sets.latent_refresh 		= {waist="Fucho-no-obi"}
 
 
     --------------------------------------
@@ -271,7 +271,10 @@ function init_gear_sets()
 		body=AF_body,hands=AF_hands,ring1="Defending Ring",ring2="Moonbeam Ring",
 		back="Moonbeam Cape",waist="Flume Belt",legs=Souveran_legs_HQ,feet=Souveran_feet_HQ}
 	
-	sets.engaged.Acc = set_combine(sets.engaged,{ammo="Ginsen",neck="Subtlety Spectacles"})
+	sets.engaged.Acc = set_combine(sets.engaged,{ammo="Ginsen",
+		head=Valorous_head_acc,neck="Subtlety Spec.",ear1="Mache Earring",ear2="Brutal Earring",
+		body=Relic_body,hands=Odyss_hands_acc,ring1="Petrov Ring",ring2="Moonbeam Ring",
+		back="Atheling Mantle",waist="Kentarch Belt",legs=Odyss_legs,feet="Flam. Gambieras +1"})
 	
     sets.engaged.DW = {ammo="Staunch Tathlum",
 		head=AF_head,neck="Homeric Gorget",ear1="Mache Earring",ear2="Brutal Earring",

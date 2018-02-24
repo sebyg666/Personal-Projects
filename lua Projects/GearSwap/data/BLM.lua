@@ -124,7 +124,7 @@ function job_midcast(spell, action, spellMap, eventArgs)
 		end
 		eventArgs.handled = true
 	end
-    if spell.action_type == 'Magic' and state.Death.value == false and spell.skill == 'Elemental Magic' and not spellMap == 'ElementalEnfeeble' then
+    if spell.action_type == 'Magic' and state.Death.value == false and spell.skill == 'Elemental Magic' and spellMap ~= 'ElementalEnfeeble' then
 		get_casting_style(spell, action, spellMap, eventArgs)
 		eventArgs.handled = true
 	end

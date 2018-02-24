@@ -196,23 +196,25 @@ function init_gear_sets()
 	
 	sets.midcast['Elemental Magic'] = {
 		main=Lathi,sub={name="Niobid Strap",priority=-1},ammo="Ghastly Tathlum +1",
-        head="Ea Hat",neck="Saevus Pendant +1",ear1="Barkarole Earring",ear2="Friomisi Earring",
+        head="Ea Hat",neck="Saevus Pendant +1",ear1="Barkarole Earring",ear2="Regal Earring",
         body="Jhakri Robe +1",hands=Amalric_hands,ring1="Shiva Ring +1",ring2="Shiva Ring +1",
         back=Taranus_Nuke,waist="Refoccilation Stone",legs=Merlinic_legs,feet="Jhakri Pigaches +1"}
 		
-	sets.midcast['Elemental Magic'].Resistant 								= set_combine(sets.midcast['Elemental Magic'], 							{})
-	sets.midcast['Elemental Magic']['Magic Burst'] 							= set_combine(sets.midcast['Elemental Magic'], 							{neck="Mizu. Kubikazari",ear2="Static Earring",hands=AF_hands,ring2="Mujin Band"})
-	sets.midcast['Elemental Magic']['Magic Burst'].Resistant 				= set_combine(sets.midcast['Elemental Magic']['Magic Burst'], 			{})
-	sets.midcast['Elemental Magic']['Preserve MP'] 							= set_combine(sets.midcast['Elemental Magic'], 							{body=AF_body})
-	sets.midcast['Elemental Magic']['Preserve MP'].Resistant				= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{body=AF_body})
-	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'] 			= set_combine(sets.midcast['Elemental Magic']['Magic Burst'], 			{body=AF_body})
-	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'].Resistant	= set_combine(sets.midcast['Elemental Magic']['Magic Burst'].Resistant, {body=AF_body})
-	sets.midcast['Luminohelix'] 											= set_combine(sets.midcast['Elemental Magic'], 							{})
-	sets.midcast['Luminohelix'].Resistant 									= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
-	sets.midcast['Luminohelix']['Magic Burst'] 								= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] , 			{})
-	sets.midcast['Luminohelix']['Magic Burst'].Resistant 					= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] .Resistant,{})
-	sets.midcast.Impact														= set_combine(sets.midcast['Elemental Magic'], 							{head=empty,body="Twilight Cloak"})
-	sets.midcast.Impact.Resistant											= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{head=empty,body="Twilight Cloak"})
+	sets.midcast['Elemental Magic'].Resistant 												= set_combine(sets.midcast['Elemental Magic'], 										{})
+	sets.midcast['Elemental Magic']['Magic Burst'] 										= set_combine(sets.midcast['Elemental Magic'], 										{neck="Mizu. Kubikazari",ear1="Static Earring",
+																																																								body="Ea Houppelande",hands=AF_hands,ring1="Locus Ring",ring2="Mujin Band",
+																																																								legs="Ea Slops",feet="Ea Pigaches"})
+	sets.midcast['Elemental Magic']['Magic Burst'].Resistant 						= set_combine(sets.midcast['Elemental Magic']['Magic Burst'], 					{})
+	sets.midcast['Elemental Magic']['Preserve MP'] 										= set_combine(sets.midcast['Elemental Magic'], 										{body=AF_body})
+	sets.midcast['Elemental Magic']['Preserve MP'].Resistant						= set_combine(sets.midcast['Elemental Magic'].Resistant, 						{body=AF_body})
+	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'] 				= set_combine(sets.midcast['Elemental Magic']['Magic Burst'], 					{body=AF_body})
+	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'].Resistant	= set_combine(sets.midcast['Elemental Magic']['Magic Burst'].Resistant, 	{body=AF_body})
+	sets.midcast['Luminohelix'] 																	= set_combine(sets.midcast['Elemental Magic'], 										{})
+	sets.midcast['Luminohelix'].Resistant 													= set_combine(sets.midcast['Elemental Magic'].Resistant, 						{})
+	sets.midcast['Luminohelix']['Magic Burst'] 												= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] , 				{})
+	sets.midcast['Luminohelix']['Magic Burst'].Resistant 								= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] .Resistant,	{})
+	sets.midcast.Impact																				= set_combine(sets.midcast['Elemental Magic'], 										{head=empty,body="Twilight Cloak"})
+	sets.midcast.Impact.Resistant																= set_combine(sets.midcast['Elemental Magic'].Resistant, 						{head=empty,body="Twilight Cloak"})
 	
 	sets.midcast['Death'] = {
 		main=Lathi,sub={name="Niobid Strap",priority=-1},ammo="Ghastly Tathlum +1",

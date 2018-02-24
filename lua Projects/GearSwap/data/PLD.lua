@@ -80,6 +80,10 @@ function user_setup()
 	
 	initialize(text_box)
 	
+	local msg = ''
+	msg = ('You have loaded Seb\'s PLD lua. Please use '):color(text_color) .. ('\"\/\/GS c help\" '):color(Notification_color) .. ('for a full list of key bound functions. Enjoy!'):color(text_color)
+	add_to_chat(122, msg)
+	
 end
 
 -- Called when this job file is unloaded (eg: job change)
@@ -327,7 +331,7 @@ function customize_melee_set(meleeSet)
 			for index, buff in pairs(player.buffs) do
 				if buff == 2 and torque == true then
 					meleeSet = set_combine(meleeSet, {neck=torque_name})
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
@@ -587,6 +591,61 @@ function job_self_command(cmdParams, eventArgs)
 			hide_window = true
 		end
 		old_inform.hide_window = hide_window
+	end
+	
+	if cmdParams[1] == 'help' then
+	
+		local chat_purple = string.char(0x1F, 200)
+		local chat_grey = string.char(0x1F, 160)
+		local chat_red = string.char(0x1F, 167)
+		local chat_white = string.char(0x1F, 001)
+		local chat_green = string.char(0x1F, 214)
+		local chat_yellow = string.char(0x1F, 036)
+		local chat_d_blue = string.char(0x1F, 207)
+		local chat_pink = string.char(0x1E, 5)
+		local chat_l_blue = string.char(0x1E, 6)
+		
+		
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, chat_d_blue.. 	'                         Welcome to Sebs Gearswap help!' )
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'You may manually type these with \"\/\/gs c [function]\" eg. '.. chat_yellow ..' \"\/\/gs c update user\"')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you wish to macro the functions please use \"\/con gs c [function]\" eg. '.. chat_yellow ..' \"\/con gs c update user\"')
+		windower.add_to_chat(6, chat_yellow.. 	'W-key'.. chat_d_blue ..' means Windows key')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Key Binds available:')
+		windower.add_to_chat(6, chat_yellow.. 	'           \'F12\''..chat_l_blue  ..' = update user ' .. chat_white .. '  --  Will check and equip correct gear.')
+		windower.add_to_chat(6, chat_d_blue.. 	'Will also save the current location of the gearswap info text box to file')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F12\''..chat_l_blue  ..' = cycle CastingMode ' .. chat_white .. '   --  Cycles to resistant mode \(more Macc\).')
+		windower.add_to_chat(6, chat_yellow..	'    \'Alt + F12\''..chat_l_blue  ..' = cycle IdleMode ' .. chat_white .. '  --  Cycle through idle modes.')
+		windower.add_to_chat(6, chat_yellow..	'\'W-Key + F12\''..chat_l_blue  ..' = toggle kiting ' .. chat_white .. '  --  Locks movement speed gear on over any set')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F11\''..chat_l_blue  ..' = toggle CP ' .. chat_white .. '  --  Makes you utilise CP cape')
+		windower.add_to_chat(6, chat_yellow..	'\'W-Key + F11\''..chat_l_blue  ..' = toggle EquipShield ' .. chat_white .. '  --  Allows switchign of shields with PDT/MDT Locks')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow.. 	'             \'[\''..chat_l_blue  ..' = toggle PhysicalDefense ' .. chat_white .. '  --  Locks PDT set on.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + [\''..chat_l_blue  ..' = cycle OffenseMode ' .. chat_white .. '   --  Cycles throught melee accuracy modes.')
+		windower.add_to_chat(6, chat_yellow..	'  \'W-Key + [\''..chat_l_blue  ..' = cycle HybridMode ' .. chat_white .. '  --  Cycles thought Hybrid modes \(usually just DT\)')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'             \']\''..chat_l_blue  ..' = toggle MagicalDefense ' .. chat_white .. '  --  Locks MDT set on.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + -\''..chat_l_blue  ..' = toggle Resist ' .. chat_white .. '  --  Makes Use of Resist sets (Death, charm etc).')
+		windower.add_to_chat(6, chat_yellow..	'      \'Alt + -\''..chat_l_blue  ..' = cycle ResistMode ' .. chat_white .. '  --  Cycle wich resist sets to use.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + =\''..chat_l_blue  ..' = toggle TurtleDefense ' .. chat_white .. '  --  Additional Defence mode like PDT/MDT, but a mix of both.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Alt + =\''..chat_l_blue  ..' = cycle TurtleDefenseMode ' .. chat_white .. '  --  Cycles through Turtle sets (normal and reraise).')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you need more help or run into problems, you can contact me via email at ' .. chat_yellow .. 'sebyg666@hotmail.com')
+		windower.add_to_chat(6, chat_d_blue.. 	'Alternatively if you have me on your skype list, just leave me a message there and ill get back to you.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Warning: Shameless plug follows.')
+		windower.add_to_chat(6, chat_d_blue.. 	'If You are a big fan of my lua\'s and you wish to support me, you are more then welcome to donate any amount of money')
+		windower.add_to_chat(6, chat_d_blue.. 	'via paypal at the above email adress. You may also tell other people you trust about my lua\'s and how to contact me,')
+		windower.add_to_chat(6, chat_d_blue.. 	'for help setting up, and finally you can also find me streaming live on twitch at '.. chat_yellow .. 'www.twitch.tv/Sebbyg')
+		windower.add_to_chat(6, ' ')
+	
 	end
 	
 end

@@ -298,7 +298,7 @@ function customize_melee_set(meleeSet)
 	
 	if state.Buff.sleep then
 		local torque = false
-		local torque_name = ''
+		local torque_name = ""
 		
 		if player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] or player.wardrobe3['Berserkers Torque'] or player.wardrobe4['Berserkers Torque'] then
 			torque_name ={ name="Berserkers Torque" }
@@ -315,7 +315,7 @@ function customize_melee_set(meleeSet)
 			for index, buff in pairs(player.buffs) do
 				if buff == 2 and torque == true then
 					meleeSet = set_combine(meleeSet, {neck=torque_name})
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )

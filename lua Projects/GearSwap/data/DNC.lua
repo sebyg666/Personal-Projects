@@ -296,7 +296,7 @@ function customize_melee_set(meleeSet)
 			for index, buff in pairs(player.buffs) do
 				if buff == 2 and helm == true then
 					meleeSet = set_combine(meleeSet, {head=helm_name})
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
