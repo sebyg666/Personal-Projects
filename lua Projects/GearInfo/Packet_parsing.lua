@@ -72,8 +72,9 @@ function check_these_buffs(x, y)
 		return
 	end
 
-	--local buffs_to_ignore = T{"Level Restriction", "Battlefield", "Vorseal", "Elvorseal", "Voidwatcher", "Colure Active", "Ensphere", "encumbrance", "impairment", "Omerta", "debilitation", "Pathos", "Avatar's Favor"}
-	local buffs_to_ignore = T{143, 254, 602, 603, 475, 612, 476, 259, 261, 262, 263, 264, 431}
+	--local buffs_to_ignore = T{"Level Restriction", "Battlefield", "Vorseal", "Elvorseal", "Voidwatcher", "Colure Active", "Ensphere", "encumbrance", "impairment", "Omerta", "debilitation", 
+	-- 										"Pathos", "Avatar's Favor", "Avoidance Down"}
+	local buffs_to_ignore = T{143, 254, 602, 603, 475, 612, 476, 259, 261, 262, 263, 264, 431, 572}
 	
 	for n, new in pairs(new_buffs) do
 		new_buffs[n].matched = nil
