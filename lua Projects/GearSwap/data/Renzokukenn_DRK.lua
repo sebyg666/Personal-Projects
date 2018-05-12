@@ -148,7 +148,7 @@ function init_gear_sets()
 	Odyssean_hands		={ name="Odyssean Gauntlets", augments={'Accuracy+21 Attack+21','STR+12','Accuracy+13','Attack+15',}}
 	Odyssean_legs		={ name="Odyssean Cuisses", augments={'Accuracy+18 Attack+18','"Dbl.Atk."+4','CHR+4','Accuracy+9','Attack+15',}} -- 5 stp
 	
-	Niht_back			={ name="Niht Mantle", augments={'Attack+14','Dark magic skill +7','"Drain" and "Aspir" potency +24','Weapon skill damage +3%',}}
+	Niht_back				={ name="Niht Mantle", augments={'Attack+14','Dark magic skill +7','"Drain" and "Aspir" potency +24','Weapon skill damage +3%',}}
 	WS_back_reso		={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10',}}
 	WSD_back_STR		={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
 	DA_back_STR			={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+7','"Dbl.Atk."+10',}}

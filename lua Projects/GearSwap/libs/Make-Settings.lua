@@ -20,7 +20,7 @@ if not windower.file_exists(windower.addon_path..'data/settings/'..player.name..
 	defaults.display.flags = {}
 	defaults.display.flags.draggable = true
 	defaults.display.text = {}
-	defaults.display.text.font = 'Ubuntu'
+	defaults.display.text.font = 'Tahoma'
 	defaults.display.text.red = 255
 	defaults.display.text.green = 255
 	defaults.display.text.blue = 255

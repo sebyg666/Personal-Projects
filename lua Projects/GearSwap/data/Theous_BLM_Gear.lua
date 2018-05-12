@@ -13,12 +13,13 @@ function init_gear_sets()
 	Merlinic_legs		={ name="Merlinic Shalwar", augments={'Mag. Acc.+15','Magic burst dmg.+11%','CHR+7',}}
 	Merlinic_legs		={ name="Merlinic Shalwar", augments={'Mag. Acc.+24 "Mag.Atk.Bns."+24','Mag. Acc.+3','"Mag.Atk.Bns."+1',}}
 	Merlinic_feet		={ name="Merlinic Crackows", augments={'Rng.Atk.+24','Weapon skill damage +1%','"Fast Cast"+6','Accuracy+13 Attack+13','Mag. Acc.+19 "Mag.Atk.Bns."+19',}}
+	Merlinic_feet_MB	={ name="Merlinic Crackows", augments={'Int +9','Mag.Atk.Bns."+14','Magic burst dmg.+8%',}}
 	
 	Psycloth_body		={ name="Psycloth Vest", augments={'Elem. magic skill +20','INT+7','Enmity-6',}}
 	Psycloth_hands		={ name="Psycloth Manillas", augments={'MP+50','INT+7','"Conserve MP"+6',}}
 	Psycloth_legs		={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}}
 	
-	Amalric_head		={ name="Amalric Coif", augments={'INT+10','Elem. magic skill +15','Dark magic skill +15',}}
+	Amalric_head		={ name="Amalric Coif", augments={'MP+60','Mag. Acc.+15','"Mag.Atk.Bns."+15',}}
 	-- Amalric_head		={ name="Amalric Coif", augments={'INT+10','Mag. Acc.+20','Enmity-5',}}
 	-- Amalric_body		={ name="Amalric Doublet", augments={'MP+60','Mag. Acc.+15','"Mag.Atk.Bns."+15',}}
 	Amalric_hands		={ name="Amalric Gages", augments={'INT+10','Mag. Acc.+15','"Mag.Atk.Bns."+15',}}
@@ -34,7 +35,7 @@ function init_gear_sets()
 	Hagondes_legs		={ name="Hagondes Pants +1", augments={'Phys. dmg. taken -2%','Magic burst dmg.+4%',}}
 	
 	Taranus_Nuke 		={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','Magic Damage +6','"Mag.Atk.Bns."+10',}}
-	-- Taranus_FC			={ name="Taranus's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','"Fast Cast"+10',}}
+	Taranus_FC			={ name="Taranus's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','"Fast Cast"+10',}}
 	-- Taranus_Death		={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Mag.Atk.Bns."+10',}}
 	-- Bane_back			={ name="Bane Cape", augments={'Elem. magic skill +4','Dark magic skill +3','"Mag.Atk.Bns."+1','"Fast Cast"+3',}}
 	Bane_back 			={ name="Bane Cape", augments={'Elem. magic skill +10','Dark magic skill +6','"Mag.Atk.Bns."+1',}}
@@ -78,10 +79,10 @@ function init_gear_sets()
 
     -- Fast cast sets for spells
 
-    sets.precast.FC = {main="Marin Staff +1",sub={name="Clerisy Strap",priority=-1},ammo="Impatiens",
+    sets.precast.FC = {main="Marin Staff +1",sub={name="Clerisy Strap +1",priority=-1},ammo="Impatiens",
         head=Amalric_head,neck="Voltsurge Torque",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
 		body="Mallquis saio",hands=Merlinic_hands,ring1="Weatherspoon Ring",ring2="Kishar Ring",
-		back="Swith Cape",waist="Witful belt",legs=Psycloth_legs,feet=Merlinic_feet}
+		back=Taranus_FC,waist="Witful belt",legs=Psycloth_legs,feet=Merlinic_feet}
 
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {}) --waist="Siegel Sash"
 	
@@ -198,23 +199,23 @@ function init_gear_sets()
 		main=Lathi,sub={name="Niobid Strap",priority=-1},ammo="Ghastly Tathlum +1",
         head="Ea Hat",neck="Saevus Pendant +1",ear1="Barkarole Earring",ear2="Regal Earring",
         body="Jhakri Robe +1",hands=Amalric_hands,ring1="Shiva Ring +1",ring2="Shiva Ring +1",
-        back=Taranus_Nuke,waist="Refoccilation Stone",legs=Merlinic_legs,feet="Jhakri Pigaches +1"}
+        back=Taranus_Nuke,waist=gear.ElementalObi,legs=Merlinic_legs,feet="Jhakri Pigaches +1"}
 		
 	sets.midcast['Elemental Magic'].Resistant 												= set_combine(sets.midcast['Elemental Magic'], 										{})
-	sets.midcast['Elemental Magic']['Magic Burst'] 										= set_combine(sets.midcast['Elemental Magic'], 										{neck="Mizu. Kubikazari",ear1="Static Earring",
+	sets.midcast['Elemental Magic']['Magic Burst'] 										= set_combine(sets.midcast['Elemental Magic'], 										{neck="Mizu. Kubikazari",ear2="Static Earring",
 																																																								body="Ea Houppelande",hands=AF_hands,ring1="Locus Ring",ring2="Mujin Band",
-																																																								legs="Ea Slops",feet="Ea Pigaches"})
+																																																								legs="Ea Slops",feet=Merlinic_feet_MB})
 	sets.midcast['Elemental Magic']['Magic Burst'].Resistant 						= set_combine(sets.midcast['Elemental Magic']['Magic Burst'], 					{})
 	sets.midcast['Elemental Magic']['Preserve MP'] 										= set_combine(sets.midcast['Elemental Magic'], 										{body=AF_body})
 	sets.midcast['Elemental Magic']['Preserve MP'].Resistant						= set_combine(sets.midcast['Elemental Magic'].Resistant, 						{body=AF_body})
 	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'] 				= set_combine(sets.midcast['Elemental Magic']['Magic Burst'], 					{body=AF_body})
 	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'].Resistant	= set_combine(sets.midcast['Elemental Magic']['Magic Burst'].Resistant, 	{body=AF_body})
-	sets.midcast['Luminohelix'] 																	= set_combine(sets.midcast['Elemental Magic'], 										{})
-	sets.midcast['Luminohelix'].Resistant 													= set_combine(sets.midcast['Elemental Magic'].Resistant, 						{})
-	sets.midcast['Luminohelix']['Magic Burst'] 												= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] , 				{})
-	sets.midcast['Luminohelix']['Magic Burst'].Resistant 								= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] .Resistant,	{})
-	sets.midcast.Impact																				= set_combine(sets.midcast['Elemental Magic'], 										{head=empty,body="Twilight Cloak"})
-	sets.midcast.Impact.Resistant																= set_combine(sets.midcast['Elemental Magic'].Resistant, 						{head=empty,body="Twilight Cloak"})
+	sets.midcast['Luminohelix'] 																	= set_combine(sets.midcast['Elemental Magic'], 							{})
+	sets.midcast['Luminohelix'].Resistant 													= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{})
+	sets.midcast['Luminohelix']['Magic Burst'] 												= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] , 			{})
+	sets.midcast['Luminohelix']['Magic Burst'].Resistant 								= set_combine(sets.midcast['Elemental Magic']['Magic Burst'] .Resistant,{})
+	sets.midcast.Impact																				= set_combine(sets.midcast['Elemental Magic'], 							{head=empty,body="Twilight Cloak"})
+	sets.midcast.Impact.Resistant																= set_combine(sets.midcast['Elemental Magic'].Resistant, 				{head=empty,body="Twilight Cloak"})
 	
 	sets.midcast['Death'] = {
 		main=Lathi,sub={name="Niobid Strap",priority=-1},ammo="Ghastly Tathlum +1",
@@ -303,7 +304,7 @@ end
 
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
-    set_macro_page(1, 10)
+    set_macro_page(6, 5)
 	
 	if player.sub_job:upper() == 'WHM' then		
 		send_command('bind ^` input /ma "Blink" <me>')

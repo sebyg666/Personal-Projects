@@ -249,12 +249,12 @@ function init_gear_sets()
         body=Merl_body_Nuke,hands=Amalric_hands,ring1="Shiva Ring",ring2="Shiva Ring",
         back=Nuke_back,waist=gear.ElementalObi,legs=Merl_legs_Burst,feet=Merl_feet_Nuke}
 	
-	sets.midcast['Elemental Magic'].Resistant 								= set_combine(sets.midcast['Elemental Magic'], 					{})
-	sets.midcast['Elemental Magic']['Magic Burst'] 							= set_combine(sets.midcast['Elemental Magic'], 					{neck="Mizu. Kubikazari",ring2="Mujin Band"})
-	sets.midcast['Elemental Magic']['Magic Burst'].Resistant 				= set_combine(sets.midcast['Elemental Magic'].Resistant, 		{neck="Mizu. Kubikazari",ring2="Mujin Band"})
-	sets.midcast['Elemental Magic']['Preserve MP'] 							= set_combine(sets.midcast['Elemental Magic'], 					{})
-	sets.midcast['Elemental Magic']['Preserve MP'].Resistant				= set_combine(sets.midcast['Elemental Magic'].Resistant, 		{})
-	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'] 			= set_combine(sets.midcast['Elemental Magic'], 					{neck="Mizu. Kubikazari",ring2="Mujin Band"})
+	sets.midcast['Elemental Magic'].Resistant 												= set_combine(sets.midcast['Elemental Magic'], 					{})
+	sets.midcast['Elemental Magic']['Magic Burst'] 										= set_combine(sets.midcast['Elemental Magic'], 					{neck="Mizu. Kubikazari",ring2="Mujin Band"})
+	sets.midcast['Elemental Magic']['Magic Burst'].Resistant 						= set_combine(sets.midcast['Elemental Magic'].Resistant, 		{neck="Mizu. Kubikazari",ring2="Mujin Band"})
+	sets.midcast['Elemental Magic']['Preserve MP'] 										= set_combine(sets.midcast['Elemental Magic'], 					{})
+	sets.midcast['Elemental Magic']['Preserve MP'].Resistant						= set_combine(sets.midcast['Elemental Magic'].Resistant, 		{})
+	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'] 				= set_combine(sets.midcast['Elemental Magic'], 					{neck="Mizu. Kubikazari",ring2="Mujin Band"})
 	sets.midcast['Elemental Magic']['Magic Burst']['Preserve MP'].Resistant	= set_combine(sets.midcast['Elemental Magic'].Resistant, 		{neck="Mizu. Kubikazari",ring2="Mujin Band"})
 	sets.midcast['Helix'] 													= set_combine(sets.midcast['Elemental Magic'], 					{waist="Eschan Stone"})
 	sets.midcast['Helix'].Resistant 										= set_combine(sets.midcast['Elemental Magic'].Resistant, 		{waist="Eschan Stone"})

@@ -19,7 +19,7 @@
         Will not re-summon the avatar if one was not out in the first place.
         Will not release the spirit if it was out before the command was issued.
         
-    gs c pact [PactType]
+    /con gs c pact [PactType]
         Attempts to use the indicated pact type for the current avatar.
         PactType can be one of:
             cure
@@ -40,41 +40,34 @@
 
 -- Initialization function for this job file.
 function get_sets()
+	include('Make-Settings.lua')
     mote_include_version = 2
 
     -- Load and initialize the include file.
-    include('Mote-Include.lua')
+    include('Seb-Include.lua')
 end
 
 -- Setup vars that are user-independent.  state.Buff vars initialized here will automatically be tracked.
 function job_setup()
     state.Buff["Avatar's Favor"] = buffactive["Avatar's Favor"] or false
     state.Buff["Astral Conduit"] = buffactive["Astral Conduit"] or false
+	state.Buff["Reive Mark"] = buffactive["Reive Mark"] or false
 
     spirits = S{"LightSpirit", "DarkSpirit", "FireSpirit", "EarthSpirit", "WaterSpirit", "AirSpirit", "IceSpirit", "ThunderSpirit"}
-    avatars = S{"Carbuncle", "Fenrir", "Diabolos", "Ifrit", "Titan", "Leviathan", "Garuda", "Shiva", "Ramuh", "Odin", "Alexander", "Cait Sith"}
-
-    magicalRagePacts = S{
-        'Inferno','Earthen Fury','Tidal Wave','Aerial Blast','Diamond Dust','Judgment Bolt','Searing Light','Howling Moon','Ruinous Omen',
-        'Fire II','Stone II','Water II','Aero II','Blizzard II','Thunder II',
-        'Fire IV','Stone IV','Water IV','Aero IV','Blizzard IV','Thunder IV',
-        'Thunderspark','Burning Strike','Meteorite','Nether Blast','Flaming Crush',
-        'Meteor Strike','Heavenly Strike','Wind Blade','Geocrush','Grand Fall','Thunderstorm',
-        'Holy Mist','Lunar Bay','Night Terror','Level ? Holy'}
-
+    avatars = S{'Shiva','Ramuh','Garuda','Leviathan','Diabolos','Titan','Fenrir','Ifrit','Carbuncle','Cait Sith','Alexander','Odin','Atomos'}
 
     pacts = {}
     pacts.cure = {['Carbuncle']='Healing Ruby'}
     pacts.curaga = {['Carbuncle']='Healing Ruby II', ['Garuda']='Whispering Wind', ['Leviathan']='Spring Water'}
-    pacts.buffoffense = {['Carbuncle']='Glittering Ruby', ['Ifrit']='Crimson Howl', ['Garuda']='Hastega', ['Ramuh']='Rolling Thunder',
-        ['Fenrir']='Ecliptic Growl'}
+    pacts.buffoffense = {['Carbuncle']='Glittering Ruby', ['Ifrit']='Crimson Howl', ['Garuda']='Hastega II', ['Ramuh']='Rolling Thunder',
+        ['Fenrir']='Ecliptic Growl', ['Shiva']='Crystal Blessing'}
     pacts.buffdefense = {['Carbuncle']='Shining Ruby', ['Shiva']='Frost Armor', ['Garuda']='Aerial Armor', ['Titan']='Earthen Ward',
         ['Ramuh']='Lightning Armor', ['Fenrir']='Ecliptic Howl', ['Diabolos']='Noctoshield', ['Cait Sith']='Reraise II'}
-    pacts.buffspecial = {['Ifrit']='Inferno Howl', ['Garuda']='Fleet Wind', ['Titan']='Earthen Armor', ['Diabolos']='Dream Shroud',
+    pacts.buffspecial = {['Ifrit']=' <staff_and_grip Howl', ['Garuda']='Fleet Wind', ['Titan']='Earthen Armor', ['Diabolos']='Dream Shroud',
         ['Carbuncle']='Soothing Ruby', ['Fenrir']='Heavenward Howl', ['Cait Sith']='Raise II'}
     pacts.debuff1 = {['Shiva']='Diamond Storm', ['Ramuh']='Shock Squall', ['Leviathan']='Tidal Roar', ['Fenrir']='Lunar Cry',
         ['Diabolos']='Pavor Nocturnus', ['Cait Sith']='Eerie Eye'}
-    pacts.debuff2 = {['Shiva']='Sleepga', ['Leviathan']='Slowga', ['Fenrir']='Lunar Roar', ['Diabolos']='Somnolence'}
+    pacts.debuff2 = {['Shiva']='Sleepga', ['Leviathan']='Slowga', ['Fenrir']='Lunar Roar', ['Diabolos']='Somnolence', ['Ramuh']='Thunderspark'}
     pacts.sleep = {['Shiva']='Sleepga', ['Diabolos']='Nightmare', ['Cait Sith']='Mewing Lullaby'}
     pacts.nuke2 = {['Ifrit']='Fire II', ['Shiva']='Blizzard II', ['Garuda']='Aero II', ['Titan']='Stone II',
         ['Ramuh']='Thunder II', ['Leviathan']='Water II'}
@@ -82,13 +75,38 @@ function job_setup()
         ['Ramuh']='Thunder IV', ['Leviathan']='Water IV'}
     pacts.bp70 = {['Ifrit']='Flaming Crush', ['Shiva']='Rush', ['Garuda']='Predator Claws', ['Titan']='Mountain Buster',
         ['Ramuh']='Chaotic Strike', ['Leviathan']='Spinning Dive', ['Carbuncle']='Meteorite', ['Fenrir']='Eclipse Bite',
-        ['Diabolos']='Nether Blast',['Cait Sith']='Regal Scratch'}
+        ['Diabolos']='Nether Blast',['Cait Sith']='Regal Gash'}
     pacts.bp75 = {['Ifrit']='Meteor Strike', ['Shiva']='Heavenly Strike', ['Garuda']='Wind Blade', ['Titan']='Geocrush',
         ['Ramuh']='Thunderstorm', ['Leviathan']='Grand Fall', ['Carbuncle']='Holy Mist', ['Fenrir']='Lunar Bay',
         ['Diabolos']='Night Terror', ['Cait Sith']='Level ? Holy'}
+	pacts.bp99 = {['Ifrit']='Conflag Strike', ['Ramuh']='Volt Strike', ['Titan']='Crag Throw', ['Fenrir']='Impact', ['Diabolos']='Blindside'}
     pacts.astralflow = {['Ifrit']='Inferno', ['Shiva']='Diamond Dust', ['Garuda']='Aerial Blast', ['Titan']='Earthen Fury',
         ['Ramuh']='Judgment Bolt', ['Leviathan']='Tidal Wave', ['Carbuncle']='Searing Light', ['Fenrir']='Howling Moon',
         ['Diabolos']='Ruinous Omen', ['Cait Sith']="Altana's Favor"}
+		
+	bp_physical	= S{'Punch','Rock Throw','Barracuda Dive','Claw','Axe Kick','Shock Strike','Camisado','Regal Scratch','Poison Nails',
+				'Moonlit Charge','Crescent Fang','Rock Buster','Tail Whip','Double Punch','Megalith Throw','Double Slap','Eclipse Bite',
+				'Mountain Buster','Spinning Dive','Predator Claws','Rush','Chaotic Strike','Crag Throw','Volt Strike'}
+				
+	 bp_magical	= S{
+        'Inferno','Earthen Fury','Tidal Wave','Aerial Blast','Diamond Dust','Judgment Bolt','Searing Light','Howling Moon','Ruinous Omen',
+        'Fire II','Stone II','Water II','Aero II','Blizzard II','Thunder II',
+        'Fire IV','Stone IV','Water IV','Aero IV','Blizzard IV','Thunder IV',
+        'Thunderspark','Burning Strike','Meteorite','Nether Blast','Flaming Crush',
+        'Meteor Strike','Heavenly Strike','Wind Blade','Geocrush','Grand Fall','Thunderstorm',
+        'Holy Mist','Lunar Bay','Night Terror','Level ? Holy',
+		'Somnolence','Nether Blast','Conflagration Strike', 'Zantetsuken'}
+
+	bp_hybrid	=S{'Burning Strike','Flaming Crush'}
+				
+	bp_debuff	=S{'Lunar Cry','Mewing Lullaby','Nightmare','Lunar Roar','Slowga','Ultimate Terror','Sleepga','Eerie Eye','Tidal Roar',
+				'Diamond Storm','Shock Squall','Pavor Nocturnus'}
+				
+	bp_buff		=S{'Shining Ruby','Frost Armor','Rolling Thunder','Crimson Howl','Lightning Armor','Ecliptic Growl','Hastega','Noctoshield',
+				'Ecliptic Howl','Dream Shroud','Earthen Armor','Fleet Wind','Inferno Howl','Soothing Ruby','Heavenward Howl',
+				'Soothing Current','Hastega II','Crystal Blessing'}
+
+	bp_other	=S{'Healing Ruby','Raise II','Aerial Armor','Reraise II','Whispering Wind','Glittering Ruby','Earthen Ward','Spring Water','Healing Ruby II'} 
 
     -- Wards table for creating custom timers   
     wards = {}
@@ -127,265 +145,61 @@ end
 
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('None', 'Normal', 'Acc')
+	state.OffenseMode:options('None', 'Normal', 'Acc')
     state.CastingMode:options('Normal', 'Resistant')
     state.IdleMode:options('Normal', 'PDT')
-
-	gear.perp_staff = {name = "Hoe"}
-	gear.default.perp_staff = {name = "Hoe"}
+	state.PhysicalDefenseMode:options('PDT')
+	state.MagicalDefenseMode:options('MDT')
+	
+	state.PhysicalDefense    = M(false, 'PhysicalDefense')
+	state.MagicalDefense     = M(false, 'MagicalDefense')
+	state.CP  				  		= M(false, 'CP')
+	state.Auto_Kite  			= M(false, 'Auto_Kite')
+	
+    DW_needed = 0
+	DW = false
+	moving = false
+	
+	send_command('gi update')
+    update_combat_form()
     
-    -- select_default_macro_book()
+    -- Additional local binds
+	
+	--send_command('bind !] gs c toggle ')
+	--send_command('bind ^] gs c cycle ')
+	send_command('bind ^F11 gs c cycle CP')
+	--send_command('bind @f11 gs c cycle PetIdleMode')
+	send_command('bind !F12 gs c cycle IdleMode')
+	send_command('bind ^F12 gs c cycle CastingMode')
+	
+	send_command('gi ugs true')
+	
+	Ring_lock = S{"Resolution Ring", "Emperor Band", "Capacity Ring", "Echad Ring", "Trizek Ring", "Facility Ring", "Caliber Ring"}
+	Tele_Ring = S{"Warp Ring", "Dim. Ring (Dem)", "Dim. Ring (Holla)", "Dim. Ring (Mea)"}
+	Ear_lock = S{"Reraise Earring"}
+	
+	Ring_slot_locked_1 = false
+	Ring_slot_locked_2 = false
+	unlock_em = false
+	
+    select_default_macro_book()
+
+	old_inform = {}
+	settings = load_settings()
+	text_box = texts.new(settings.display)
+	text_box:register_event('reload', initialize)
+	
+	initialize(text_box)
+	
+	local msg = ''
+	msg = ('You have loaded Seb\'s SMN lua. Please use '):color(text_color) .. ('\"\/\/GS c help\" '):color(Notification_color) .. ('for a full list of key bound functions. Enjoy!'):color(text_color)
+	add_to_chat(122, msg)
 end
 
 
 -- Define sets and vars used by this job file.
 function init_gear_sets()
 	
-	Grioavolr_Enh		={ name="Grioavolr", augments={'Enh. Mag. eff. dur. +9','Mag. Acc.+20','"Mag.Atk.Bns."+9','Magic Damage +9',}}
-	Rubicundity			={ name="Rubicundity", augments={'Mag. Acc.+10','"Mag.Atk.Bns."+10','Dark magic skill +10','"Conserve MP"+7',}}
-	Serenity			={ name="Serenity", augments={'MP+50','Enha.mag. skill +10','"Cure" potency +5%','"Cure" spellcasting time -10%',}}
-	
-	Witching_Robe		={ name="Witching Robe", augments={'MP+50','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Refresh"+1',}}
-	Mediums_Sabots		={ name="Medium's Sabots", augments={'MP+40','MND+6','"Conserve MP"+5','"Cure" potency +3%',}}
-	
-	Telch_head_Enh		={ name="Telchine Cap", augments={'"Fast Cast"+4','Enh. Mag. eff. dur. +10',}}
-	Telch_body_Enh		={ name="Telchine Chas.", augments={'"Fast Cast"+3','Enh. Mag. eff. dur. +8',}}
-    Telch_hands_Enh		={ name="Telchine Gloves", augments={'Mag. Acc.+3','"Fast Cast"+3','Enh. Mag. eff. dur. +8',}}
-	Telch_legs_Enh		={ name="Telchine Braconi", augments={'"Fast Cast"+3','Enh. Mag. eff. dur. +7',}}
-	Telch_Feet_Enh		={ name="Telchine Pigaches", augments={'Mag. Acc.+22','"Fast Cast"+4','Enh. Mag. eff. dur. +7',}}
-	
-	Merl_head_FC		={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+20','"Fast Cast"+7','Mag. Acc.+10',}}
-	Merl_hands_FC		={ name="Merlinic Dastanas", augments={'"Fast Cast"+7','INT+1','Mag. Acc.+4','"Mag.Atk.Bns."+5',}}
-	Merl_feet_FC		={ name="Merlinic Crackows", augments={'Mag. Acc.+3','"Fast Cast"+7','"Mag.Atk.Bns."+8',}}
-	
-	Merl_feet_Refr		={ name="Merlinic Crackows", augments={'AGI+9','Crit.hit rate+3','"Refresh"+1','Mag. Acc.+1 "Mag.Atk.Bns."+1',}}
-	
-	Psycloth_legs		={ name="Psycloth Lappas", augments={'MP+80','Mag. Acc.+15','"Fast Cast"+7',}}
-	
-	Vanya_head			={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}
-	Vanya_body			={ name="Vanya Robe", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}
-	Vanya_feet			={ name="Vanya Clogs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}
-	
-    --------------------------------------
-    -- Precast Sets
-    --------------------------------------
-    
-    -- Precast sets to enhance JAs
-    sets.precast.JA['Astral Flow'] = {head="Glyphic Horn +1"}
-    
-    sets.precast.JA['Elemental Siphon'] = {main="Soulscourge",
-        head="Convoker's Horn +1",neck="Caller's Pendant",
-        body="Caller's Doublet +2",hands="Glyphic Bracers +1",ring1="Evoker's Ring",ring2="Fervor Ring",BACK="Conveyance cape",legs="Marduk's Shalwar +1",feet="Caller's Pigaches +2"}
-
-    sets.precast.JA['Mana Cede'] = {hands="Caller's Bracers +2"}
-
-    -- Pact delay reduction gear
-    sets.precast.BloodPactWard = {ammo="Seraphicaller",head="Convoker's Horn +1",body="Glyphic Doublet",hands="Glyphic Bracers +1",
-        back="Samanisi Cape"}
-
-    sets.precast.BloodPactRage = sets.precast.BloodPactWard
-
-    -- Fast cast sets for spells
-    
-    sets.precast.FC = {
-		main=Grioavolr_Enh,sub={name="Clerisy Strap",priority=-1},ammo="Impatiens",
-        head=Merl_head_FC,neck="Voltsurge Torque",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
-		body="Inyanga Jubbah +1",hands=Merl_hands_FC,ring1="Veneficium Ring",ring2='Weatherspoon Ring',
-		waist="Witful belt",legs=Psycloth_legs,feet=Merl_feet_FC}
-
-    sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
-
-       
-    -- Weaponskill sets
-    -- Default set for any weaponskill that isn't any more specifically defined
-    sets.precast.WS = {
-        head="Nahtirah Hat",neck="Asperity Necklace",ear1="Bladeborn Earring",ear2="Steelflash Earring",
-        body="Vanir Cotehardie",hands="Yaoyotl Gloves",ring1="Rajas Ring",ring2="K'ayres Ring",
-        back="Pahtli Cape",waist="Cascade Belt",legs="Hagondes Pants",feet="Hagondes Sabots"}
-
-    -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
-    sets.precast.WS['Myrkr'] = {
-        head="Nahtirah Hat",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Convoker's Doublet",hands="Caller's Bracers +2",ring1="Evoker's Ring",ring2="Sangoma Ring",
-        back="Pahtli Cape",waist="Fucho-no-Obi",legs="Nares Trews",feet="Chelona Boots +1"}
-
-    
-    --------------------------------------
-    -- Midcast sets
-    --------------------------------------
-
-    sets.midcast.FastRecast = {
-        main=Grioavolr_Enh,sub={name="Clerisy Strap",priority=-1},ammo="Impatiens",
-        head=Merl_head_FC,neck="Voltsurge Torque",ear1="Loquac. Earring",ear2="Enchanter Earring +1",
-		body="Inyanga Jubbah +1",hands=Merl_hands_FC,ring1="Veneficium Ring",ring2='Weatherspoon Ring',
-		waist="Witful belt",legs=Psycloth_legs,feet=Merl_feet_FC}
-
-    sets.midcast.Cure = {main="Tamaxchi",sub="Genbu's Shield",
-        head="Nahtirah Hat",ear2="Loquacious Earring",
-        body="Heka's Kalasiris",hands="Bokwus Gloves",ring1="Prolix Ring",ring2="Sirona's Ring",
-        back="Swith Cape +1",waist="Witful Belt",legs="Hagondes Pants",feet="Hagondes Sabots"}
-
-    sets.midcast.Stoneskin = {waist="Siegel Sash"}
-
-    sets.midcast['Elemental Magic'] = {main="Lehbrailg +2",sub="Wizzan Grip",
-        head="Hagondes Hat",neck="Stoicheion Medal",ear1="Friomisi Earring",ear2="Hecate's Earring",
-        body="Hagondes Coat",hands="Yaoyotl Gloves",ring1="Icesoul Ring",ring2="Acumen Ring",
-        back="Toro Cape",waist=gear.ElementalBelt,legs="Hagondes Pants",feet="Hagondes Sabots"}
-
-    sets.midcast['Dark Magic'] = {main="Lehbrailg +2",sub="Wizzan Grip",
-        head="Nahtirah Hat",neck="Aesir Torque",ear1="Lifestorm Earring",ear2="Psystorm Earring",
-        body="Vanir Cotehardie",hands="Yaoyotl Gloves",ring1="Excelsis Ring",ring2="Sangoma Ring",
-        waist="Fuchi-no-Obi",legs="Bokwus Slops",feet="Bokwus Boots"}
-
-
-    -- Avatar pact sets.  All pacts are Ability type.
-    
-    sets.midcast.Pet.BloodPactWard = {main="Soulscourge",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Caller's Pendant",
-        body="Caller's Doublet +2",hands="Glyphic Bracers +1",ring1="Evoker's Ring",ring2="Fervor Ring",
-        waist="Diabolos's Rope",legs="Marduk's Shalwar +1"}
-
-    sets.midcast.Pet.DebuffBloodPactWard = {main="Soulscourge",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Caller's Pendant",
-        body="Caller's Doublet +2",hands="Glyphic Bracers +1",ring1="Evoker's Ring",ring2="Fervor Ring",
-        waist="Diabolos's Rope",legs="Marduk's Shalwar +1"}
-        
-    sets.midcast.Pet.DebuffBloodPactWard.Acc = sets.midcast.Pet.DebuffBloodPactWard
-    
-    sets.midcast.Pet.PhysicalBloodPactRage = {main="Soulscourge",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Caller's Pendant",
-        body="Convoker's Doublet",hands="Glyphic Bracers +1",ring1="Evoker's Ring",ring2="Fervor Ring",
-        waist="Diabolos's Rope",legs="Convoker's Spats",feet="Convoker's Pigaches"}
-
-    sets.midcast.Pet.PhysicalBloodPactRage.Acc = sets.midcast.Pet.PhysicalBloodPactRage
-
-    sets.midcast.Pet.MagicalBloodPactRage = {main="Eminent Pole",ammo="Seraphicaller",
-        head="Glyphic Horn",neck="Caller's Pendant",
-        body="Convoker's Doublet",hands="Glyphic Bracers +1",ring1="Evoker's Ring",ring2="Fervor Ring",
-        back="Samanisi Cape",waist="Diabolos's Rope",legs="Caller's Spats +2",feet="Hagondes Sabots"}
-
-    sets.midcast.Pet.MagicalBloodPactRage.Acc = sets.midcast.Pet.MagicalBloodPactRage
-
-
-    -- Spirits cast magic spells, which can be identified in standard ways.
-    
-    sets.midcast.Pet.WhiteMagic = {legs="Summoner's Spats"}
-    
-    sets.midcast.Pet['Elemental Magic'] = set_combine(sets.midcast.Pet.BloodPactRage, {legs="Summoner's Spats"})
-
-    sets.midcast.Pet['Elemental Magic'].Resistant = {}
-    
-
-    --------------------------------------
-    -- Idle/resting/defense/etc sets
-    --------------------------------------
-    
-    -- Resting sets
-    sets.resting = {main=gear.Staff.HMP,ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Wiglen Gorget",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Hagondes Coat",hands="Serpentes Cuffs",ring1="Sheltered Ring",ring2="Paguroidea Ring",
-        back="Pahtli Cape",waist="Austerity Belt",legs="Nares Trews",feet="Chelona Boots +1"}
-    
-    -- Idle sets
-    sets.idle = {main="Bolelabunga",sub="Genbu's Shield",ammo="Seraphicaller",
-        head="Befouled Crown",neck="Sanctity Necklace",ear1="Evans Earring",ear2="Andoa Earring",
-        body="Shomonjijoe +1",hands=Merl_hands_FC,ring1="Sheltered Ring",ring2="Defending Ring",
-        back="Umbra Cape",waist="Fucho-no-Obi",legs="Assiduity Pants +1",feet="Herald's Gaiters"}
-
-    sets.idle.PDT = {main=gear.Staff.PDT,sub="Achaq Grip",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Twilight Torque",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Hagondes Coat",hands="Yaoyotl Gloves",ring1="Defending Ring",ring2="Sangoma Ring",
-        back="Umbra Cape",waist="Fucho-no-Obi",legs="Hagondes Pants",feet="Herald's Gaiters"}
-
-    -- perp costs:
-    -- spirits: 7
-    -- carby: 11 (5 with mitts)
-    -- fenrir: 13
-    -- others: 15
-    -- avatar's favor: -4/tick
-    
-    -- Max useful -perp gear is 1 less than the perp cost (can't be reduced below 1)
-    -- Aim for -14 perp, and refresh in other slots.
-    
-    -- -perp gear:
-    -- Gridarvor: -5
-    -- Glyphic Horn: -4
-    -- Caller's Doublet +2/Glyphic Doublet: -4
-    -- Evoker's Ring: -1
-    -- Convoker's Pigaches: -4
-    -- total: -18
-    
-    -- Can make due without either the head or the body, and use +refresh items in those slots.
-    
-    sets.idle.Avatar = {main=gear.perp_staff,sub="Achaq Grip",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Caller's Pendant",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Glyphic Doublet",hands="Serpentes Cuffs",ring1="Evoker's Ring",ring2="Sangoma Ring",
-        back="Conveyance Cape",waist="Fucho-no-Obi",legs="Nares Trews",feet="Convoker's Pigaches"}
-
-    sets.idle.PDT.Avatar = {main=gear.perp_staff,sub="Achaq Grip",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Caller's Pendant",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Hagondes Coat",hands="Regimen Mittens",ring1="Evoker's Ring",ring2="Defending Ring",
-        back="Conveyance Cape",waist="Fucho-no-Obi",legs="Hagondes Pants",feet="Convoker's Pigaches"}
-
-    sets.idle.Spirit = {main=gear.perp_staff,sub="Achaq Grip",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Caller's Pendant",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Hagondes Coat",hands="Serpentes Cuffs",ring1="Evoker's Ring",ring2="Sangoma Ring",
-        back="Samanisi Cape",waist="Fucho-no-Obi",legs="Summoner's Spats",feet="Herald's Gaiters"}
-
-    sets.idle.Town = {main=gear.perp_staff,sub="Genbu's Shield",ammo="Seraphicaller",
-        head="Convoker's Horn +1",neck="Wiglen Gorget",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Hagondes Coat",hands="Serpentes Cuffs",ring1="Sheltered Ring",ring2="Sangoma Ring",
-        back="Umbra Cape",waist="Fucho-no-Obi",legs="Nares Trews",feet="Herald's Gaiters"}
-
-    -- Favor uses Caller's Horn instead of Convoker's Horn for refresh
-    sets.idle.Avatar.Favor = {head="Caller's Horn +2"}
-    sets.idle.Avatar.Melee = {hands="Regimen Mittens",back="Samanisi Cape",waist="Kuku Stone",legs="Convoker's Spats"}
-        
-    sets.perp = {}
-    -- Caller's Bracer's halve the perp cost after other costs are accounted for.
-    -- Using -10 (Gridavor, ring, Conv.feet), standard avatars would then cost 5, halved to 2.
-    -- We can then use Hagondes Coat and end up with the same net MP cost, but significantly better defense.
-    -- Weather is the same, but we can also use the latent on the pendant to negate the last point lost.
-    sets.perp.Day = {body="Hagondes Coat",hands="Caller's Bracers +2"}
-    sets.perp.Weather = {neck="Caller's Pendant",body="Hagondes Coat",hands="Caller's Bracers +2"}
-    -- Carby: Mitts+Conv.feet = 1/tick perp.  Everything else should be +refresh
-    sets.perp.Carbuncle = {main="Bolelabunga",sub="Genbu's Shield",
-        head="Convoker's Horn +1",body="Hagondes Coat",hands="Carbuncle Mitts",legs="Nares Trews",feet="Convoker's Pigaches"}
-    -- Diabolos's Rope doesn't gain us anything at this time
-    --sets.perp.Diabolos = {waist="Diabolos's Rope"}
-    sets.perp.Alexander = sets.midcast.Pet.BloodPactWard
-    sets.perp.Ramuh = {main="Apamajas III"}
-    --sets.perp.Diabolos = {waist="Diabolos's Rope"}
-    --sets.perp.Diabolos = {waist="Diabolos's Rope"}
-
-
-    sets.perp.staff_and_grip = {main=gear.perp_staff,sub="Achaq Grip"}
-    
-    -- Defense sets
-    sets.defense.PDT = {main=gear.Staff.PDT,
-        head="Hagondes Hat",neck="Wiglen Gorget",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Hagondes Coat",hands="Yaoyotl Gloves",ring1="Defending Ring",ring2=gear.DarkRing.physical,
-        back="Umbra Cape",waist="Fucho-no-Obi",legs="Hagondes Pants",feet="Hagondes Sabots"}
-
-    sets.defense.MDT = {
-        head="Hagondes Hat",neck="Twilight Torque",ear1="Gifted Earring",ear2="Loquacious Earring",
-        body="Vanir Cotehardie",hands="Yaoyotl Gloves",ring1="Defending Ring",ring2="Shadow Ring",
-        back="Umbra Cape",waist="Fucho-no-Obi",legs="Bokwus Slops",feet="Hagondes Sabots"}
-
-    sets.Kiting = {feet="Herald's Gaiters"}
-    
-    sets.latent_refresh = {waist="Fucho-no-obi"}
-    
-
-    --------------------------------------
-    -- Engaged sets
-    --------------------------------------
-    
-    -- Normal melee group
-    sets.engaged = {ammo="Seraphicaller",
-        head="Zelus Tiara",neck="Asperity Necklace",ear1="Bladeborn Earring",ear2="Steelflash Earring",
-        body="Vanir Cotehardie",hands="Bokwus Gloves",ring1="Rajas Ring",ring2="K'ayres Ring",
-        back="Umbra Cape",waist="Goading Belt",legs="Hagondes Pants",feet="Hagondes Sabots"}
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -398,11 +212,48 @@ function job_precast(spell, action, spellMap, eventArgs)
     if state.Buff['Astral Conduit'] and pet_midaction() then
         eventArgs.handled = true
     end
+	if spell.action_type == 'Magic' then
+		local spell_recasts = windower.ffxi.get_spell_recasts()
+		if spell_recasts[spell.recast_id] > 0 and spellMap == 'Cure' then
+			if spell.en == 'Cure IV' then
+				cancel_spell()
+				send_command('input /ma "Cure III" ' .. spell.target.name)
+				eventArgs.cancel = true
+				return
+			end
+		end
+	end
 end
 
 function job_midcast(spell, action, spellMap, eventArgs)
     if state.Buff['Astral Conduit'] and pet_midaction() then
         eventArgs.handled = true
+    end
+	 if spell.action_type == 'Magic' then
+		if spellMap == 'Cure' and spell.target.type == 'SELF' then
+			equip(sets.midcast.CureSelf)
+			eventArgs.handled = true
+		end
+    end
+end
+
+function job_post_midcast(spell, action, spellMap, eventArgs)
+	if spell.action_type == 'Magic' then
+		 if spellMap == 'Cure' or spellMap == 'Curaga' then
+            if world.weather_element == 'Light' or windower.ffxi.get_info().day == 'Lightsday' then
+                equip(sets.midcast['Cure day / weather'])
+            end
+		end
+	end
+	if state.CP.value == true then
+		equip(sets.CP)
+	end
+end
+
+-- Set eventArgs.handled to true if we don't want automatic gear equipping to be done.
+function job_aftercast(spell, action, spellMap, eventArgs)
+	if state.Buff[spell.name] == false and not spell.interrupted then
+		state.Buff[spell.name] = true
     end
 end
 
@@ -419,15 +270,64 @@ end
 -- Job-specific hooks for non-casting events.
 -------------------------------------------------------------------------------------------------------------------
 
+function job_handle_equipping_gear(playerStatus, eventArgs)
+	update_combat_form()
+	check_moving()
+	update()
+end
+
+-- Handle notifications of general user state change.
+function job_state_change(field, newValue, oldValue)
+
+	if field == "PhysicalDefense" then
+		if state.PhysicalDefense.value == true then
+			state.DefenseMode.current = 'Physical'
+			state.DefenseMode:set('Physical')
+			state.MagicalDefense = M(false)
+		end
+	elseif field == "MagicalDefense" then
+		if state.MagicalDefense.value == true then
+			state.DefenseMode.current = 'Magical'
+			state.DefenseMode:set('Magical')
+			state.PhysicalDefense = M(false)
+		end
+	end
+	if field == "MagicalDefense" or field == "PhysicalDefense" then
+		if state.PhysicalDefense.value == false and state.MagicalDefense.value == false then
+			state.DefenseMode.current = 'None'
+			state.DefenseMode:set('None')
+		end
+    end
+	
+    if field == 'Offense Mode' then
+        if newValue ~= 'None' then
+			if state.CombatForm == 'DW' then
+				equip(sets.Locked_Main_Sub_DW)
+			else
+				equip(sets.Locked_Main_Sub)
+			end
+            disable('main','sub')
+        else
+            enable('main','sub')
+        end
+    end
+end
+
 -- Called when a player gains or loses a buff.
 -- buff == buff gained or lost
 -- gain == true if the buff was gained, false if it was lost.
 function job_buff_change(buff, gain)
-    if state.Buff[buff] ~= nil then
-        handle_equipping_gear(player.status)
-    elseif storms:contains(buff) then
-        handle_equipping_gear(player.status)
-    end
+    -- if state.Buff[buff] ~= nil then
+        -- handle_equipping_gear(player.status)
+    -- elseif storms:contains(buff) then
+        -- handle_equipping_gear(player.status)
+    -- end
+	if state.Buff[buff] ~= nil then
+		state.Buff[buff] = gain
+		-- if not midaction() then
+			-- handle_equipping_gear(player.status)
+		-- end
+	end
 end
 
 
@@ -447,7 +347,11 @@ function job_pet_change(petparam, gain)
     classes.CustomIdleGroups:clear()
     if gain then
         if avatars:contains(pet.name) then
-            classes.CustomIdleGroups:append('Avatar')
+            if state.PetIdleMode == 'PetRegen' then
+				classes.CustomIdleGroups:append(state.PetIdleMode.value)
+			elseif state.PetIdleMode == 'PetDT' then
+				classes.CustomIdleGroups:append(state.PetIdleMode.value)
+			end
         elseif spirits:contains(pet.name) then
             classes.CustomIdleGroups:append('Spirit')
         end
@@ -461,37 +365,55 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 -- Custom spell mapping.
-function job_get_spell_map(spell)
-    if spell.type == 'BloodPactRage' then
-        if magicalRagePacts:contains(spell.english) then
+function job_get_spell_map(spell,default_spell_map)
+    if spell.action_type == 'Magic' then
+        if spell.skill == 'Enfeebling Magic' then
+            if spell.type == 'WhiteMagic' then
+                return 'Mnd Enfeebles'
+            else
+                return 'Int Enfeebles'
+            end
+		end
+    end
+	
+	if spell.type == 'BloodPactRage' then
+        if bp_magical:contains(spell.english) then
             return 'MagicalBloodPactRage'
-        else
+        elseif bp_physical:contains(spell.english) then
             return 'PhysicalBloodPactRage'
+		elseif bp_hybrid:contains(spell.english) then
+            return 'HybridlBloodPactRage'
         end
-    elseif spell.type == 'BloodPactWard' and spell.target.type == 'MONSTER' then
-        return 'DebuffBloodPactWard'
+    elseif spell.type == 'BloodPactWard' then
+		if bp_other:contains(spell.english) then
+			return 'OtherBloodPactWard'
+		elseif bp_debuff:contains(spell.english) then
+			return 'DebuffBloodPactWard'
+		else
+			return 'BuffBloodPactWard'
+		end
     end
 end
 
 -- Modify the default idle set after it was constructed.
 function customize_idle_set(idleSet)
     if pet.isvalid then
-        if pet.element == world.day_element then
-            idleSet = set_combine(idleSet, sets.perp.Day)
-        end
-        if pet.element == world.weather_element then
-            idleSet = set_combine(idleSet, sets.perp.Weather)
-        end
+        -- if pet.element == world.day_element then
+            -- idleSet = set_combine(idleSet, sets.perp.Day)
+        -- end
+        -- if pet.element == world.weather_element then
+            -- idleSet = set_combine(idleSet, sets.perp.Weather)
+        -- end
         if sets.perp[pet.name] then
             idleSet = set_combine(idleSet, sets.perp[pet.name])
         end
-        gear.perp_staff.name = elements.perpetuance_staff_of[pet.element]
-        if gear.perp_staff.name and (player.inventory[gear.perp_staff.name] or player.wardrobe[gear.perp_staff.name]) then
-            idleSet = set_combine(idleSet, sets.perp.staff_and_grip)
-		else
-			gear.perp_staff.name = gear.default.perp_staff.name
-			idleSet = set_combine(idleSet, sets.perp.staff_and_grip)
-        end
+        -- gear.perp_staff.name = elements.perpetuance_staff_of[pet.element]
+        -- if gear.perp_staff.name and (player.inventory[gear.perp_staff.name] or player.wardrobe[gear.perp_staff.name]) then
+            -- idleSet = set_combine(idleSet, sets.perp.staff_and_grip)
+		-- else
+			-- gear.perp_staff.name = gear.default.perp_staff.name
+			-- idleSet = set_combine(idleSet, sets.perp.staff_and_grip)
+        -- end
         if state.Buff["Avatar's Favor"] and avatars:contains(pet.name) then
             idleSet = set_combine(idleSet, sets.idle.Avatar.Favor)
         end
@@ -500,11 +422,119 @@ function customize_idle_set(idleSet)
         end
     end
     
-    if player.mpp < 51 then
-        idleSet = set_combine(idleSet, sets.latent_refresh)
-    end
+   lockouts()
+
+	if state.DefenseMode.current == 'None' then 
+		if player.mpp < 51 then
+			idleSet = set_combine(idleSet, sets.latent_refresh)
+		end
+		if state.Buff["Reive Mark"] then
+			idleSet = set_combine(idleSet, sets.buff.Reive)
+		end
+		if state.CP.value == true then
+			idleSet = set_combine(idleSet, sets.CP)
+		end
+		if state.Auto_Kite.value == true then
+			idleSet = set_combine(idleSet, sets.Kiting)
+		end
+	end
     
     return idleSet
+end
+
+function customize_melee_set(meleeSet)
+	
+	lockouts()
+	
+	if state.DefenseMode.current == 'None' then 
+		if state.CP.value == true then
+			meleeSet = set_combine(meleeSet, sets.CP)
+		end
+	end
+    return meleeSet
+end
+
+function lockouts()
+
+	if Tele_Ring:contains(player.equipment.ring1) and unlock_em == false then
+		if Ring_slot_locked_1 == false then
+			add_to_chat(200,('[Tele Ring Equipped: '):color(Notification_color) .. ('-> Locking \"'..player.equipment.ring1 .. '\"'):color(text_color) .. (']'):color(Notification_color) )
+		end
+		Ring_slot_locked_1 = true
+		disable('ring1')
+	end
+	if Tele_Ring:contains(player.equipment.ring2) and unlock_em == false then
+		if Ring_slot_locked_2 == false then
+			add_to_chat(200,('[Tele Ring Equipped: '):color(Notification_color) .. ('-> Locking \"'..player.equipment.ring2 .. '\"'):color(text_color) .. (']'):color(Notification_color) )
+		end
+		Ring_slot_locked_2 = true
+		disable('ring2')
+	end
+	
+	if (Tele_Ring:contains(player.equipment.ring1) or Tele_Ring:contains(player.equipment.ring2)) and unlock_em then
+		enable('ring1')
+		enable('ring2')
+	elseif not (Tele_Ring:contains(player.equipment.ring1) or Tele_Ring:contains(player.equipment.ring2)) and unlock_em then 
+		unlock_em = false
+		Ring_slot_locked_1 = false
+		Ring_slot_locked_2 = false
+		add_to_chat(200,('[Zoned: '):color(Notification_color) .. ('-> Un-locking Tele/Warp Rings '):color(text_color) .. (']'):color(Notification_color) )
+	elseif not Tele_Ring:contains(player.equipment.ring1) and Ring_slot_locked_1 and unlock_em == false then 
+		Ring_slot_locked_1 = false
+		enable('ring1')
+		add_to_chat(200,('[Tele Ring Removed manually: '):color(Notification_color) .. ('-> Un-locking Slot 1'):color(text_color) .. (']'):color(Notification_color) )
+	elseif not Tele_Ring:contains(player.equipment.ring2) and Ring_slot_locked_2 and unlock_em == false then 
+		Ring_slot_locked_2 = false
+		enable('ring2')
+		add_to_chat(200,('[Tele Ring Removed manually: '):color(Notification_color) .. ('-> Un-locking Slot 2'):color(text_color) .. (']'):color(Notification_color) )
+	end
+	--------------------------------
+	-- Ring locks for exp ring use
+	
+	if Ring_lock:contains(player.equipment.ring1) and Ring_slot_locked_1 == false then
+		disable('ring1')
+	elseif not Ring_lock:contains(player.equipment.ring1) and Ring_slot_locked_1 == false then
+		enable('ring1')
+	end
+	
+	if Ring_lock:contains(player.equipment.ring2) and Ring_slot_locked_2 == false then
+		disable('ring2')
+	elseif not Ring_lock:contains(player.equipment.ring2) and Ring_slot_locked_2 == false then
+		enable('ring2')
+	end
+	
+	---------------------------------
+	-- earring locks
+	
+	if Ear_lock:contains(player.equipment.ear1) then
+		disable('Ear1')
+	elseif not Ear_lock:contains(player.equipment.ear1) then
+		enable('Ear1')
+	end
+	if Ear_lock:contains(player.equipment.ear2) then
+		disable('Ear2')
+	elseif not Ear_lock:contains(player.equipment.ear2) then
+		enable('Ear2')
+	end
+	
+end
+
+function reset_rings()
+	if Ring_slot_locked_1 or Ring_slot_locked_2 then
+		unlock_em = true
+	end
+end
+
+windower.raw_register_event('zone change',reset_rings)
+
+function check_moving()
+	if state.DefenseMode.value == 'None'  and state.Kiting.value == false then
+		if state.Auto_Kite.value == false and moving then
+			state.Auto_Kite:set(true)
+		elseif state.Auto_Kite.value == true and moving == false then
+			state.Auto_Kite:set(false)
+		end
+	end
 end
 
 -- Called by the 'update' self-command, for common needs.
@@ -518,13 +548,73 @@ function job_update(cmdParams, eventArgs)
             classes.CustomIdleGroups:append('Spirit')
         end
     end
+	handle_equipping_gear(player.status)
 end
 
 -- Set eventArgs.handled to true if we don't want the automatic display to be run.
+-- Function to display the current relevant user state when doing an update.
 function display_current_job_state(eventArgs)
+	
+    local msg = ('   [Melee'):color(Notification_color)
+    
+    if state.CombatForm.has_value then
+        msg = msg .. (' (' .. state.CombatForm.value .. ')'):color(text_color)
+    end
+    
+	if #classes.CustomMeleeGroups > 0 then
+        for i = 1,#classes.CustomMeleeGroups do
+			if classes.CustomMeleeGroups[i] ~= 'None' then
+				if i == 1 then
+					msg = msg .. (' ('):color(Notification_color)
+				end
+				msg = msg .. (classes.CustomMeleeGroups[i]):color(Notification_color)
+				if i < #classes.CustomMeleeGroups then
+					msg = msg .. (' + '):color(Notification_color)
+				end
+				if i == #classes.CustomMeleeGroups then
+					msg = msg .. (')'):color(Notification_color)
+				end
+			end
+        end
+    end
+	
+    msg = msg .. (': '):color(Notification_color)
+    
+	if state.DefenseMode.value == 'None' then
+		msg = msg .. (state.OffenseMode.value):color(text_color)
+	else
+		msg = msg ..('LOCKED: ' ):color(warning_text) .. (state.OffenseMode.value):color(text_color)
+	end
+	
+	msg = msg .. ('] [Casting: '):color(Notification_color) .. (state.CastingMode.value):color(text_color) .. ('] '):color(Notification_color)
+	
+	msg = msg .. (' [Idle: '):color(Notification_color) .. (state.IdleMode.value):color(text_color) .. ('] '):color(Notification_color)
 
+    if state.Kiting.value == true then
+        msg = msg .. ('[Kiting'):color(Notification_color) .. ('] '):color(Notification_color)
+    end
+	
+	if state.CP.value == true then
+        msg = msg .. ('[CP cape'):color(Notification_color) .. ('] '):color(Notification_color)
+    end
+	
+	if state.DefenseMode.value ~= 'None' then
+        msg = msg  .. ('\n')..('['):color(warning_text) .. ('Defense: '):color(warning_text) .. (state.DefenseMode.value .. ' (' .. state[state.DefenseMode.value .. 'DefenseMode'].value .. ')'):color(text_color)..('] '):color(warning_text)
+    end
+	
+	add_to_chat(122, msg)
+
+    eventArgs.handled = true
+	save_settings()
 end
 
+function update_combat_form()
+	if DW == true then
+		state.CombatForm:set('DW')
+	elseif DW == false then
+		state.CombatForm:reset()
+	end
+end
 
 -------------------------------------------------------------------------------------------------------------------
 -- User self-commands.
@@ -532,6 +622,7 @@ end
 
 -- Called for custom player commands.
 function job_self_command(cmdParams, eventArgs)
+
     if cmdParams[1]:lower() == 'petweather' then
         handle_petweather()
         eventArgs.handled = true
@@ -546,8 +637,192 @@ function job_self_command(cmdParams, eventArgs)
         wards.spell = ''
         eventArgs.handled = true
     end
+	
+	 gearinfo(cmdParams, eventArgs)
+   
+   if cmdParams[1] == 'hide' then
+		if hide_window then
+			hide_window = false
+		else
+			hide_window = true
+		end
+		old_inform.hide_window = hide_window
+	end
+	
+	if cmdParams[1] == 'help' then
+	
+		local chat_purple = string.char(0x1F, 200)
+		local chat_grey = string.char(0x1F, 160)
+		local chat_red = string.char(0x1F, 167)
+		local chat_white = string.char(0x1F, 001)
+		local chat_green = string.char(0x1F, 214)
+		local chat_yellow = string.char(0x1F, 036)
+		local chat_d_blue = string.char(0x1F, 207)
+		local chat_pink = string.char(0x1E, 5)
+		local chat_l_blue = string.char(0x1E, 6)
+		
+	
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, chat_d_blue.. 	'                         Welcome to Sebs Gearswap help!' )
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'You may manually type these with \"\/\/gs c [function]\" eg. '.. chat_yellow ..' \"\/\/gs c update user\"')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you wish to macro the functions please use \"\/con gs c [function]\" eg. '.. chat_yellow ..' \"\/con gs c update user\"')
+		windower.add_to_chat(6, chat_yellow.. 	'W-key'.. chat_d_blue ..' means Windows key')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Key Binds available:')
+		windower.add_to_chat(6, chat_yellow.. 	'           \'F12\''..chat_l_blue  ..' = update user ' .. chat_white .. '  --  Will check and equip correct gear.')
+		windower.add_to_chat(6, chat_d_blue.. 	'Will also save the current location of the gearswap info text box to file')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F12\''..chat_l_blue  ..' = cycle CastingMode ' .. chat_white .. '   --  Cycles to resistant mode \(more Macc\).')
+		windower.add_to_chat(6, chat_yellow..	'    \'Alt + F12\''..chat_l_blue  ..' = cycle IdleMode ' .. chat_white .. '  --  Cycle through idle modes.')
+		windower.add_to_chat(6, chat_yellow..	'\'W-Key + F12\''..chat_l_blue  ..' = toggle kiting ' .. chat_white .. '  --  Locks movement speed gear on over any set')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F11\''..chat_l_blue  ..' = cycle CP ' .. chat_white .. '  --  Makes you utilise CP cape')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow.. 	'             \'[\''..chat_l_blue  ..' = toggle PhysicalDefense ' .. chat_white .. '  --  Locks PDT set on.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + [\''..chat_l_blue  ..' = cycle OffenseMode ' .. chat_white .. '   --  Cycles throught melee accuracy modes.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'             \']\''..chat_l_blue  ..' = toggle MagicalDefense ' .. chat_white .. '  --  Locks MDT set on.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you need more help or run into problems, you can contact me via email at ' .. chat_yellow .. 'sebyg666@hotmail.com')
+		windower.add_to_chat(6, chat_d_blue.. 	'Alternatively if you have me on your skype list, just leave me a message there and ill get back to you.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Warning: Shameless plug follows.')
+		windower.add_to_chat(6, chat_d_blue.. 	'If You are a big fan of my lua\'s and you wish to support me, you are more then welcome to donate any amount of money')
+		windower.add_to_chat(6, chat_d_blue.. 	'via paypal at the above email adress. You may also tell other people you trust about my lua\'s and how to contact me,')
+		windower.add_to_chat(6, chat_d_blue.. 	'for help setting up, and finally you can also find me streaming live on twitch at '.. chat_yellow .. 'www.twitch.tv/Sebbyg')
+		windower.add_to_chat(6, ' ')
+	
+	end
+	
 end
 
+initialize = function(text, t)
+    local properties = L{}
+	
+    if state.OffenseMode then
+        properties:append('${OffenseMode|0}')
+    end
+	if state.CastingMode then
+        properties:append('${CastingMode|0}')
+    end
+	if state.IdleMode then
+        properties:append('${IdleMode}')
+    end
+	if state.Kiting then
+        properties:append('${Kiting}')
+    end
+	if state.CP then
+        properties:append('${CP}')
+    end
+	if state.DefenseMode then
+        properties:append('${DefenseMode}')
+    end
+	properties:append('${is_Moving}')
+    text:clear()
+    text:append(properties:concat(''))
+	update()
+end
+
+function update()
+	
+	local white = '\\cs(220,220,220)'
+	local blue = '\\cs(150,150,235)'
+	local red = '\\cs(255,0,0)'
+	local orange = '\\cs(232,138,13)'
+	local yellow = '\\cs(220,220,0)'
+	local green = '\\cs(0,225,0)'
+	local purple = '\\cs(213,43,196)'
+	
+	if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() or zoning_bool or hide_window then
+        text_box:hide()
+        return
+    end
+
+	local inform = {}
+	local msg = ' [Melee'
+	if state.CombatForm.current == 'DW' then
+		msg = msg .. ' (DW)'
+	end
+	if #classes.CustomMeleeGroups > 0 then
+		for i = 1,#classes.CustomMeleeGroups do
+			if classes.CustomMeleeGroups[i] ~= 'None' then
+				if i == 1 then msg = msg .. ' (' end
+				msg = msg .. classes.CustomMeleeGroups[i]
+				if i < #classes.CustomMeleeGroups then msg = msg .. ' + ' end
+				if i == #classes.CustomMeleeGroups then msg = msg ..')' end
+			end
+		end
+	end
+	
+	msg = msg .. ': '
+	
+	if state.DefenseMode.value == 'None' then
+		msg = blue .. msg .. white .. state.OffenseMode.value .. blue..'] '
+	else
+		msg = red .. msg .. state.OffenseMode.value .. '] '
+	end
+	inform.OffenseMode = msg .. '\\cr'
+			
+	inform.CastingMode = (blue .. ('\n [Casting: '.. white .. state.CastingMode.value:lpad(' ', 2) .. blue .. '] ' )) .. '\\cr'
+	
+	if state.DefenseMode.value == 'None' then
+		inform.IdleMode = (blue .. ('\n [Idle: '.. white .. state.IdleMode.value:lpad(' ', 2) .. blue .. '] ' )) .. '\\cr'
+	else
+		inform.IdleMode = (red .. ('\n [Idle: '..state.IdleMode.value:lpad(' ', 2) .. '] ' )) .. '\\cr'
+	end
+		
+	if state.DefenseMode.value == 'None' then
+		if state.Kiting.value == true and state.CP.value == true then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = (orange .. ('[CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == true and state.CP.value == false then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = ('')
+		elseif state.Kiting.value == false and state.CP.value == true then
+			inform.Kiting = ('')
+			inform.CP = (orange .. ('\n [CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == false and state.CP.value == false then
+			inform.Kiting = ('')
+			inform.CP = ('')
+		end
+	else
+		if state.Kiting.value == true and state.CP.value == true then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = (red .. ('[CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == true and state.CP.value == false then
+			inform.Kiting = (yellow .. ('\n [Kiting] ' )) .. '\\cr'
+			inform.CP = ('')
+		elseif state.Kiting.value == false and state.CP.value == true then
+			inform.Kiting = ('')
+			inform.CP = (red .. ('\n [CP Cape] ' )) .. '\\cr'
+		elseif state.Kiting.value == false and state.CP.value == false then
+			inform.Kiting = ('')
+			inform.CP = ('')
+		end
+	end
+	
+	if state.DefenseMode.value ~= 'None' then
+		inform.DefenseMode = (red .. ('\n [' .. 'DEFENCE: ' .. state.DefenseMode.value .. white ..' (' ..state[state.DefenseMode.value .. 'DefenseMode'].value ..')'..red..']' )) .. '\\cr'
+	else
+		inform.DefenseMode = ('')
+	end
+	
+	if state.DefenseMode.value == 'None' then
+		if moving == true then
+			inform.is_Moving = (yellow .. ('\n [Moving]' )) .. '\\cr'
+		else
+			inform.is_Moving = ('')
+		end
+	end
+	
+	if not table.equals(old_inform, inform) then
+		text_box:update(inform)
+		text_box:show()
+		old_inform = inform
+	end
+end
 
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
@@ -765,13 +1040,50 @@ function create_pact_timer(spell_name)
     end
 end
 
+windower.register_event('unload', function()
+	text_box:destroy()
+	text_box = nil
+	
+	send_command('unbind ^`')
+    send_command('unbind !`')
+	send_command('unbind @`')
+	
+	send_command('unbind f7')
+	send_command('unbind ^f7')
+	send_command('unbind !f7')
+	send_command('unbind @f7')
+	
+	send_command('unbind f8')
+	send_command('unbind ^f8')
+	send_command('unbind !f8')
+	send_command('unbind @f8')
+	
+	send_command('unbind f9')
+	send_command('unbind ^f9')
+	send_command('unbind !f9')
+	send_command('unbind @f9')
+	
+	send_command('unbind f10')
+	send_command('unbind ^f10')
+	send_command('unbind !f10')
+	send_command('unbind @f10')
+	
+	send_command('unbind f11')
+	send_command('unbind ^f11')
+	send_command('unbind !f11')
+	send_command('unbind @f11')
+	
+	send_command('unbind f12')
+	send_command('unbind ^f12')
+	send_command('unbind !f12')
+	send_command('unbind @f12')
+	
+end)
+
+windower.register_event('job change',function()
+    send_command('gs r')
+end)
 
 -- Select default macro book on initial load or subjob change.
-function select_default_macro_book(reset)
-    if reset == 'reset' then
-        -- lost pet, or tried to use pact when pet is gone
-    end
-    
-    -- Default macro set/book
-    set_macro_page(1, 3)
+function select_default_macro_book()
 end

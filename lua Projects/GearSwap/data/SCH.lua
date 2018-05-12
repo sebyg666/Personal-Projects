@@ -402,7 +402,7 @@ function get_casting_style(spell, action, spellMap, eventArgs)
 	--classes.SkipSkillCheck = classes.NoSkillSpells:contains(spell.english)
     -- Handle automatic selection of set based on spell class/name/map/skill/type.
     equipSet = select_specific_set(equipSet, spell, spellMap)
-	if state.Buff['Immanence'] == false and spell.type == "Elemental Magic" then
+	if state.Buff['Immanence'] == false and spell.skill == "Elemental Magic" then
 		if state.MagicBurst.value == true and state.PreserveMP.value == false then
 			if equipSet['Magic Burst'] then
 				equipSet = equipSet['Magic Burst']

@@ -9,7 +9,7 @@
 -- the 'gear' table.
 -------------------------------------------------------------------------------------------------------------------
 
-print('Chitara_Globals.lua Loaded')
+print('Mystryman_Globals.lua Loaded')
 
 hide_window = false
 Notification_color = 200

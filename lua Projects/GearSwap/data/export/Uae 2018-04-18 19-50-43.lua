@@ -1,0 +1,17 @@
+sets.exported={
+    main={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
+    sub="Genbu's Shield",
+    range="Gjallarhorn",
+    head={ name="Bihu Roundlet +1", augments={'Enhances "Foe Sirvente" effect',}},
+    body="Brioso Justau. +2",
+    hands="Gende. Gages +1",
+    legs="Inyanga Shalwar +2",
+    feet="Vanya Clogs",
+    neck="Moonbow Whistle",
+    waist="Witful Belt",
+    left_ear="Aoidos' Earring",
+    right_ear="Loquac. Earring",
+    left_ring="Prolix Ring",
+    right_ring="Ayanmo Ring",
+    back={ name="Intarabus's Cape", augments={'CHR+20','"Fast Cast"+10',}},
+}

@@ -92,7 +92,11 @@ function user_setup()
 	text_box:register_event('reload', initialize)
 	
 	initialize(text_box)
-
+	
+	local msg = ''
+	msg = ('You have loaded Seb\'s THF lua. Please use '):color(text_color) .. ('\"\/\/GS c help\" '):color(Notification_color) .. ('for a full list of key bound functions. Enjoy!'):color(text_color)
+	add_to_chat(122, msg)
+	
 end
 
 -- Called when this job file is unloaded (eg: job change)
@@ -103,333 +107,7 @@ end
 -- Define sets and vars used by this job file.
 function init_gear_sets()
 	
-	Adhemar_head	={ name="Adhemar Bonnet", augments={'DEX+10','AGI+10','Accuracy+15',}}
-    Adhemar_body	={ name="Adhemar Jacket", augments={'DEX+10','AGI+10','Accuracy+15',}}
-	Adhemar_hands	={ name="Adhemar Wristbands", augments={'DEX+10','AGI+10','Accuracy+15',}}
 	
-    Kaabnax_legs	={ name="Kaabnax Trousers", augments={'Phys. dmg. taken -2%','Magic dmg. taken -2%','Phys. dmg. taken -2%',}}
-	
-	Rawhide_body	={ name="Rawhide Vest", augments={'HP+50','"Subtle Blow"+7','"Triple Atk."+2',}}
-	Rawhide_hands	={ name="Rawhide Gloves", augments={'Mag. Acc.+15','INT+7','MND+7',}}
-	Rawhide_legs	={ name="Rawhide Trousers", augments={'MP+50','"Fast Cast"+5','"Refresh"+1',}}
-	
-    Lengo_Pants		={ name="Lengo Pants", augments={'INT+8','Mag. Acc.+14','"Mag.Atk.Bns."+13',}}
-	Dampening_Tam	={ name="Dampening Tam", augments={'DEX+5','Accuracy+8','Mag. Acc.+8',}}
-	Samnuha_Coat	={ name="Samnuha Coat", augments={'Mag. Acc.+14','"Mag.Atk.Bns."+13','"Fast Cast"+4','"Dual Wield"+3',}}
-	Samnuha_Tights	={ name="Samnuha Tights", augments={'STR+9','DEX+8','"Dbl.Atk."+2','"Triple Atk."+2',}}
-	Leyline_Gloves	={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}	
-	Mediums_Sabots	={ name="Medium's Sabots", augments={'MP+20','MND+1','"Cure" potency +1%',}}
-	
-    Herc_legs_TP	={ name="Herculean Trousers", augments={'Accuracy+24','"Triple Atk."+3','STR+10','Attack+6',}}
-    Herc_feet_TP_Acc={ name="Herculean Boots", augments={'Accuracy+25 Attack+25','"Store TP"+5','STR+5','Accuracy+10','Attack+1',}}
-	Herc_feet_TP_TA	={ name="Herculean Boots", augments={'Accuracy+25 Attack+25','"Triple Atk."+3','AGI+4','Attack+2',}}
-	
-	Herc_legs_DW	={ name="Herculean Trousers", augments={'Attack+23','"Dual Wield"+6',}}
-	Taeon_feet_DW	={ name="Taeon Boots", augments={'Attack+10','"Dual Wield"+3','STR+3 AGI+3',}}
-	
-	Herc_head_WS	={ name="Herculean Helm", augments={'Accuracy+16 Attack+16','Weapon skill damage +1%','STR+8','Accuracy+15','Attack+14',}}
-	Herc_hands_WS	={ name="Herculean Gloves", augments={'Rng.Acc.+23','Crit. hit damage +1%','AGI+15','Attack+6',}}
-	
-	Herc_feet_FC	={ name="Herculean Boots", augments={'Mag. Acc.+1','DEX+7','"Fast Cast"+8',}}
-	
-	Herc_legs_Nuke	={ name="Herculean Trousers", augments={'Mag. Acc.+17 "Mag.Atk.Bns."+17','Crit. hit damage +3%','INT+5','Mag. Acc.+8','"Mag.Atk.Bns."+8',}}
-	
-	Relic_hands		={ name="Plun. Armlets +1", augments={'Enhances "Perfect Dodge" effect',}}
-	
-	DW_back			={ name="Canny Cape", augments={'DEX+3','AGI+2','"Dual Wield"+5','Crit. hit damage +1%',}}
-	TP_Back			={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}}
-	--------------------------------------
-	-- Gear for organizer to get
-	--------------------------------------
-	sets.Org={}
-	sets.Org.one = {}
-	sets.Org.two = {}
-	
-	organizer_items = {		
-	Capacity_Ring = "Capacity Ring",
-	Facility_Ring = "Facility Ring",
-	Caliber_Ring = "Caliber Ring",
-	}
-	                                                             	
-    --------------------------------------                       
-    -- Start defining the sets                                   
-    --------------------------------------
-
-    sets.TreasureHunter = {hands=Relic_hands,feet="Skulker's Poulaines +1"}
-    sets.Kiting = {feet="Fajin Boots"}
-
-    sets.buff['Sneak Attack'] = {
-		ammo="Yetshila",
-		head=Adhemar_head,neck="Caro Necklace",ear1="Dawn Earring",ear2="Pixie Earring",
-		body=Adhemar_body,hands=Adhemar_hands,ring1="Epona's Ring",ring2="Petrov Ring",
-		back=TP_Back,waist="Chiner's Belt +1",legs=Samnuha_Tights,feet=Herc_feet_TP_Acc}
-
-    sets.buff['Trick Attack'] = {
-		ammo="Yetshila",
-		head=Adhemar_head,neck="Caro Necklace",ear1="Dawn Earring",ear2="Brutal Earring",
-		body=Adhemar_body,hands=Adhemar_hands,ring1="Apate Ring",ring2="Garuda Ring",
-		back=TP_Back,waist="Windbuffet Belt +1",legs=Samnuha_Tights,feet=Herc_feet_TP_Acc}
-
-    -- Actions we want to use to tag TH.
-    sets.precast.Step = sets.TreasureHunter
-    sets.precast.Flourish1 = sets.TreasureHunter
-    sets.precast.JA.Provoke = sets.TreasureHunter
-
-
-    --------------------------------------
-    -- Precast sets
-    --------------------------------------
-
-    -- Precast sets to enhance JAs
-    sets.precast.JA['Collaborator'] = {}
-	sets.precast.JA["Assassin's Charge"] = {}
-    sets.precast.JA['Accomplice'] = {}
-    sets.precast.JA['Flee'] = {}
-    sets.precast.JA['Hide'] = {}
-    sets.precast.JA['Conspirator'] = {}
-    sets.precast.JA['Steal'] = {}
-    sets.precast.JA['Despoil'] = {}
-    sets.precast.JA['Perfect Dodge'] = {hands=Relic_hands}
-    sets.precast.JA['Feint'] = {}
-
-    sets.precast.JA['Sneak Attack'] = sets.buff['Sneak Attack']
-    sets.precast.JA['Trick Attack'] = sets.buff['Trick Attack']
-
-
-    -- Waltz set (chr and vit)
-    sets.precast.Waltz = {}
-
-    -- Don't need any special gear for Healing Waltz.
-    sets.precast.Waltz['Healing Waltz'] = {}
-
-    -- Fast cast sets for spells
-    sets.precast.FC = {ammo="Impatiens",
-		head=Herc_head_FC,ear1="Loquacious Earring",ear2="Enchanter Earring +1",
-		body="Foppish Tunica",hands="Buremte Gloves",ring1="Veneficium Ring",ring2="Prolix Ring",
-		legs=Rawhide_legs,feet=Herc_feet_FC}
-
-    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"})
-
-    -- Ranged snapshot gear
-    sets.precast.RA = {head="Aurore Beret +1",waist="Impulse Belt"}
-	----------------------
-    -- Weaponskill sets
-	----------------------
-	
-    -- Default set for any weaponskill that isn't any more specifically defined
-    sets.precast.WS = {
-		ammo="Yetshila",
-		head=Adhemar_head,neck=gear.ElementalGorget,ear1="Ishvara Earring",ear2="Brutal Earring",
-		body=Adhemar_body,hands="Meghanada Gloves +1",ring1="Epona's Ring",ring2="Petrov Ring",
-		back=TP_Back,waist=gear.ElementalBelt,legs=Samnuha_Tights,feet=Herc_feet_TP_TA}
-	sets.precast.WS['Ilvl~118'] 	= set_combine(sets.precast.WS, 				{})
-	sets.precast.WS['Ilvl~122'] 	= set_combine(sets.precast.WS['Ilvl~118'], 	{})
-	sets.precast.WS['Ilvl~124+'] 	= set_combine(sets.precast.WS['Ilvl~122'], 	{})
-	sets.precast.WS.SA 	 			= set_combine(sets.precast.WS, 				{})
-	sets.precast.WS.TA 	 			= set_combine(sets.precast.WS, 				{})
-	sets.precast.WS.SATA 			= set_combine(sets.precast.WS, 				{})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-    -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
-	sets.precast.WS['Exenterator'] 					= set_combine(sets.precast.WS, {})
-    sets.precast.WS['Exenterator']['Ilvl~118'] 		= set_combine(sets.precast.WS['Exenterator'], {})
-	sets.precast.WS['Exenterator']['Ilvl~122'] 		= set_combine(sets.precast.WS['Exenterator']['Ilvl~118'], {})
-	sets.precast.WS['Exenterator']['Ilvl~124+'] 	= set_combine(sets.precast.WS['Exenterator']['Ilvl~122'], {})
-    sets.precast.WS['Exenterator'].SA 				= set_combine(sets.precast.WS['Exenterator'], {})
-    sets.precast.WS['Exenterator'].TA 				= set_combine(sets.precast.WS['Exenterator'], {})
-    sets.precast.WS['Exenterator'].SATA 			= set_combine(sets.precast.WS['Exenterator'], {})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-	sets.precast.WS['Dancing Edge'] 					= set_combine(sets.precast.WS, {})
-    sets.precast.WS['Dancing Edge']['Ilvl~118'] 		= set_combine(sets.precast.WS['Dancing Edge'], {})
-	sets.precast.WS['Dancing Edge']['Ilvl~122'] 		= set_combine(sets.precast.WS['Dancing Edge']['Ilvl~118'], {})
-	sets.precast.WS['Dancing Edge']['Ilvl~124+'] 		= set_combine(sets.precast.WS['Dancing Edge']['Ilvl~122'], {})
-    sets.precast.WS['Dancing Edge'].SA 					= set_combine(sets.precast.WS['Dancing Edge'], {})
-    sets.precast.WS['Dancing Edge'].TA 					= set_combine(sets.precast.WS['Dancing Edge'], {})
-    sets.precast.WS['Dancing Edge'].SATA 				= set_combine(sets.precast.WS['Dancing Edge'], {})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-	sets.precast.WS['Evisceration'] 					= set_combine(sets.precast.WS, {})
-    sets.precast.WS['Evisceration']['Ilvl~118'] 		= set_combine(sets.precast.WS['Evisceration'], {})
-	sets.precast.WS['Evisceration']['Ilvl~122'] 		= set_combine(sets.precast.WS['Evisceration']['Ilvl~118'], {})
-	sets.precast.WS['Evisceration']['Ilvl~124+'] 		= set_combine(sets.precast.WS['Evisceration']['Ilvl~122'], {})
-    sets.precast.WS['Evisceration'].SA 					= set_combine(sets.precast.WS['Evisceration'], {})
-    sets.precast.WS['Evisceration'].TA 					= set_combine(sets.precast.WS['Evisceration'], {})
-    sets.precast.WS['Evisceration'].SATA 				= set_combine(sets.precast.WS['Evisceration'], {})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-	sets.precast.WS["Rudra's Storm"] 					= set_combine(sets.precast.WS, {body="Meghanada Cuirie +1"})
-    sets.precast.WS["Rudra's Storm"]['Ilvl~118'] 		= set_combine(sets.precast.WS["Rudra's Storm"], {})
-	sets.precast.WS["Rudra's Storm"]['Ilvl~122'] 		= set_combine(sets.precast.WS["Rudra's Storm"]['Ilvl~118'], {})
-	sets.precast.WS["Rudra's Storm"]['Ilvl~124+'] 		= set_combine(sets.precast.WS["Rudra's Storm"]['Ilvl~122'], {})
-    sets.precast.WS["Rudra's Storm"].SA 				= set_combine(sets.precast.WS["Rudra's Storm"], {})
-    sets.precast.WS["Rudra's Storm"].TA 				= set_combine(sets.precast.WS["Rudra's Storm"], {})
-    sets.precast.WS["Rudra's Storm"].SATA 				= set_combine(sets.precast.WS["Rudra's Storm"], {})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-	sets.precast.WS["Shark Bite"] 						= set_combine(sets.precast.WS, {})
-    sets.precast.WS['Shark Bite']['Ilvl~118'] 			= set_combine(sets.precast.WS["Shark Bite"], {})
-	sets.precast.WS['Shark Bite']['Ilvl~122'] 			= set_combine(sets.precast.WS['Shark Bite']['Ilvl~118'], {})
-	sets.precast.WS['Shark Bite']['Ilvl~124+'] 			= set_combine(sets.precast.WS['Shark Bite']['Ilvl~122'], {})
-    sets.precast.WS['Shark Bite'].SA 					= set_combine(sets.precast.WS['Shark Bite'], {})
-    sets.precast.WS['Shark Bite'].TA 					= set_combine(sets.precast.WS['Shark Bite'], {})
-    sets.precast.WS['Shark Bite'].SATA 					= set_combine(sets.precast.WS['Shark Bite'], {})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-	sets.precast.WS['Mandalic Stab'] 					= set_combine(sets.precast.WS, {})
-    sets.precast.WS['Mandalic Stab']['Ilvl~118'] 		= set_combine(sets.precast.WS['Mandalic Stab'], {})
-	sets.precast.WS['Mandalic Stab']['Ilvl~122'] 		= set_combine(sets.precast.WS['Mandalic Stab']['Ilvl~118'], {})
-	sets.precast.WS['Mandalic Stab']['Ilvl~124+'] 		= set_combine(sets.precast.WS['Mandalic Stab']['Ilvl~122'], {})
-    sets.precast.WS['Mandalic Stab'].SA 				= set_combine(sets.precast.WS['Mandalic Stab'], {})
-    sets.precast.WS['Mandalic Stab'].TA 				= set_combine(sets.precast.WS['Mandalic Stab'], {})
-    sets.precast.WS['Mandalic Stab'].SATA 				= set_combine(sets.precast.WS['Mandalic Stab'], {})
-	----------------------------------------------------------------------------------------------------------------------------------------------------------
-	sets.precast.WS['Aeolian Edge'] = {
-		head=Herc_head_FC,neck="Atzintli Necklace",ear1="Friomisi Earring",ear2="Hecate's Earring",
-		body=Adhemar_body,hands=Herc_hands_WS,ring1="Ramuh Ring",ring2="Petrov Ring",
-		back="Aput Mantle",waist="Aquiline Belt",legs=Herc_legs_TP,feet=Herc_feet_FC}
-
-    sets.precast.WS['Aeolian Edge'].TH = set_combine(sets.precast.WS['Aeolian Edge'], sets.TreasureHunter)
-
-    --------------------------------------
-    -- Midcast sets
-    --------------------------------------
-
-    sets.midcast.FastRecast = {
-        head=Herc_head_FC,ear1="Loquacious Earring",ear2="Enchanter Earring +1",
-		body="Foppish Tunica",hands="Buremte Gloves",ring1="Veneficium Ring",ring2="Prolix Ring",
-		legs=Rawhide_legs,feet=Herc_feet_FC}
-
-    -- Specific spells
-    sets.midcast.Utsusemi = {
-        head=Herc_head_FC,ear1="Loquacious Earring",ear2="Enchanter Earring +1",
-		body="Foppish Tunica",ring1="Veneficium Ring",ring2="Prolix Ring",
-		legs=Rawhide_legs,feet=Herc_feet_FC}
-		
-	sets.midcast.Trust = set_combine(sets.midcast.FastRecast, {body="Apururu Unity Shirt"})
-
-    -- Ranged gear
-    sets.midcast.RA = {}
-
-    sets.midcast.RA.Acc = {}
-
-
-    --------------------------------------
-    -- Idle/resting/defense sets
-    --------------------------------------
-
-    -- Resting sets
-    sets.resting = {head="Smilodon Mask +1",neck="Lissome Necklace",
-		ring1="Sheltered Ring",ring2="Paguroidea Ring"}
-
-    -- Idle sets (default idle set not needed since the other three are defined, but leaving for testing purposes)
-
-    sets.idle = {
-		head="Smilodon Mask +1",neck="Lissome Necklace",ear1="Genmei Earring",ear2="Infused Earring",
-		body=Adhemar_body,hands=Herc_hands_WS,ring1="Sheltered Ring",ring2="Paguroidea Ring",
-		back="Repulse Mantle",waist="Flume Belt",legs=Herc_legs_TP,feet=Herc_feet_TP_Acc}
-
-    sets.idle.Town = {
-		head=Adhemar_head,neck="Asperity Necklace",ear1="Genmei Earring",ear2="Infused Earring",
-		body=Adhemar_body,hands=Herc_hands_WS,ring1="Epona's Ring",ring2="Petrov Ring",
-		back=DW_back,waist="Patentia Sash",legs=Herc_legs_TP,feet="Fajin Boots"}
-
-    sets.idle.Weak = {
-		head="Smilodon Mask +1",neck="Lissome Necklace",ear1="Genmei Earring",ear2="Infused Earring",
-		body=Adhemar_body,hands=Herc_hands_WS,ring1="Sheltered Ring",ring2="Paguroidea Ring",
-		back="Repulse Mantle",waist="Flume Belt",legs=Herc_legs_TP,feet=Herc_feet_TP_Acc}
-
-    -- Defense sets
-
-    sets.defense.Evasion = {
-        head=Herc_head_TP,neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Infused Earring",
-		body=Adhemar_body,
-		back=DW_back,waist="Sveltesse Gouriz +1",legs=Herc_legs_TP,feet=Herc_feet_TP}
-	
-    sets.defense.PDT = {
-		head="Meghanada Visor +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Infused Earring",
-		body="Meghanada Cuirie +1",hands="Meghanada Gloves +1",ring1="Vocane Ring",ring2="Defending Ring",
-		back="Repulse Mantle",waist="Flume Belt",legs="Meghanada Chausses +1",feet=Herc_feet_TP_Acc}
-
-    sets.defense.MDT = {
-		head="Fugacity Beret +1",neck="Loricate Torque +1",ear1="Merman's earring",ear2="Merman's earring",
-		body=Adhemar_body,hands=Herc_hands_WS,ring1="Vocane Ring",ring2="Defending Ring",
-		back="Engulfer Cape +1",waist="Flume Belt",legs=Kaabnax_legs,feet=Herc_feet_TP}
-
-	-------------------------------------------------------------------
-    ---------- ********   Engaged sets  ********* ---------------
-	-------------------------------------------------------------------
-	-------------------------------------------------------------------
-    ---------- ********   Normal melee group  ********* ---------------
-	-------------------------------------------------------------------
-	
-	sets.engaged 				= {ammo="Ginsen",
-								head=Adhemar_head,neck="Erudition Necklace",ear1="Bladeborn Earring",ear2="Steelflash Earring",
-								body=Adhemar_body,hands=Adhemar_hands,ring1="Epona's Ring",ring2="Petrov Ring",
-								back=TP_back,waist="Windbuffet Belt +1",legs=Samnuha_Tights,feet=Herc_feet_TP_Acc}
-    sets.engaged['Ilvl~118'] 	= set_combine(sets.engaged, 			{neck="Lissome Necklace"})
-	sets.engaged['Ilvl~122'] 	= set_combine(sets.engaged['Ilvl~118'], {head=Dampening_Tam,neck="Sanctity Necklace",waist="Grunfeld Rope"})
-	sets.engaged['Ilvl~124+'] 	= set_combine(sets.engaged['Ilvl~122'], {neck="Ej Necklace",ring1="Rajas Ring"})
-	
-	-- evasion sets
-	sets.engaged.Evasion 				= set_combine(sets.engaged,{})
-	sets.engaged['Ilvl~118'].Evasion 	= set_combine(sets.engaged.Evasion, {})
-	sets.engaged['Ilvl~122'].Evasion 	= set_combine(sets.engaged['Ilvl~118'].Evasion, {})
-	sets.engaged['Ilvl~124+'].Evasion 	= set_combine(sets.engaged['Ilvl~122'].Evasion, {})
-
-	---------------------------------------------------------------------------------------------------
-    -- Custom melee group: low to no haste (41+% DW)
-	---------------------------------------------------------------------------------------------------
-	sets.engaged['DW: 37+'] 				= set_combine(sets.engaged, 						{ammo="Ginsen",
-																								head=Adhemar_head,neck="Erudition Necklace",ear1="Suppanomimi",ear2="Eabani Earring",
-																								body=Adhemar_body,hands=Floral_Gauntlets,ring1="Epona's Ring",ring2="Petrov Ring",
-																								back=DW_back,waist="Patentia Sash",legs=Herc_legs_DW,feet=Taeon_feet_DW})
-	sets.engaged['Ilvl~118']['DW: 37+']		= set_combine(sets.engaged['DW: 37+'], 				{neck="Lissome Necklace",ring2="Apate Ring"})
-	sets.engaged['Ilvl~122']['DW: 37+'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 37+'], 	{head=Dampening_Tam,neck="Erudition Necklace"})
-	sets.engaged['Ilvl~124+']['DW: 37+'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 37+'], 	{neck="Ej Necklace"})
-	
-	-- evasion sets
-	sets.engaged['DW: 37+'].Evasion 				= set_combine(sets.engaged.Evasion,							{})
-	sets.engaged['Ilvl~118']['DW: 37+'].Evasion 	= set_combine(sets.engaged['DW: 37+'].Evasion, 				{})
-	sets.engaged['Ilvl~122']['DW: 37+'].Evasion		= set_combine(sets.engaged['Ilvl~118']['DW: 37+'].Evasion,	{})
-	sets.engaged['Ilvl~124+']['DW: 37+'].Evasion 	= set_combine(sets.engaged['Ilvl~122']['DW: 37+'].Evasion,	{})
-	
-	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	---------------------------------------------			
-	-- Custom melee group: High Haste (11% DW)              
-	---------------------------------------------           
-	
-	sets.engaged['DW: 6-11'] 				= set_combine(sets.engaged['DW: 37+'] , 				{ear2="Brutal Earring",
-																									hands=Adhemar_hands,
-																									back=TP_Back,waist="Windbuffet Belt +1",legs=Samnuha_Tights,feet=Herc_feet_TP_Acc})
-	sets.engaged['Ilvl~118']['DW: 6-11'] 	= set_combine(sets.engaged['DW: 6-11'], 				{neck="Lissome Necklace",ring2="Apate Ring"})
-	sets.engaged['Ilvl~122']['DW: 6-11'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 6-11'], 	{head=Dampening_Tam})
-	sets.engaged['Ilvl~124+']['DW: 6-11'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 6-11'], 	{neck="Ej Necklace",waist="Grunfeld Rope"})
-					
-	-- evasion sets                                        
-	sets.engaged['DW: 6-11'].Evasion 				= set_combine(sets.engaged['DW: 37+'] .Evasion, 				{})
-	sets.engaged['Ilvl~118']['DW: 6-11'].Evasion 	= set_combine(sets.engaged['DW: 6-11'].Evasion, 				{})
-	sets.engaged['Ilvl~122']['DW: 6-11'].Evasion 	= set_combine(sets.engaged['Ilvl~118']['DW: 6-11'].Evasion, 	{})
-	sets.engaged['Ilvl~124+']['DW: 6-11'].Evasion 	= set_combine(sets.engaged['Ilvl~122']['DW: 6-11'].Evasion, 	{})
-	
-	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	-----------------------------------------			
-	-- Custom melee group: Max Haste (-2% DW)            
-	-----------------------------------------           
-	
-	sets.engaged['DW: 5-0'] 				= set_combine(sets.engaged['DW: 6-11'],				{ear1="Steelflash Earring",ear2="Bladeborn Earring",body="Meg. Cuirie +1",})
-	sets.engaged['Ilvl~118']['DW: 5-0'] 	= set_combine(sets.engaged['DW: 5-0'], 				{neck="Lissome Necklace",ring2="Apate Ring"})
-	sets.engaged['Ilvl~122']['DW: 5-0'] 	= set_combine(sets.engaged['Ilvl~118']['DW: 5-0'], 	{head=Dampening_Tam,ring1="Ramuh Ring",})
-	sets.engaged['Ilvl~124+']['DW: 5-0'] 	= set_combine(sets.engaged['Ilvl~122']['DW: 5-0'], 	{neck="Ej Necklace",waist="Grunfeld Rope"})
-					
-	-- evasion sets                                        
-	sets.engaged['DW: 5-0'].Evasion 					= set_combine(sets.engaged['DW: 6-11'].Evasion , 			{})
-	sets.engaged['Ilvl~118']['DW: 5-0'].Evasion 		= set_combine(sets.engaged['DW: 5-0'].Evasion, 				{})
-	sets.engaged['Ilvl~122']['DW: 5-0'].Evasion 		= set_combine(sets.engaged['Ilvl~118']['DW: 5-0'].Evasion, 	{})
-	sets.engaged['Ilvl~124+']['DW: 5-0'].Evasion 		= set_combine(sets.engaged['Ilvl~122']['DW: 5-0'].Evasion, 	{})
-																													
-	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	----------------------
-	-- Miscealeus sets
-	----------------------
-	
-	--sets.Rancor = {neck="Rancor Collar"}
-	sets.buff.sleep = {head="Frenzy Sallet"}
-	sets.buff.Doom = {ring1="Saida Ring",ring2="Blenmot's Ring"}
 end
  
 
@@ -612,7 +290,7 @@ function customize_melee_set(meleeSet)
 		local helm = false
 		local helm_name = ''
 		
-		if pplayer.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
+		if player.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
 			helm_name ={ name="Frenzy Sallet" }
 			helm = true
 		end
@@ -621,12 +299,12 @@ function customize_melee_set(meleeSet)
 			for index, buff in pairs(player.buffs) do
 				if buff == 2 and helm == true then
 					meleeSet = set_combine(meleeSet, {head=helm_name})
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
 					end
-				elseif buff == 2 then
+				elseif buff == 19 then
 					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Nightmare'):color(warning_text)  .. (' while Engaged *****__\\||//__'):color(text_color) )
 				end
 			end
@@ -657,16 +335,24 @@ function customize_defense_set(defenseSet)
     end
 	
 	if state.Buff.sleep then
+		local helm = false
+		local helm_name = ''
+		
+		if player.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
+			helm_name ={ name="Frenzy Sallet" }
+			helm = true
+		end
+		
 		if player.buffs then
 			for index, buff in pairs(player.buffs) do
-				if buff == 19 then
-					defenseSet = set_combine(defenseSet, sets.buff.sleep)
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping Frenzy Sallet '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+				if buff == 2 and helm == true then
+					defenseSet = set_combine(defenseSet, {head=helm_name})
+					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
 					end
-				elseif buff == 2 then
+				elseif buff == 19 then
 					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Nightmare'):color(warning_text)  .. (' while Engaged *****__\\||//__'):color(text_color) )
 				end
 			end
@@ -876,6 +562,54 @@ function job_self_command(cmdParams, eventArgs)
 		old_inform.hide_window = hide_window
 	end
 	
+	if cmdParams[1] == 'help' then
+	
+		local chat_purple = string.char(0x1F, 200)
+		local chat_grey = string.char(0x1F, 160)
+		local chat_red = string.char(0x1F, 167)
+		local chat_white = string.char(0x1F, 001)
+		local chat_green = string.char(0x1F, 214)
+		local chat_yellow = string.char(0x1F, 036)
+		local chat_d_blue = string.char(0x1F, 207)
+		local chat_pink = string.char(0x1E, 5)
+		local chat_l_blue = string.char(0x1E, 6)
+	
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, chat_d_blue.. 	'                         Welcome to Sebs Gearswap help!' )
+		windower.add_to_chat(6, chat_white.. 	'                         ----------------------------------' )
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'You may manually type these with \"\/\/gs c [function]\" eg. '.. chat_yellow ..' \"\/\/gs c update user\"')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you wish to macro the functions please use \"\/con gs c [function]\" eg. '.. chat_yellow ..' \"\/con gs c update user\"')
+		windower.add_to_chat(6, chat_yellow.. 	'W-key'.. chat_d_blue ..' means Windows key')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Key Binds available:')
+		windower.add_to_chat(6, chat_yellow.. 	'           \'F12\''..chat_l_blue  ..' = update user ' .. chat_white .. '  --  Will check and equip correct gear.')
+		windower.add_to_chat(6, chat_d_blue.. 	'Will also save the current location of the gearswap info text box to file')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F12\''..chat_l_blue  ..' = cycle CastingMode ' .. chat_white .. '   --  Cycles to resistant mode \(more Macc\).')
+		windower.add_to_chat(6, chat_yellow..	'    \'Alt + F12\''..chat_l_blue  ..' = cycle IdleMode ' .. chat_white .. '  --  Cycle through idle modes.')
+		windower.add_to_chat(6, chat_yellow..	'\'W-Key + F12\''..chat_l_blue  ..' = toggle kiting ' .. chat_white .. '  --  Locks movement speed gear on over any set')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'   \'Ctrl + F11\''..chat_l_blue  ..' = cycle CP ' .. chat_white .. '  --  Makes you utilise CP cape')
+		windower.add_to_chat(6, chat_yellow..	'   \'Alt + F11\''..chat_l_blue  ..' = cycle treasuremode ' .. chat_white .. '  --  Cycles through TH modes')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow.. 	'             \'[\''..chat_l_blue  ..' = toggle PhysicalDefense ' .. chat_white .. '  --  Locks PDT set on.')
+		windower.add_to_chat(6, chat_yellow..	'      \'Ctrl + [\''..chat_l_blue  ..' = cycle OffenseMode ' .. chat_white .. '   --  Cycles throught melee accuracy modes.')
+		windower.add_to_chat(6, chat_yellow..	'  \'W-Key + [\''..chat_l_blue  ..' = cycle HybridMode ' .. chat_white .. '  --  Cycles thought Hybrid modes \(usually just DT\)')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_yellow..	'             \']\''..chat_l_blue  ..' = toggle MagicalDefense ' .. chat_white .. '  --  Locks MDT set on.')
+		windower.add_to_chat(6, chat_yellow..	'     \'Ctrl + ]\''..chat_l_blue  ..' = cycle RangedMode ' .. chat_white .. '  --  increase R.acc.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_d_blue.. 	'If you need more help or run into problems, you can contact me via email at ' .. chat_yellow .. 'sebyg666@hotmail.com')
+		windower.add_to_chat(6, chat_d_blue.. 	'Alternatively if you have me on your skype list, just leave me a message there and ill get back to you.')
+		windower.add_to_chat(6, ' ')
+		windower.add_to_chat(6, chat_green.. 	'Warning: Shameless plug follows.')
+		windower.add_to_chat(6, chat_d_blue.. 	'If You are a big fan of my lua\'s and you wish to support me, you are more then welcome to donate any amount of money')
+		windower.add_to_chat(6, chat_d_blue.. 	'via paypal at the above email adress. You may also tell other people you trust about my lua\'s and how to contact me,')
+		windower.add_to_chat(6, chat_d_blue.. 	'for help setting up, and finally you can also find me streaming live on twitch at '.. chat_yellow .. 'www.twitch.tv/Sebbyg')
+		windower.add_to_chat(6, ' ')
+	
+	end
 end
 
 

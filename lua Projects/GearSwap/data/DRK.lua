@@ -762,7 +762,7 @@ function customize_melee_set(meleeSet)
 		local helm = false
 		local helm_name = ''
 		
-		if pplayer.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
+		if player.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
 			helm_name ={ name="Frenzy Sallet" }
 			helm = true
 		end
@@ -783,20 +783,20 @@ function customize_melee_set(meleeSet)
 				if buff == 2 then
 					if helm == true and torque == true then 
 						meleeSet = set_combine(meleeSet, {neck=torque_name})
-						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					elseif helm == true then 
 						meleeSet = set_combine(meleeSet, {head=helm_name})
-						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					elseif torque == true then
 						meleeSet = set_combine(meleeSet, {neck=torque_name})
-						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.en .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
 					end
 					
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
 					end
-				elseif buff == 2 then
+				elseif buff == 19 then
 					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Nightmare'):color(warning_text)  .. (' while Engaged *****__\\||//__'):color(text_color) )
 				end
 			end
@@ -823,12 +823,42 @@ function customize_defense_set(defenseSet)
 		add_to_chat(200,('__\\||//__***** '):color(Notification_color) .. (' Doomed '):color(warning_text) .. ('*****__\\||//__'):color(Notification_color) )
     end
 
-    if state.Buff.sleep and player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] or player.wardrobe3['Berserkers Torque'] or player.wardrobe4['Berserkers Torque'] then
+   if state.Buff.sleep then
+		local torque = false
+		local torque_name = ''
+		local helm = false
+		local helm_name = ''
+		
+		if player.inventory['Frenzy Sallet'] or player.wardrobe['Frenzy Sallet'] or player.wardrobe2['Frenzy Sallet'] or player.wardrobe3['Frenzy Sallet']  or player.wardrobe4['Frenzy Sallet']  then
+			helm_name ={ name="Frenzy Sallet" }
+			helm = true
+		end
+		
+		if player.inventory['Berserkers Torque'] or player.wardrobe['Berserkers Torque'] or player.wardrobe2['Berserkers Torque'] or player.wardrobe3['Berserkers Torque'] or player.wardrobe4['Berserkers Torque'] then
+			torque_name ={ name="Berserkers Torque" }
+			torque = true
+		elseif player.inventory['Vim Torque'] or player.wardrobe['Vim Torque'] or player.wardrobe2['Vim Torque'] or player.wardrobe3['Vim Torque'] or player.wardrobe4['Vim Torque']  then
+			torque_name ={ name="Vim Torque" }
+			torque = true
+		elseif player.inventory['Vim Torque +1'] or player.wardrobe['Vim Torque +1'] or player.wardrobe2['Vim Torque +1'] or player.wardrobe3['Vim Torque +1'] or player.wardrobe4['Vim Torque +1'] then
+			torque_name ={ name="Vim Torque +1" }
+			torque = true
+		end
+		
 		if player.buffs then
 			for index, buff in pairs(player.buffs) do
 				if buff == 2 then
-					meleeSet = set_combine(meleeSet, sets.buff.sleep)
-					add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping Frenzy Sallet '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					if helm == true and torque == true then 
+						defenseSet = set_combine(defenseSet, {neck=torque_name})
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					elseif helm == true then 
+						defenseSet = set_combine(defenseSet, {head=helm_name})
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. helm_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					elseif torque == true then
+						defenseSet = set_combine(defenseSet, {neck=torque_name})
+						add_to_chat(200,('__\\||//__***** Status '):color(text_color) .. ('Sleep'):color(warning_text)  .. (' while Engaged:'):color(text_color) .. (' Equiping -> \"' .. torque_name.name .. '\" '):color(Notification_color) .. ('*****__\\||//__'):color(text_color) )
+					end
+					
 					if state.Buff.Stoneskin then
 						send_command('cancel 37')
 						add_to_chat(200,('[Cancelling '):color(Notification_color) .. ('Stoneskin'):color(warning_text) .. (' to wake up.]'):color(Notification_color) )
